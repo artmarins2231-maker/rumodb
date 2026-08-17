@@ -1,0 +1,14 @@
+# Segredos e configuração local — NUNCA subir isso pro GitHub/Render
+.env
+admin.key
+
+# Banco de dados local (na Render, use um Disk persistente — veja o passo a passo)
+rumodb.json
+
+# Node
+node_modules/
+npm-debug.log
+
+# SO
+.DS_Store
+Thumbs.db

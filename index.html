@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rumo — viaje com o orçamento que você tem</title>
+<meta name="description" content="Diga quanto você tem pra gastar e o Rumo mostra pra onde dá pra viajar: passagens, hotéis e dia a dia calculados na hora, com a AURORA, nossa copiloto de IA.">
+<meta name="keywords" content="viagem barata, planejar viagem, orçamento de viagem, roteiro de viagem, comparador de passagens, hotéis baratos">
+<meta name="author" content="Rumo">
+<meta name="robots" content="index, follow">
+<!-- Troque __SITE_URL__ pelo domínio final (ex: https://www.seurumo.com.br) aqui, no robots.txt e no sitemap.xml. -->
+<link rel="canonical" href="__SITE_URL__/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#1F2A30">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rumo">
+<meta property="og:title" content="Rumo — viaje com o orçamento que você tem">
+<meta property="og:description" content="Diga quanto você tem pra gastar e o Rumo mostra pra onde dá pra viajar, com passagens, hotéis e dia a dia calculados na hora.">
+<meta property="og:url" content="__SITE_URL__/">
+<meta property="og:image" content="__SITE_URL__/favicon.svg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rumo — viaje com o orçamento que você tem">
+<meta name="twitter:description" content="Diga quanto você tem pra gastar e o Rumo mostra pra onde dá pra viajar.">
+<meta name="twitter:image" content="__SITE_URL__/favicon.svg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Rumo",
+  "url": "__SITE_URL__/",
+  "description": "Planejador de viagens por orçamento: destinos, passagens e hotéis calculados a partir do valor que você tem pra gastar.",
+  "applicationCategory": "TravelApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#E9EBEC;--card:#F5F6F7;--ice:#DCE1E4;--sky2:#B7C2C9;--sky:#5E8FA3;
+  --blue:#3E6C8E;--navy:#2C3E4A;--deep:#1F2A30;--abyss:#131B20;
+  --sun:#D9A441;--orange:#C4693F;--ok:#4E937A;--danger:#B04A4A;
+  --ink:#202B31;--muted:#66717A;--linha:rgba(31,42,48,.18);
+  --sombra:8px 8px 0 rgba(19,27,32,.85);--sombra-sm:5px 5px 0 rgba(19,27,32,.85);
+  --r:14px;--display:'Archivo Black',system-ui,sans-serif;--body:'Archivo',system-ui,sans-serif;--mono:'Space Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:var(--body);color:var(--ink);background:var(--fundo);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'%3E%3Cg fill='none' stroke='%231F2A30' stroke-opacity='.07' stroke-width='1.5'%3E%3Ccircle cx='120' cy='120' r='34'/%3E%3Ccircle cx='120' cy='120' r='62'/%3E%3Ccircle cx='120' cy='120' r='92'/%3E%3Ccircle cx='420' cy='400' r='30'/%3E%3Ccircle cx='420' cy='400' r='58'/%3E%3Ccircle cx='420' cy='400' r='88'/%3E%3C/g%3E%3C/svg%3E");
+  line-height:1.55;overflow-x:hidden}
+::selection{background:var(--sun);color:var(--deep)}
+button{font-family:inherit;cursor:pointer}
+input,select{font-family:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:4px}
+[hidden]{display:none!important}
+.topbar{position:sticky;top:0;z-index:60;background:var(--deep);color:#E8ECEE;border-bottom:3px solid var(--abyss);transition:box-shadow .3s}
+.topbar.scrolled{box-shadow:0 6px 24px rgba(12,18,24,.4)}
+.topbar-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:1.1rem;padding:16px 24px;transition:padding .3s}
+.topbar.scrolled .topbar-in{padding:10px 24px}
+.logo{font-family:var(--display);font-size:1.7rem;letter-spacing:-.02em;text-decoration:none;color:#fff;display:flex;align-items:center;gap:.4rem}
+.logo .av{display:inline-block;color:var(--sun);transform:rotate(-12deg);transition:transform .3s}
+.logo:hover .av{transform:rotate(8deg) translateX(3px)}
+.mainnav{display:flex;gap:1.2rem;margin-left:.4rem;flex-wrap:wrap}
+.mainnav a{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:#B9C2C7;text-decoration:none;position:relative;padding:4px 0}
+.mainnav a::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--sun);transition:width .25s}
+.mainnav a:hover,.mainnav a.on{color:#fff}
+.mainnav a:hover::after,.mainnav a.on::after{width:100%}
+.auth{margin-left:auto;display:flex;align-items:center;gap:.7rem;position:relative}
+.auth-user{display:none;align-items:center;gap:.7rem}
+body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
+.hello{font-family:var(--mono);font-size:.75rem;color:var(--sun)}
+.iconbtn{background:transparent;border:2px solid rgba(255,255,255,.35);color:#fff;border-radius:10px;padding:.42rem .6rem;font-size:1rem;position:relative;transition:transform .15s,border-color .2s,background .2s}
+.iconbtn:hover{transform:translateY(-2px);border-color:var(--sun);background:rgba(217,164,65,.14)}
+#favCount{position:absolute;top:-7px;right:-7px;min-width:18px;height:18px;border-radius:99px;background:var(--orange);color:#fff;font-family:var(--mono);font-size:.62rem;display:flex;align-items:center;justify-content:center;border:2px solid var(--deep);padding:0 4px}
+#favCount:empty{display:none}
+.premiumbtn{background:linear-gradient(120deg,var(--sun),var(--orange));border:2px solid var(--deep);color:var(--deep);border-radius:10px;padding:.42rem .8rem;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:3px 3px 0 rgba(19,27,32,.85);transition:transform .15s,box-shadow .15s}
+.premiumbtn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 rgba(19,27,32,.85)}
+.pbadge{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(120deg,var(--sun),var(--orange));color:var(--deep);border:1.5px solid var(--deep);border-radius:99px;padding:.18rem .55rem}
+.premium-benefits{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin:1rem 0 1.3rem}
+.premium-benefits li{display:flex;gap:.6rem;align-items:flex-start;font-size:.88rem;color:#3c4650}
+.premium-benefits li b{color:var(--deep)}
+.premium-benefits li span:first-child{font-size:1.05rem}
+.premium-redeem{border-top:2px dashed var(--linha);padding-top:1rem;margin-top:.4rem}
+.premium-redeem .field-row{grid-template-columns:1fr auto}
+.premium-status{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;padding:.6rem .8rem;border-radius:10px;border:1.5px dashed var(--linha);margin-bottom:1rem}
+.premium-status.on{color:var(--ok);border-color:var(--ok);background:#E3EFE9}
+.fav-limit-note{font-family:var(--mono);font-size:.66rem;color:var(--orange);margin-top:.4rem;padding:.5rem;border:1.5px dashed var(--orange);border-radius:8px;background:#F7EDE7}
+.lang-wrap{display:flex;align-items:center;gap:.35rem;border:2px solid rgba(255,255,255,.35);border-radius:10px;padding:.32rem .55rem;transition:border-color .2s,transform .15s}
+.lang-wrap:hover{border-color:var(--sun);transform:translateY(-1px)}
+.lang-wrap select{background:transparent;border:none;color:#fff;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;outline:none;cursor:pointer;font-weight:700}
+.lang-wrap select option{color:var(--ink)}
+.btn{font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;border:2px solid var(--deep);border-radius:12px;padding:.85rem 1.4rem;background:var(--card);color:var(--ink);box-shadow:var(--sombra-sm);transition:transform .15s,box-shadow .15s,background .2s;display:inline-flex;align-items:center;gap:.5rem;justify-content:center;text-decoration:none}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 rgba(19,27,32,.85)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(19,27,32,.85)}
+.btn.primary{background:var(--orange);color:#fff}.btn.primary:hover{background:#A85632}
+.btn.yellow{background:var(--sun)}
+.btn.sky{background:var(--sky2)}
+.btn.ghost{background:transparent;box-shadow:none;border-style:dashed;color:#fff}
+.btn.ghost:hover{background:rgba(255,255,255,.1);transform:none;box-shadow:none}
+.btn.sm{padding:.55rem .95rem;font-size:.72rem;border-radius:10px;box-shadow:3px 3px 0 rgba(19,27,32,.85)}
+.btn.mini{padding:.4rem .7rem;font-size:.66rem;border-radius:8px;box-shadow:3px 3px 0 rgba(19,27,32,.85)}
+.btn.wide{width:100%}
+.btn.danger{background:#fff;border-color:var(--danger);color:var(--danger);box-shadow:3px 3px 0 var(--danger)}
+.fav-panel{position:absolute;top:calc(100% + 14px);right:0;width:min(340px,86vw);background:var(--card);color:var(--ink);border:2px solid var(--deep);border-radius:var(--r);box-shadow:var(--sombra);padding:1rem;z-index:70;animation:dropIn .25s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes dropIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.fav-panel h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.7rem;color:var(--blue)}
+.fav-item{display:flex;align-items:center;gap:.6rem;padding:.55rem;border:1.5px dashed var(--linha);border-radius:10px;margin-bottom:.5rem;font-size:.85rem;background:var(--fundo);transition:border-color .2s,transform .15s}
+.fav-item:hover{border-color:var(--blue);transform:translateX(3px)}
+.fav-item .fi-info{flex:1;min-width:0}.fav-item .fi-city{font-weight:800}
+.fav-item .fi-meta{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.fav-remove{background:none;border:none;font-size:1rem;color:var(--danger);padding:.2rem}
+.fav-empty{font-size:.82rem;color:var(--muted);font-family:var(--mono)}
+.hero{position:relative;padding:64px 24px 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;color:var(--blue);opacity:.9}
+.hero-bg svg{width:100%;height:100%}
+.hero-in{max-width:1180px;margin:0 auto;position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;background:var(--deep);color:var(--sun);padding:.45rem .9rem;border-radius:99px;border:2px solid var(--abyss);box-shadow:3px 3px 0 rgba(19,27,32,.8);margin-bottom:1.6rem}
+.kicker .dot{width:8px;height:8px;border-radius:99px;background:var(--orange);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
+.hero h1{font-family:var(--display);font-size:clamp(2.4rem,5.2vw,4.3rem);line-height:.98;letter-spacing:-.01em;text-transform:uppercase;color:var(--deep)}
+.hero h1 .marca{display:inline;background:linear-gradient(transparent 55%,var(--sun) 55%,var(--sun) 92%,transparent 92%);padding:0 .1em}
+.hero h1 .seta{color:var(--orange);display:inline-block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.hero p.lead{margin:1.4rem 0 1.8rem;font-size:1.08rem;max-width:34rem;color:#3c4650}
+.hero p.lead strong{background:var(--ice);padding:.05em .25em;border-radius:4px;color:var(--navy)}
+.exemplos{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.exemplos .rotulo{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chip-ex{font-family:var(--mono);font-size:.75rem;background:var(--card);border:2px solid var(--deep);border-radius:99px;padding:.42rem .9rem;box-shadow:3px 3px 0 rgba(19,27,32,.8);transition:transform .15s,background .2s,box-shadow .15s}
+.chip-ex:hover{transform:translate(-2px,-2px);background:var(--sun);box-shadow:5px 5px 0 rgba(19,27,32,.8)}
+.ticket{position:relative;background:var(--card);border:2px solid var(--deep);border-radius:18px;box-shadow:12px 12px 0 rgba(19,27,32,.85);transform:rotate(1.4deg);transition:transform .35s;max-width:480px;justify-self:end;width:100%}
+.ticket:hover{transform:rotate(.3deg) translateY(-4px)}
+.ticket-head{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem .7rem}
+.ticket-head .th-l{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;color:var(--blue);font-weight:700}
+.ticket-head .th-r{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.ticket-route{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 1.4rem .7rem;border-bottom:2px dashed var(--linha);display:flex;align-items:center;gap:.5rem}
+.ticket-route b{color:var(--orange)}
+.ticket-route .aviao{color:var(--sky);animation:bob 2.6s ease-in-out infinite;display:inline-block}
+.ticket-notch{position:relative;height:0;border-top:2px dashed var(--linha)}
+.ticket-notch::before,.ticket-notch::after{content:'';position:absolute;top:-13px;width:24px;height:24px;border-radius:99px;background:var(--fundo);border:2px solid var(--deep);z-index:2}
+.ticket-notch::before{left:-14px}.ticket-notch::after{right:-14px}
+.ticket-body{padding:1.4rem}
+.ticket-body h2{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;color:var(--deep);margin-bottom:1.1rem}
+.ticket-body h2 span{color:var(--orange)}
+.field{margin-bottom:1rem}
+.field label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.field input,.field select{width:100%;border:2px solid var(--deep);border-radius:10px;background:#fff;padding:.8rem .9rem;font-size:1rem;font-weight:600;color:var(--ink);transition:box-shadow .2s,transform .15s;appearance:none}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231F2A30' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
+.field input:focus,.field select:focus{outline:none;box-shadow:4px 4px 0 var(--sun);transform:translate(-1px,-1px)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.ticket-foot{padding:0 1.4rem 1.4rem}
+.barcode{height:36px;border-radius:4px;margin-bottom:.6rem;background:repeating-linear-gradient(90deg,var(--deep) 0 2px,transparent 2px 5px,var(--deep) 5px 6px,transparent 6px 10px,var(--deep) 10px 13px,transparent 13px 15px);animation:scan 6s linear infinite;background-size:200% 100%}
+@keyframes scan{to{background-position:-200% 0}}
+.barcode-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.3em;color:var(--muted);text-align:right;margin-bottom:1rem}
+.pass-wrap{position:relative}.pass-wrap input{padding-right:3rem}
+.eye-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;padding:7px;color:var(--muted);display:flex;border-radius:8px;transition:color .2s,transform .15s}
+.eye-btn:hover{color:var(--blue);transform:translateY(-50%) scale(1.12)}
+.eye-btn svg{width:20px;height:20px}
+.eye-btn .i-off{display:none}.eye-btn.off .i-on{display:none}.eye-btn.off .i-off{display:block}
+.marquee{background:var(--sun);border-block:3px solid var(--deep);overflow:hidden;padding:.7rem 0;transform:rotate(-1deg) scale(1.02)}
+.mq-inner{display:flex;width:max-content;animation:mq 30s linear infinite}
+.marquee:hover .mq-inner{animation-play-state:paused}
+.mq-track{font-family:var(--display);font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--deep);white-space:nowrap;padding-right:2rem}
+.mq-track b{color:var(--orange);margin:0 1rem;font-weight:400}
+@keyframes mq{to{transform:translateX(-50%)}}
+.resultados{max-width:1180px;margin:0 auto;padding:80px 24px 40px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem}
+.sec-head h2{font-family:var(--display);font-size:clamp(1.9rem,3.6vw,2.9rem);text-transform:uppercase;color:var(--deep);line-height:1}
+.res-sub{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-bottom:2rem}
+.res-sub b{color:var(--orange)}
+.stamp{font-family:var(--display);color:var(--orange);border:3px solid var(--orange);border-radius:10px;padding:.35rem .8rem;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-6deg) scale(0);opacity:0;mix-blend-mode:multiply}
+.stamp.show{animation:stampIn .5s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes stampIn{0%{transform:rotate(10deg) scale(2.4);opacity:0}60%{transform:rotate(-8deg) scale(.94);opacity:1}100%{transform:rotate(-6deg) scale(1);opacity:1}}
+.loader{padding:2.5rem 0;text-align:center}
+.loader-track{position:relative;height:2px;max-width:420px;margin:0 auto 1rem;background:repeating-linear-gradient(90deg,var(--blue) 0 8px,transparent 8px 16px)}
+.loader-plane{position:absolute;top:-14px;left:0;font-size:1.4rem;animation:fly 1.1s ease-in-out infinite}
+@keyframes fly{0%{left:0;transform:rotate(0)}50%{transform:rotate(6deg) translateY(-6px)}100%{left:calc(100% - 24px);transform:rotate(0)}}
+.loader p{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
+.empty{border:2px dashed var(--deep);border-radius:var(--r);background:rgba(255,255,255,.75);padding:3rem 2rem;text-align:center;max-width:560px;margin:0 auto}
+.empty .empty-ico{font-size:2.6rem;display:inline-block;animation:bob 3s ease-in-out infinite}
+.empty h3{font-family:var(--display);text-transform:uppercase;margin:.8rem 0 .4rem;color:var(--deep)}
+.empty p{color:#4a5560;font-size:.95rem;max-width:26rem;margin:0 auto}
+.empty.quente{border-color:var(--orange);background:#F7EDE7}
+.quase-titulo{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin:2.4rem 0 1rem;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.6rem;margin-top:1.4rem}
+.card{position:relative;background:var(--card);border:2px solid var(--deep);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sombra);transition:transform .25s,box-shadow .25s;animation:cardIn .5s cubic-bezier(.2,.9,.3,1.1) both;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px) rotate(1deg)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:12px 14px 0 rgba(19,27,32,.85)}
+.card.pulse{animation:pulseCard 1.5s ease}
+@keyframes pulseCard{0%,100%{box-shadow:var(--sombra)}40%{box-shadow:0 0 0 8px var(--sun),var(--sombra)}}
+.card-num{position:absolute;top:10px;left:12px;z-index:2;font-family:var(--mono);font-size:.66rem;background:var(--deep);color:var(--sun);padding:.15rem .5rem;border-radius:6px}
+.card-band{position:relative;padding:1.9rem 1.2rem 1rem;border-bottom:2px solid var(--deep);background-image:repeating-linear-gradient(-45deg,rgba(31,42,48,.06) 0 3px,transparent 3px 14px)}
+.card-flag{font-size:2.6rem;line-height:1;filter:drop-shadow(2px 3px 0 rgba(31,42,48,.25))}
+.card-region{position:absolute;bottom:10px;left:12px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;background:var(--deep);color:#fff;padding:.2rem .55rem;border-radius:6px}
+.favbtn{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:99px;border:2px solid var(--deep);background:var(--card);font-size:1.05rem;display:flex;align-items:center;justify-content:center;transition:transform .15s,background .2s}
+.favbtn:hover{transform:scale(1.12) rotate(-6deg)}
+.favbtn.on{background:var(--orange);animation:heartPop .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes heartPop{0%{transform:scale(.5)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+.card-body{padding:1.1rem 1.2rem 1.2rem;display:flex;flex-direction:column;flex:1}
+.card-city{font-family:var(--display);font-size:1.55rem;text-transform:uppercase;color:var(--deep);line-height:1.05}
+.card-country{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--muted);margin:.2rem 0 .55rem}
+.card-desc{font-size:.85rem;color:#3c4650;margin-bottom:.7rem}
+.card-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
+.tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;border:1.5px solid var(--linha);padding:.15rem .5rem;border-radius:99px;color:#4a5560;background:var(--fundo)}
+.breakdown{border-top:2px dashed var(--linha);padding-top:.7rem;margin-bottom:.8rem}
+.bd-row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;padding:.18rem 0;color:#3c4650;gap:.5rem}
+.bd-row span:last-child{font-weight:700;white-space:nowrap}
+.bd-row.hotel-line{color:var(--blue)}
+.bd-row.comp-line{color:var(--orange)}
+.total-line{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;margin-bottom:.5rem}
+.total-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.total-val{font-family:var(--display);font-size:1.7rem;color:var(--deep)}
+.sobra{font-family:var(--mono);font-size:.66rem;padding:.2rem .55rem;border-radius:99px;border:1.5px solid;white-space:nowrap}
+.sobra.ok{color:var(--ok);border-color:var(--ok);background:#E3EFE9}
+.sobra.quente{color:var(--danger);border-color:var(--danger);background:#F4E3E3}
+.card-note{font-family:var(--mono);font-size:.62rem;color:#7b858d;margin-bottom:.9rem}
+.card-actions{margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.card.quase{border-style:dashed;box-shadow:none;background:transparent}
+.card.quase:hover{transform:none;box-shadow:none}
+.como{background:var(--navy);color:#E8ECEE;padding:90px 24px 100px;position:relative;overflow:hidden;border-top:3px solid var(--deep)}
+.como::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.09) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none}
+.como-in{max-width:1080px;margin:0 auto;position:relative}
+.como .sec-kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--sun)}
+.como h2{font-family:var(--display);font-size:clamp(1.9rem,3.6vw,2.9rem);text-transform:uppercase;margin:.4rem 0 3rem;color:#fff}
+.passos{display:flex;flex-direction:column;position:relative}
+.passos::before{content:'';position:absolute;left:39px;top:20px;bottom:20px;width:0;border-left:2px dashed rgba(217,164,65,.5)}
+.passo{display:flex;gap:1.6rem;padding:1.3rem 0;position:relative;align-items:flex-start}
+.passo-num{flex:0 0 80px;height:80px;border-radius:99px;background:var(--sun);color:var(--deep);border:3px solid var(--deep);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.5rem;box-shadow:5px 5px 0 rgba(12,18,24,.5);position:relative;z-index:1;transition:transform .25s}
+.passo:hover .passo-num{transform:rotate(-8deg) scale(1.06)}
+.passo h3{font-family:var(--display);text-transform:uppercase;font-size:1.15rem;color:#fff;margin-bottom:.3rem}
+.passo p{color:#C4CDD2;max-width:34rem;font-size:.95rem}
+.passo .passo-ico{margin-left:auto;font-size:1.8rem;align-self:center;opacity:.9;transition:transform .25s}
+.passo:hover .passo-ico{transform:translateX(6px) rotate(8deg)}
+.stats{margin-top:3.2rem;display:flex;flex-wrap:wrap;gap:.8rem 2.6rem;border:2px dashed rgba(217,164,65,.45);border-radius:var(--r);padding:1.2rem 1.6rem;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;color:var(--sun)}
+.stats b{color:#fff}
+.exp-hero{background:linear-gradient(160deg,var(--sky2),var(--ice) 60%,var(--fundo));border-bottom:3px solid var(--deep);padding:70px 24px 60px;position:relative;overflow:hidden}
+.exp-hero .exp-in{max-width:1180px;margin:0 auto}
+.exp-hero h1{font-family:var(--display);font-size:clamp(2rem,4.4vw,3.4rem);text-transform:uppercase;color:var(--deep)}
+.exp-hero h1 span{color:var(--orange)}
+.exp-hero p{margin-top:.8rem;max-width:36rem;color:#3c4650;font-size:1.05rem}
+.exp-sec{max-width:1180px;margin:0 auto;padding:60px 24px 10px}
+.exp-sec>h2{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.2rem);text-transform:uppercase;color:var(--deep);margin-bottom:.4rem}
+.exp-sec>.sub{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:1.6rem}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.3rem}
+.gal-card{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);overflow:hidden;box-shadow:var(--sombra-sm);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
+.gal-card:hover{transform:translateY(-5px) rotate(-.6deg);box-shadow:8px 10px 0 rgba(19,27,32,.85)}
+.gal-band{padding:1.2rem 1rem .8rem;font-size:2.2rem;border-bottom:2px solid var(--deep);background-image:repeating-linear-gradient(-45deg,rgba(31,42,48,.06) 0 3px,transparent 3px 14px)}
+.gal-body{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;flex:1}
+.gal-body h3{font-family:var(--display);font-size:1.1rem;text-transform:uppercase;color:var(--deep)}
+.gal-body .g-meta{font-family:var(--mono);font-size:.64rem;color:var(--muted);margin:.2rem 0 .5rem}
+.gal-body .g-from{font-family:var(--mono);font-size:.72rem;color:var(--blue);font-weight:700;margin-bottom:.7rem}
+.gal-body .btn{margin-top:auto}
+.exp-duo{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+.panel{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);box-shadow:var(--sombra-sm);padding:1.4rem}
+.panel h3{font-family:var(--display);font-size:1.15rem;text-transform:uppercase;color:var(--deep);margin-bottom:.9rem}
+.conv-row{display:grid;grid-template-columns:1.2fr .8fr;gap:.8rem;margin-bottom:.9rem}
+.conv-out{background:var(--ice);border:2px dashed var(--blue);border-radius:12px;padding:1rem;text-align:center}
+.conv-out .co-v{font-family:var(--display);font-size:1.6rem;color:var(--navy)}
+.conv-out .co-l{font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.1em}
+.conv-note{font-family:var(--mono);font-size:.62rem;color:var(--muted);margin-top:.7rem}
+.chk-bar{height:14px;border:2px solid var(--deep);border-radius:99px;background:var(--fundo);overflow:hidden;margin-bottom:1rem}
+.chk-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--sky),var(--ok));width:0;transition:width .4s cubic-bezier(.2,.9,.3,1)}
+.chk-item{display:flex;align-items:center;gap:.6rem;padding:.5rem .6rem;border:1.5px dashed var(--linha);border-radius:10px;margin-bottom:.5rem;cursor:pointer;transition:all .15s;background:var(--fundo);font-size:.88rem}
+.chk-item:hover{border-color:var(--blue);transform:translateX(3px)}
+.chk-item input{accent-color:var(--ok);width:16px;height:16px}
+.chk-item.done{background:#E3EFE9;border-color:var(--ok);text-decoration:line-through;color:var(--muted)}
+.fun-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.3rem;padding-bottom:20px}
+.fun-card{background:var(--deep);color:#E4E9EB;border:2px solid var(--abyss);border-radius:var(--r);padding:1.3rem;box-shadow:var(--sombra-sm);transition:transform .2s}
+.fun-card:hover{transform:translateY(-4px) rotate(.6deg)}
+.fun-card .f-ico{font-size:2rem;display:block;margin-bottom:.6rem}
+.fun-card p{font-size:.9rem;line-height:1.55}
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.3rem;padding-bottom:70px}
+.comp-card{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);box-shadow:var(--sombra-sm);padding:1rem;transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column;gap:.5rem}
+.comp-card:hover{transform:translateY(-5px) rotate(-.5deg);box-shadow:8px 10px 0 rgba(19,27,32,.85)}
+.comp-top{display:flex;align-items:center;gap:.7rem}
+.comp-logo{width:46px;height:46px;border-radius:12px;border:2px solid var(--deep);display:flex;align-items:center;justify-content:center;font-family:var(--display);color:#fff;font-size:.95rem;box-shadow:3px 3px 0 rgba(19,27,32,.6);flex:0 0 46px}
+.comp-name{font-weight:800}
+.comp-type{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.12rem .5rem;border-radius:99px;border:1.5px solid var(--blue);color:var(--blue);background:var(--ice)}
+.comp-meta{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.comp-desc{font-size:.8rem;color:#3c4650}
+.comp-row{display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center;border:2px solid var(--deep);border-radius:12px;background:#fff;padding:.8rem 1rem;margin-bottom:.8rem}
+.comp-row.usada{background:#F6EFDF;border-color:var(--orange)}
+.best-badge{font-family:var(--mono);font-size:.6rem;background:var(--ok);color:#fff;border-radius:99px;padding:.12rem .5rem}
+/* ===== LAB ===== */
+.lab-hero{background:linear-gradient(140deg,var(--deep),var(--navy) 55%,var(--blue));border-bottom:3px solid var(--deep);padding:80px 24px 70px;position:relative;overflow:hidden}
+.lab-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1.5px,transparent 1.5px);background-size:24px 24px}
+.lab-hero .exp-in{max-width:1180px;margin:0 auto;position:relative}
+.lab-hero h1{font-family:var(--display);font-size:clamp(2.2rem,4.6vw,3.6rem);text-transform:uppercase;color:#fff}
+.lab-hero h1 span{color:var(--sun)}
+.lab-hero p{margin-top:.8rem;max-width:38rem;color:#C4CDD2;font-size:1.05rem}
+.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;max-width:1180px;margin:0 auto;padding:60px 24px 70px}
+.lab-card{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);box-shadow:var(--sombra);padding:1.5rem;transition:transform .2s}
+.lab-card:hover{transform:translateY(-4px)}
+.lab-card h3{font-family:var(--display);font-size:1.2rem;text-transform:uppercase;color:var(--deep);margin-bottom:.3rem}
+.lab-card .sub{font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-bottom:1.1rem}
+.wx-out{margin-top:1rem;border:2px dashed var(--blue);border-radius:12px;background:var(--ice);padding:1.1rem;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
+.wx-temp{font-family:var(--display);font-size:2.6rem;color:var(--navy)}
+.wx-info{font-family:var(--mono);font-size:.72rem;color:#3c4650;display:flex;flex-direction:column;gap:.25rem}
+.wx-emoji{font-size:2.6rem}
+.quiz-opt{display:block;width:100%;text-align:left;margin-bottom:.55rem;border:2px solid var(--deep);border-radius:10px;background:#fff;padding:.65rem .8rem;font-size:.88rem;transition:all .15s}
+.quiz-opt:hover{background:var(--sun);transform:translateX(4px)}
+.quiz-res{border:2px solid var(--ok);border-radius:12px;background:#E3EFE9;padding:1rem;margin-top:.8rem}
+.quiz-res h4{font-family:var(--display);text-transform:uppercase;color:var(--deep);margin-bottom:.4rem}
+.split-out{margin-top:1rem;text-align:center;border:2px dashed var(--ok);border-radius:12px;background:#E3EFE9;padding:1rem}
+.split-out .so-v{font-family:var(--display);font-size:2rem;color:var(--deep)}
+.split-out .so-l{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.radar-feed{display:flex;flex-direction:column;gap:.7rem}
+.deal{display:flex;align-items:center;gap:.8rem;border:2px solid var(--deep);border-radius:12px;background:#fff;padding:.7rem .9rem;animation:cardIn .4s both}
+.deal .d-off{font-family:var(--display);color:#fff;background:var(--danger);border-radius:10px;padding:.35rem .5rem;font-size:.95rem}
+.deal .d-info{flex:1}
+.deal .d-city{font-weight:800}
+.deal .d-meta{font-family:var(--mono);font-size:.64rem;color:var(--muted)}
+.deal .d-time{font-family:var(--mono);font-size:.66rem;color:var(--danger);font-weight:700}
+footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3px solid var(--deep)}
+.foot-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start}
+.foot-logo{font-family:var(--display);font-size:2rem;color:#fff}.foot-logo span{color:var(--sun)}
+.foot-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;margin-top:.4rem;text-transform:uppercase;color:var(--sky2)}
+.foot-note{max-width:26rem;font-size:.8rem;line-height:1.6}
+.foot-db{display:flex;flex-direction:column;gap:.6rem;align-items:flex-start}
+.foot-db small{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;max-width:17rem;line-height:1.5}
+.foot-bottom{max-width:1180px;margin:2.4rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.overlay{position:fixed;inset:0;background:rgba(12,18,24,.62);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:auto}
+.modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;overflow-y:auto}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{background:var(--card);border:2px solid var(--deep);border-radius:18px;box-shadow:var(--sombra);width:min(420px,100%);padding:2rem;position:relative;margin:auto;transform:translateY(20px) scale(.97);transition:transform .3s cubic-bezier(.2,.9,.3,1.2)}
+.modal.open .modal-card{transform:none}
+.modal-card.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:99px;border:2px solid var(--deep);background:var(--sun);font-size:1rem;font-weight:800;transition:transform .15s}
+.modal-close:hover{transform:rotate(90deg)}
+.modal-card h3{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;color:var(--deep);margin-bottom:.3rem}
+.modal-card .sub{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem}
+.form-err{color:var(--danger);font-family:var(--mono);font-size:.72rem;min-height:1.1em;margin-bottom:.6rem}
+.modal-switch{margin-top:1.2rem;font-size:.82rem;text-align:center;color:var(--muted)}
+.modal-switch button{background:none;border:none;font-weight:800;text-decoration:underline;font-size:.82rem;color:var(--orange)}
+.modal-wide{width:min(720px,100%);max-height:88vh;display:flex;flex-direction:column;padding:0;overflow:hidden}
+.hotels-head{padding:1.4rem 1.6rem 1.1rem;border-bottom:2px dashed var(--linha);background:linear-gradient(140deg,var(--ice),#fff)}
+.hotels-head .hh-top{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.hotels-head .hh-flag{font-size:2.2rem}
+.hotels-head h3{margin:0}
+.hh-meta{font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em;margin-top:.2rem}
+.teto-bar{margin-top:.9rem;background:#fff;border:1.5px solid var(--linha);border-radius:10px;padding:.6rem .9rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.teto-bar .tb-l{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.teto-bar .tb-v{font-family:var(--display);font-size:1.15rem;color:var(--navy)}
+.teto-bar .tb-v.neg{color:var(--danger)}
+.teto-bar .tb-note{font-size:.72rem;color:var(--muted);max-width:22rem}
+.hotels-filters{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;padding:.9rem 1.6rem;border-bottom:2px dashed var(--linha)}
+.f-chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;border:2px solid var(--deep);background:#fff;border-radius:99px;padding:.35rem .85rem;transition:all .15s}
+.f-chip:hover{transform:translateY(-2px)}
+.f-chip.on{background:var(--navy);color:var(--sun)}
+.f-check{margin-left:auto;display:flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.68rem;cursor:pointer;user-select:none}
+.f-check input{accent-color:var(--ok);width:15px;height:15px}
+.hotels-list{overflow-y:auto;padding:1rem 1.6rem;flex:1}
+.hotel-row{display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;align-items:center;border:2px solid var(--deep);border-radius:12px;background:#fff;padding:1rem 1.1rem;margin-bottom:.9rem;transition:transform .15s,box-shadow .15s}
+.hotel-row:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 rgba(19,27,32,.8)}
+.hotel-row.escolhido{background:#F6EFDF;border-color:var(--orange)}
+.hotel-row.fora{opacity:.62}
+.hr-name{font-weight:800;font-size:1rem}
+.hr-tier{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;padding:.12rem .5rem;border-radius:99px;border:1.5px solid;margin-left:.4rem;vertical-align:middle}
+.hr-tier.t1{color:#8a6d00;border-color:#c9a50a;background:#FFF3C7}
+.hr-tier.t2{color:var(--blue);border-color:var(--blue);background:var(--ice)}
+.hr-tier.t3{color:var(--orange);border-color:var(--orange);background:#F3E0D6}
+.hr-bairro{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.hr-amen{display:flex;gap:.45rem;margin-top:.4rem;flex-wrap:wrap}
+.hr-amen span{font-size:.9rem;cursor:help;transition:transform .15s}
+.hr-amen span:hover{transform:scale(1.3)}
+.hr-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.3rem}
+.hr-rating{font-family:var(--mono);font-size:.7rem;font-weight:700;background:var(--navy);color:var(--sun);padding:.15rem .5rem;border-radius:6px}
+.hr-price{font-family:var(--display);font-size:1.2rem;color:var(--deep)}
+.hr-price small{font-family:var(--mono);font-size:.6rem;color:var(--muted);font-weight:400}
+.hr-total{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
+.hr-fit{font-family:var(--mono);font-size:.62rem;padding:.14rem .5rem;border-radius:99px;border:1.5px solid}
+.hr-fit.ok{color:var(--ok);border-color:var(--ok);background:#E3EFE9}
+.hr-fit.no{color:var(--danger);border-color:var(--danger);background:#F4E3E3}
+.hotels-foot{padding:.9rem 1.6rem;border-top:2px dashed var(--linha);font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.05em;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.hotels-none{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.9rem}
+.db-status{display:flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.68rem;margin-top:.8rem;padding:.5rem .8rem;border-radius:10px;border:1.5px dashed var(--linha)}
+.db-status.cloud{color:var(--ok);border-color:var(--ok);background:#E3EFE9}
+.db-status.local{color:var(--orange);border-color:var(--orange);background:#F7EDE7}
+.db-section{margin-bottom:1.4rem}
+.db-section h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:.6rem}
+.db-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.68rem;background:#fff;border:2px solid var(--deep)}
+.db-table th{background:var(--navy);color:var(--sun);text-align:left;padding:.5rem .6rem;letter-spacing:.08em;text-transform:uppercase;font-weight:400}
+.db-table td{padding:.5rem .6rem;border-top:1.5px dashed var(--linha);color:#3c4650;word-break:break-all}
+.db-table tr:hover td{background:var(--ice)}
+.db-empty{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.db-actions{display:flex;justify-content:flex-end;gap:.6rem;padding:.9rem 0 0;border-top:2px dashed var(--linha);flex-wrap:wrap}
+.fab{position:fixed;right:22px;bottom:22px;z-index:85;width:62px;height:62px;border-radius:99px;background:linear-gradient(140deg,var(--sun),var(--orange));border:2px solid var(--deep);box-shadow:var(--sombra-sm);font-size:1.6rem;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.fab:hover{transform:translateY(-3px) rotate(-8deg)}
+.fab .fab-dot{position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:99px;background:var(--deep);border:2px solid var(--sun);animation:pulse 1.6s infinite}
+.chat{position:fixed;right:22px;bottom:96px;z-index:86;width:min(380px,92vw);max-height:min(74vh,580px);background:var(--card);border:2px solid var(--deep);border-radius:16px;box-shadow:var(--sombra);display:flex;flex-direction:column;overflow:hidden;animation:dropIn .3s cubic-bezier(.2,.9,.3,1.2)}
+.chat-head{background:linear-gradient(140deg,var(--deep),var(--navy));color:#fff;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--deep)}
+.chat-head .ch-t{font-family:var(--display);font-size:.95rem;text-transform:uppercase}
+.chat-head .ch-t em{font-style:normal;color:var(--sun)}
+.chat-head .ch-s{font-family:var(--mono);font-size:.6rem;color:var(--sky2);letter-spacing:.12em}
+.chat-head .ch-btns{display:flex;gap:.4rem}
+.chat-head .ch-btns button{background:none;border:none;color:#fff;font-size:1rem;padding:.2rem .4rem}
+.chat-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem;background:repeating-linear-gradient(0deg,transparent 0 26px,rgba(62,108,142,.06) 26px 27px)}
+.msg{max-width:88%;padding:.6rem .8rem;border-radius:12px;font-size:.84rem;line-height:1.5;animation:msgIn .3s ease;white-space:pre-line}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.user{align-self:flex-end;background:var(--sun);border:2px solid var(--deep);border-bottom-right-radius:4px;white-space:normal}
+.msg.ai{align-self:flex-start;background:var(--fundo);border:2px solid var(--linha);border-bottom-left-radius:4px}
+.msg.ai b{color:var(--blue)}
+.msg.ai .pick{display:block;margin-top:.35rem;padding-top:.35rem;border-top:1.5px dashed var(--linha)}
+.msg.ai .ai-btns{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
+.typing{display:inline-flex;gap:4px;padding:.2rem 0}
+.typing span{width:6px;height:6px;border-radius:99px;background:var(--muted);animation:blink 1s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+.chat-chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:.6rem 1rem 0}
+.chat-chip{font-family:var(--mono);font-size:.62rem;background:#fff;border:1.5px solid var(--deep);border-radius:99px;padding:.3rem .7rem;transition:all .15s}
+.chat-chip:hover{background:var(--sun);transform:translateY(-2px)}
+.chat-in{display:flex;gap:.5rem;padding:.8rem 1rem;border-top:2px dashed var(--linha)}
+.chat-in input{flex:1;border:2px solid var(--deep);border-radius:10px;padding:.55rem .7rem;font-size:.85rem}
+.chat-in input:focus{outline:none;box-shadow:3px 3px 0 var(--sun)}
+.chat-in button{padding:.55rem .9rem}
+.toast-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:200;display:flex;flex-direction:column;gap:.5rem;align-items:center}
+.toast{background:var(--deep);color:var(--sun);font-family:var(--mono);font-size:.75rem;padding:.7rem 1.2rem;border-radius:99px;border:2px solid var(--sun);box-shadow:4px 4px 0 rgba(0,0,0,.35);animation:toastIn .3s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.9)}to{opacity:1;transform:none}}
+.toast.out{opacity:0;transform:translateY(8px);transition:all .3s}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.9,.3,1);transition-delay:calc(var(--i,0)*.12s)}
+.reveal.in{opacity:1;transform:none}
+@media(max-width:960px){
+  .hero-in{grid-template-columns:1fr;gap:2.5rem}
+  .ticket{justify-self:center;transform:rotate(0)}
+  .passos::before{left:29px}
+  .passo-num{flex-basis:60px;height:60px;font-size:1.15rem}
+  .passo .passo-ico{display:none}
+  .exp-duo,.lab-grid{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .mainnav{display:none}
+  .field-row{grid-template-columns:1fr}
+  .hotel-row{grid-template-columns:1fr}
+  .comp-row{grid-template-columns:auto 1fr}
+  .hr-right{align-items:flex-start;text-align:left}
+  .f-check{margin-left:0}
+  .card-actions{grid-template-columns:1fr}
+  .chat{right:10px;bottom:90px}
+  .fab{right:10px;bottom:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .loader-plane,.hero-bg{display:none}
+}
+</style>
+</head>
+<body>
+<header class="topbar" id="hdr">
+  <div class="topbar-in">
+    <a class="logo" href="#/">Rumo<span class="av">✈</span></a>
+    <nav class="mainnav" aria-label="Navegação principal">
+      <a href="#/" id="navHome" data-i18n="nav_home"></a>
+      <a href="#/explorar" id="navExp" data-i18n="nav_explore"></a>
+      <a href="#/lab" id="navLab" data-i18n="nav_lab"></a>
+      <a href="#resultado" data-i18n="nav_results"></a>
+      <a href="#como" data-i18n="nav_how"></a>
+    </nav>
+    <div class="auth">
+      <label class="lang-wrap" title="Idioma / Language / Idioma">
+        <span>🌐</span>
+        <select id="langSel" aria-label="Idioma"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
+      </label>
+      <div class="auth-guest">
+        <button class="btn ghost sm" id="btnLogin" data-i18n="login"></button>
+        <button class="btn yellow sm" id="btnSignup" data-i18n="signup"></button>
+      </div>
+      <div class="auth-user">
+        <span class="hello" id="userName"></span>
+        <button class="premiumbtn" id="btnPremium" title="Premium"><span id="premiumBtnLabel">⭐ <span data-i18n="prem_cta_short"></span></span></button>
+        <button class="iconbtn" id="navFav" title="Viagens salvas" aria-label="Viagens salvas">❤<span id="favCount"></span></button>
+        <button class="btn ghost sm" id="btnLogout" data-i18n="logout"></button>
+      </div>
+    </div>
+  </div>
+  <div class="fav-panel" id="favPanel" hidden><h4 data-i18n="fav_t"></h4><div id="favList"></div></div>
+</header>
+<main>
+<div id="page-home">
+<section class="hero" id="buscar">
+  <div class="hero-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" fill="none" preserveAspectRatio="none">
+      <path id="rota1" d="M-60 470 C 250 320, 520 560, 780 360 S 1180 220, 1320 300" stroke="currentColor" stroke-width="2" stroke-dasharray="3 12" opacity=".28"/>
+      <path id="rota2" d="M-40 130 C 300 240, 640 60, 1260 170" stroke="currentColor" stroke-width="2" stroke-dasharray="3 12" opacity=".18"/>
+      <g font-size="26">
+        <text>✈<animateMotion dur="16s" repeatCount="indefinite" rotate="auto"><mpath href="#rota1"/></animateMotion></text>
+        <text opacity=".6">✈<animateMotion dur="26s" begin="-9s" repeatCount="indefinite" rotate="auto"><mpath href="#rota2"/></animateMotion></text>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-in">
+    <div class="hero-copy">
+      <span class="kicker"><span class="dot"></span> <span data-i18n="kicker"></span></span>
+      <h1><span data-i18n="h1a"></span><br><span class="marca" data-i18n="h1b"></span> <span class="seta">✈</span></h1>
+      <p class="lead"><span data-i18n="lead1"></span><strong data-i18n="leadStrong"></strong><span data-i18n="lead2"></span></p>
+      <div class="exemplos">
+        <span class="rotulo" data-i18n="ex_label"></span>
+        <button class="chip-ex" data-b="2500" data-d="4">R$ 2.500 · 4 dias</button>
+        <button class="chip-ex" data-b="6000" data-d="7">R$ 6.000 · 7 dias</button>
+        <button class="chip-ex" data-b="12000" data-d="10">R$ 12.000 · 10 dias</button>
+      </div>
+    </div>
+    <form class="ticket" id="ticket" novalidate>
+      <div class="ticket-head"><span class="th-l" data-i18n="tk_head_l"></span><span class="th-r">Nº 0091</span></div>
+      <div class="ticket-route" id="tkRoute"></div>
+      <div class="ticket-body">
+        <h2><span data-i18n="tk_title"></span><span>?</span></h2>
+        <div class="field"><label for="qOrca" data-i18n="f_budget"></label><input type="text" id="qOrca" inputmode="numeric" placeholder="3.500" autocomplete="off"></div>
+        <div class="field-row">
+          <div class="field"><label for="qOrigem" data-i18n="f_origem"></label><select id="qOrigem"></select></div>
+          <div class="field"><label for="qDestino" data-i18n="f_destino"></label><select id="qDestino"></select></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="qDias" data-i18n="f_days"></label><input type="number" id="qDias" min="1" max="30" placeholder="5"></div>
+          <div class="field"><label for="qRegiao" data-i18n="f_region"></label>
+            <select id="qRegiao">
+              <option value="any" data-i18n="reg_any"></option>
+              <option value="Brasil" data-i18n="reg_Brasil"></option>
+              <option value="EUA" data-i18n="reg_EUA"></option>
+              <option value="Portugal" data-i18n="reg_Portugal"></option>
+              <option value="Canadá" data-i18n="reg_Canada"></option>
+              <option value="Chile" data-i18n="reg_Chile"></option>
+              <option value="Argentina" data-i18n="reg_Argentina"></option>
+              <option value="Paraguai" data-i18n="reg_Paraguai"></option>
+              <option value="Uruguai" data-i18n="reg_Uruguai"></option>
+              <option value="México" data-i18n="reg_Mexico"></option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-notch" aria-hidden="true"></div>
+      <div class="ticket-foot" style="padding-top:1.2rem">
+        <div class="barcode" aria-hidden="true"></div>
+        <div class="barcode-label">RMU·0091·BR</div>
+        <button type="submit" class="btn primary wide" data-i18n="btn_search"></button>
+      </div>
+    </form>
+  </div>
+</section>
+<div class="marquee" aria-hidden="true"><div class="mq-inner" id="mqInner"></div></div>
+<section class="resultados" id="resultado">
+  <div class="sec-head"><h2 data-i18n="res_title"></h2><span class="stamp" id="resultStamp"></span></div>
+  <p class="res-sub" id="resSub"><span data-i18n="res_idle"></span></p>
+  <div id="resultsWrap">
+    <div class="empty" id="emptyState">
+      <span class="empty-ico">🧳</span>
+      <h3 data-i18n="empty_t"></h3>
+      <p data-i18n="empty_p"></p>
+    </div>
+  </div>
+</section>
+<section class="como" id="como">
+  <div class="como-in">
+    <span class="sec-kicker" data-i18n="how_kicker"></span>
+    <h2 data-i18n="how_t"></h2>
+    <div class="passos">
+      <div class="passo reveal" style="--i:0"><div class="passo-num">01</div><div><h3 data-i18n="s1t"></h3><p data-i18n="s1p"></p></div><span class="passo-ico">📍</span></div>
+      <div class="passo reveal" style="--i:1"><div class="passo-num">02</div><div><h3 data-i18n="s2t"></h3><p data-i18n="s2p"></p></div><span class="passo-ico">✨</span></div>
+      <div class="passo reveal" style="--i:2"><div class="passo-num">03</div><div><h3 data-i18n="s3t"></h3><p data-i18n="s3p"></p></div><span class="passo-ico">🏨</span></div>
+    </div>
+    <div class="stats reveal">
+      <span><b>33</b> <span data-i18n="st_dest"></span></span>
+      <span><b>110+</b> <span data-i18n="st_hot"></span></span>
+      <span><b>24</b> <span data-i18n="st_comp"></span></span>
+      <span><b>1</b> <span data-i18n="st_ai"></span></span>
+      <span><b></b> <span data-i18n="st_lab"></span></span>
+      <span><b>🖥</b> <span data-i18n="st_db"></span></span>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-explorar" hidden>
+  <section class="exp-hero">
+    <div class="exp-in">
+      <span class="kicker"><span class="dot"></span> <span data-i18n="ex_kicker"></span></span>
+      <h1><span data-i18n="ex_title"></span> <span>🌎</span></h1>
+      <p data-i18n="ex_sub"></p>
+    </div>
+  </section>
+  <section class="exp-sec">
+    <h2 data-i18n="gal_title"></h2>
+    <p class="sub" data-i18n="gal_sub"></p>
+    <div class="gal" id="galGrid"></div>
+  </section>
+  <section class="exp-sec">
+    <h2>🧭 <span data-i18n="comp_title"></span></h2>
+    <p class="sub" data-i18n="comp_sub"></p>
+    <div class="comp-grid" id="compGrid"></div>
+  </section>
+  <section class="exp-sec">
+    <div class="exp-duo">
+      <div class="panel">
+        <h3>💱 <span data-i18n="conv_title"></span></h3>
+        <div class="conv-row">
+          <div class="field" style="margin:0"><label for="convVal" data-i18n="conv_lbl"></label><input type="text" id="convVal" inputmode="numeric" value="1.000"></div>
+          <div class="field" style="margin:0"><label for="convMoeda" data-i18n="conv_to"></label>
+            <select id="convMoeda">
+              <option value="USD">US$ — Dólar</option><option value="EUR">€ — Euro</option>
+              <option value="ARS">AR$ — Peso arg.</option><option value="CLP">CLP$ — Peso chil.</option>
+              <option value="PYG">₲ — Guarani</option><option value="UYU">$U — Peso urug.</option>
+              <option value="MXN">MX$ — Peso mex.</option><option value="CAD">C$ — Dólar canad.</option>
+            </select>
+          </div>
+        </div>
+        <div class="conv-out"><div class="co-v" id="convOut">—</div><div class="co-l" id="convLbl"></div></div>
+        <p class="conv-note" data-i18n="conv_note"></p>
+      </div>
+      <div class="panel">
+        <h3>🎒 <span data-i18n="chk_title"></span></h3>
+        <div class="chk-bar"><i id="chkFill"></i></div>
+        <div id="chkList"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
+          <span class="conv-note" id="chkCount" style="margin:0"></span>
+          <button class="btn mini" id="chkReset" data-i18n="chk_reset"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="exp-sec">
+    <h2 data-i18n="fun_title"></h2>
+    <p class="sub" data-i18n="fun_sub"></p>
+    <div class="fun-grid" id="funGrid"></div>
+  </section>
+</div>
+<div id="page-lab" hidden>
+  <section class="lab-hero">
+    <div class="exp-in">
+      <span class="kicker"><span class="dot"></span> <span data-i18n="lab_kicker"></span></span>
+      <h1><span data-i18n="lab_title"></span> <span>🧪</span></h1>
+      <p data-i18n="lab_sub"></p>
+    </div>
+  </section>
+  <div class="lab-grid">
+    <div class="lab-card">
+      <h3>🛰️ <span data-i18n="wx_title"></span></h3>
+      <p class="sub" data-i18n="wx_sub"></p>
+      <div class="field"><label for="wxDest" data-i18n="wx_dest"></label><select id="wxDest"></select></div>
+      <button class="btn primary sm" id="wxBtn" data-i18n="wx_btn"></button>
+      <div class="wx-out" id="wxOut" hidden></div>
+    </div>
+    <div class="lab-card">
+      <h3>🧬 <span data-i18n="quiz_title"></span></h3>
+      <p class="sub" data-i18n="quiz_sub"></p>
+      <div id="quizBox"></div>
+    </div>
+    <div class="lab-card">
+      <h3>🧮 <span data-i18n="split_title"></span></h3>
+      <p class="sub" data-i18n="split_sub"></p>
+      <div class="conv-row">
+        <div class="field" style="margin:0"><label for="splitTotal" data-i18n="split_total"></label><input type="text" id="splitTotal" inputmode="numeric" value="6.000"></div>
+        <div class="field" style="margin:0"><label for="splitPpl" data-i18n="split_ppl"></label><input type="number" id="splitPpl" min="1" max="20" value="3"></div>
+      </div>
+      <div class="split-out"><div class="so-v" id="splitEach">—</div><div class="so-l" data-i18n="split_each"></div><div class="so-l" id="splitTip"></div></div>
+    </div>
+    <div class="lab-card">
+      <h3>📡 <span data-i18n="radar_title"></span></h3>
+      <p class="sub" data-i18n="radar_sub"></p>
+      <div class="radar-feed" id="radarFeed"></div>
+    </div>
+  </div>
+</div>
+</main>
+<footer>
+  <div class="foot-in">
+    <div>
+      <div class="foot-logo">Rumo<span>.</span></div>
+      <div class="foot-tag" data-i18n="foot_tag"></div>
+    </div>
+    <p class="foot-note" data-i18n="foot_note"></p>
+    <div class="foot-db">
+      <button class="btn yellow sm" id="btnDB" data-i18n="db_open"></button>
+      <small data-i18n="db_note"></small>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© <span id="ano"></span> RUMO</span><span data-i18n="foot_r"></span></div>
+</footer>
+<div class="overlay" id="overlay"></div>
+<div class="modal" id="mLogin" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Fechar">✕</button>
+    <h3 data-i18n="ml_t"></h3><p class="sub" data-i18n="ml_sub"></p>
+    <form id="loginForm" novalidate>
+      <div class="field"><label for="liEmail" data-i18n="f_email"></label><input type="email" id="liEmail" autocomplete="email"></div>
+      <div class="field"><label for="liSenha" data-i18n="f_pass"></label>
+        <div class="pass-wrap">
+          <input type="password" id="liSenha" autocomplete="current-password">
+          <button type="button" class="eye-btn" data-eye="liSenha" aria-pressed="false">
+            <svg class="i-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><line x1="4" y1="21" x2="20" y2="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="form-err" id="loginErr"></p>
+      <button class="btn primary wide" type="submit" data-i18n="btn_enter"></button>
+    </form>
+    <p class="modal-switch"><span data-i18n="ml_sw"></span> <button data-goto="mSignup" data-i18n="ml_go"></button></p>
+  </div>
+</div>
+<div class="modal" id="mSignup" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Fechar">✕</button>
+    <h3 data-i18n="ms_t"></h3><p class="sub" data-i18n="ms_sub"></p>
+    <form id="signupForm" novalidate>
+      <div class="field"><label for="suNome" data-i18n="f_name"></label><input type="text" id="suNome" autocomplete="name"></div>
+      <div class="field"><label for="suEmail" data-i18n="f_email"></label><input type="email" id="suEmail" autocomplete="email"></div>
+      <div class="field"><label for="suCidade" data-i18n="f_city"></label>
+        <select id="suCidade">
+          <option value="" data-i18n="city_ph"></option>
+          <optgroup label="Brasil" data-i18n-label="g_br">
+            <option>São Paulo</option><option>Rio de Janeiro</option><option>Belo Horizonte</option><option>Brasília</option><option>Salvador</option><option>Fortaleza</option><option>Curitiba</option><option>Porto Alegre</option><option>Recife</option><option>Belém</option><option>Manaus</option><option>Goiânia</option><option>Campinas</option><option>Florianópolis</option><option>Vitória</option><option>Natal</option><option>João Pessoa</option><option>Campo Grande</option><option>Foz do Iguaçu</option><option>Gramado</option><option>Petrolina</option><option>Maceió</option><option>Aracaju</option><option>Caruaru</option><option>Juazeiro do Norte</option><option>Santos</option><option>Londrina</option><option>Uberlândia</option>
+          </optgroup>
+          <optgroup label="Internacional" data-i18n-label="g_int">
+            <option>Buenos Aires</option><option>Santiago</option><option>Montevidéu</option><option>Assunção</option><option>Cidade do México</option><option>Cancún</option><option>Lisboa</option><option>Porto</option><option>Madri</option><option>Barcelona</option><option>Paris</option><option>Londres</option><option>Roma</option><option>Nova York</option><option>Miami</option><option>Orlando</option><option>Los Angeles</option><option>Toronto</option><option>Vancouver</option><option>Tóquio</option><option>Sydney</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="field"><label for="suSenha" data-i18n="f_pass"></label>
+        <div class="pass-wrap">
+          <input type="password" id="suSenha" autocomplete="new-password">
+          <button type="button" class="eye-btn" data-eye="suSenha" aria-pressed="false">
+            <svg class="i-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/><line x1="4" y1="21" x2="20" y2="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="form-err" id="signupErr"></p>
+      <button class="btn primary wide" type="submit" data-i18n="btn_create"></button>
+    </form>
+    <p class="modal-switch"><span data-i18n="ms_sw"></span> <button data-goto="mLogin" data-i18n="ms_go"></button></p>
+  </div>
+</div>
+<div class="modal" id="mHotels" role="dialog" aria-modal="true">
+  <div class="modal-card modal-wide">
+    <button class="modal-close" data-close aria-label="Fechar">✕</button>
+    <div class="hotels-head" id="hotelsHead"></div>
+    <div class="hotels-filters" id="hotelsFilters"></div>
+    <div class="hotels-list" id="hotelsList"></div>
+    <div class="hotels-foot"><span data-i18n="hm_foot"></span><span id="hotelsCount"></span></div>
+  </div>
+</div>
+<div class="modal" id="mComps" role="dialog" aria-modal="true">
+  <div class="modal-card modal-wide">
+    <button class="modal-close" data-close aria-label="Fechar">✕</button>
+    <div class="hotels-head" id="compHead"></div>
+    <div class="hotels-list" id="compList"></div>
+    <div class="hotels-foot"><span data-i18n="comp_foot"></span><span id="compCount"></span></div>
+  </div>
+</div>
+<div class="modal" id="mDB" role="dialog" aria-modal="true">
+  <div class="modal-card modal-wide">
+    <button class="modal-close" data-close aria-label="Fechar">✕</button>
+    <div class="hotels-head">
+      <div class="hh-top"><span class="hh-flag">🗄️</span>
+        <div><h3 data-i18n="db_title"></h3><p class="hh-meta" data-i18n="db_sub"></p></div>
+      </div>
+      <div class="db-status local" id="dbStatus">…</div>
+    </div>
+    <div class="hotels-list" id="dbBody"></div>
+  </div>
+</div>
+<div class="modal" id="mPremium" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <button class="modal-close" data-close aria-label="Fechar">✕</button>
+    <h3>⭐ <span data-i18n="prem_title"></span></h3>
+    <p class="sub" data-i18n="prem_sub"></p>
+    <div id="premiumBody"></div>
+  </div>
+</div>
+<button class="fab" id="fabAI" title="AURORA" aria-label="Abrir AURORA">✨<span class="fab-dot"></span></button>
+<div class="chat" id="chatPanel" hidden>
+  <div class="chat-head">
+    <div><div class="ch-t">✨ <em data-i18n="ai_title"></em></div><div class="ch-s" data-i18n="ai_sub"></div></div>
+    <div class="ch-btns"><button id="voiceBtn" title="voz">🔇</button><button id="chatClose" aria-label="Fechar chat">✕</button></div>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-chips" id="chatChips">
+    <button class="chat-chip" data-say="1" data-i18n="ai_chip1"></button>
+    <button class="chat-chip" data-say="2" data-i18n="ai_chip2"></button>
+    <button class="chat-chip" data-say="3" data-i18n="ai_chip3"></button>
+  </div>
+  <div class="chat-in">
+    <input type="text" id="chatInput" data-i18n-ph="ai_ph" maxlength="160">
+    <button class="btn mini primary" id="chatSend" data-i18n="ai_send"></button>
+  </div>
+</div>
+<div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
+<script>
+const I18N={
+pt:{doc_title:'Rumo — viaje com o orçamento que você tem',nav_home:'Início',nav_explore:'Explorar',nav_lab:'Lab',nav_results:'Resultados',nav_how:'Como funciona',login:'Entrar',signup:'Criar conta',logout:'Sair',hello:'olá, ',kicker:'Planejamento de viagem por orçamento',h1a:'Diga quanto você tem.',h1b:'Nós dizemos pra onde dá.',lead1:'Sem enrolação de comparar site por site. Escolhe de onde você sai, pra onde quer ir e quanto pode gastar — ou deixa a ',leadStrong:'AURORA',lead2:' (nossa IA) montar tudo: destinos, companhias e hotéis que cabem no bolso.',ex_label:'Testa aí →',tk_head_l:'RUMO AIR · PASSE DE BUSCA',tk_none:'sua cidade',tk_dest_free:'pra onde der',tk_title:'Para onde vamos',f_budget:'Orçamento total (R$)',f_days:'Dias de viagem',f_region:'Região preferida',f_origem:'Origem (de onde você sai)',f_destino:'Destino (pra onde quer ir)',dest_any:'Me surpreenda ✨',grp_n:'Norte',grp_ne:'Nordeste',grp_co:'Centro-Oeste',grp_se:'Sudeste',grp_s:'Sul',reg_any:'Qualquer uma',reg_Brasil:'Brasil',reg_EUA:'EUA',reg_Portugal:'Portugal',reg_Canada:'Canadá',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguai',reg_Uruguai:'Uruguai',reg_Mexico:'México',btn_search:'Buscar destinos →',res_title:'Destinos possíveis',res_idle:'aguardando busca — do mais barato ao mais caro',dest1:'destino cabe em',destN:'destinos cabem em',rs_for:'por',rs_order:'do mais barato ao mais caro',day1:'dia',dayN:'dias',night1:'noite',nightN:'noites',stamp1:'rota liberada',stampN:'rotas liberadas',load1:'Cruzando custos de',load2:'destinos…',empty_t:'Ainda sem resultados',empty_p:'Preencha o bilhete acima — ou chame a AURORA ✨ ali no canto.',nfit_t:'Nenhum destino coube',nfit_p:'Com esse orçamento não deu dessa vez. Aumenta o valor, corta uns dias — ou espia quem quase coube:',almost_t:'✈ faltou pouco',bd_flight:'✈ Passagens (ida e volta)',bd_bus:'🚌 De ônibus (ida e volta)',bd_car:'🚗 De carro (ida e volta)',bd_daily:'🍜 Dia a dia',total_label:'Total estimado',sobra:'sobra',falta:'faltam',tight:'apertado',note_est:'estimativas para demonstração',from_note:'saindo de {c}',btn_hotels:'🏨 Hotéis ({n})',btn_comps:'🧭 Companhias ({n})',how_kicker:'// rota de decolagem',how_t:'Como funciona',s1t:'Monte sua rota',s1p:'Diga sua cidade, o destino (ou deixe a gente sugerir), o valor total e quantos dias você tem.',s2t:'A AURORA ranqueia',s2p:'A IA cruza transporte + companhias + dia a dia + hospedagem e ordena tudo do mais barato ao mais caro.',s3t:'Escolha tudo',s3p:'Companhia de viagem, hotel, teto por noite — o total se atualiza na hora.',st_dest:'destinos',st_hot:'hotéis estimados',st_comp:'companhias de viagem',st_ai:'IA copiloto',st_lab:'ferramentas no Lab',st_db:'banco externo + PBKDF2',foot_tag:'viaje com o orçamento que você tem',foot_note:'Rumo — projeto pessoal de planejamento de viagem. Valores de custo/dia, transporte, companhias, hotéis e clima são estimativas ou dados de demonstração e não constituem oferta.',foot_r:'FEITO COM ☕ E VONTADE DE VIAJAR',ml_t:'Bem-vindo de volta',ml_sub:'Entre com sua conta pra salvar seus destinos favoritos.',f_email:'E-mail',f_pass:'Senha',f_name:'Nome',btn_enter:'Entrar',btn_create:'Criar conta',ml_sw:'Não tem conta?',ml_go:'Criar agora',ms_sw:'Já tem conta?',ms_go:'Entrar',ms_t:'Criar sua conta',ms_sub:'Leva menos de 1 minuto. Sua senha é validada só pelo servidor, com hash + salt — nunca fica salva em texto puro.',f_city:'Sua cidade',city_ph:'Escolha sua cidade',g_br:'Brasil',g_int:'Internacional',err_name:'Coloca seu nome 🙂',err_email:'E-mail inválido.',err_pass:'Senha precisa de pelo menos 6 caracteres.',err_exists:'Esse e-mail já tem conta. Entra aí!',err_city:'Escolha sua cidade.',err_creds:'E-mail ou senha incorretos.',err_offline:'Servidor indisponível agora. Tenta de novo em instantes.',err_rate:'Muitas tentativas. Espera um minuto e tenta de novo.',toast_created:'Conta criada. Bora viajar, {n}! 🎉',toast_welcome:'Bem-vindo de volta, {n}! ✈',toast_bye:'Até a próxima viagem 👋',toast_needlogin:'Entre na conta pra salvar destinos 😉',toast_saved:'{c} salvo nas suas viagens ❤',toast_removed:'Removido dos salvos.',toast_budget:'Ajustei o orçamento pra caber. Busca de novo! 🤞',toast_hotel:'🏨 {h} escolhido em {c}!',toast_comp:'🧭 Viajando com {c}!',toast_sync:'🖥 Banco sincronizado com o server!',fav_t:'✈ Viagens salvas',fav_empty:'Nada salvo ainda. Clique no 🤍 de um destino.',fav_redo:'Refazer',hm_t:'Onde ficar em {c}',hm_meta:'{n} {nw} · orçamento total {b}',teto_l:'Teto por noite*',teto_neg:'R$ 0 — apertado',teto_note:'*depois de descontar transporte ({f}) e dia a dia ({d}/dia).',f_all:'Todos',tier1:'Econômico',tier2:'Conforto',tier3:'Premium',f_fit:'só o que cabe no bolso',per_night:'/noite',ht_total:'{n} noites: {v}',fits_ok:'cabe ✓ sobra {v}',fits_over:'estoura {v}',choose:'Escolher este',chosen:'Escolhido ✓',hm_none:'Nenhuma opção aqui com esse filtro.',hm_none2:'Tenta "Todos" ou desmarca "só o que cabe".',hm_suf:'opção(ões) · {n} no total',hm_foot:'VALORES ESTIMADOS POR NOITE · QUARTO DUPLO',comp_title:'Companhias de viagem',comp_sub:'aéreas e rodoviárias pra sua rota — compara e escolhe',comp_aerea:'Aérea',comp_onibus:'Rodoviária',comp_t:'Como chegar em {c}',comp_est:'estimativa ida e volta',comp_best:'💸 melhor preço',comp_usar:'Usar esta',comp_usada:'Em uso ✓',comp_none:'Sem companhias pra essa rota.',comp_foot:'PREÇOS ESTIMADOS POR PESSOA · IDA E VOLTA',comp_suf:'companhia(s) na rota',db_open:'🗄 Banco de dados',db_note:'Senhas com hash PBKDF2 + salt (nunca em texto puro). Painel protegido por chave admin — só quem roda o server.js tem acesso.',db_title:'RumoDB · banco externo',db_sub:'usuários e logins salvos fora do site (server.js → rumodb.json)',db_users:'Usuários',db_name:'nome',db_email:'e-mail',db_city:'cidade',db_created:'criado em',db_last:'última entrada',db_hash:'hash da senha',db_trips:'viagens',db_logins:'Últimos logins',db_when:'quando',db_empty:'nenhum registro ainda — crie uma conta!',db_clear:'Apagar tudo',db_clear_confirm:'Apagar TUDO? Contas, sessões e viagens somem do banco externo e do aparelho.',db_cleared:'Banco apagado. Tudo zerado 🧹',db_sync:'🔄 Sincronizar',db_st_cloud:'🖥 conectado ao banco externo (server.js)',db_st_local:'💾 server offline — modo local ativado',ai_title:'AURORA',ai_sub:'copiloto de viagens com IA',ai_send:'Enviar',ai_ph:'ex.: tenho 3 mil, 6 dias, quero praia pra 2 pessoas',ai_hello:'Oi, eu sou a <b>AURORA</b> ✨ sua copiloto de viagens. Entendo orçamento, dias, pessoas, mês da viagem e sua vibe — e ainda respondo dúvidas do site. Experimenta: "tenho 4 mil pra 2 pessoas em julho, quero praia".',ai_chip1:'💸 R$ 3.000 · 5 dias · praia',ai_chip2:'🍷 frio e vinho pra 2 · R$ 6.000',ai_chip3:'👨‍ família · 7 dias · R$ 8.000',ai_understood:'Entendi: <b>{b}</b> · <b>{d} dias</b>{p} · vibe de <b>{tags}</b>.',ai_people:' · {p} pessoas',ai_ask_budget:'Me diz <b>quanto você quer gastar</b> que eu refino a busca 😉 (ex.: "tenho 4 mil").',ai_picks:'Minhas apostas pra você:',ai_fit:'cabe no bolso · sobra {v}',ai_over:'estoura {v}',ai_roteiro:'🗓️ Roteiro relâmpago em <b>{c}</b>:',ai_day:'Dia {n}',ai_cta:'🎯 Aplicar busca',ai_cta_done:'Busca aplicada! 👇',ai_none:'Hmm, com essa grana e essa vibe tá difícil 😅 Tenta menos dias ou sobe o orçamento.',ai_group:'pra {p} pessoas o grupo gastaria ~{v} no total.',ai_month_ok:'{m} é boa época pra {c}!',ai_month_bad:'em {m} não é a melhor época de {c} (melhor: {e}).',ai_follow_cheaper:'💸 mais barato',ai_follow_more:'✨ mais opções',ai_follow_hotels:'🏨 hotéis do top 1',ai_follow_comps:'🧭 companhias',ai_faq_bank:'O banco é o <b>server.js</b>: senhas com hash PBKDF2 + salt, tudo fora do site. O painel 🗄 no rodapé é protegido por chave admin.',ai_faq_comp:'Temos <b>24 companhias</b> (GOL, LATAM, Azul, TAP, Itapemirim, Guanabara...). Cada destino tem o botão 🧭 que compara preços ida e volta.',ai_faq_hotel:'Cada destino tem 3–4 hotéis em 3 categorias. O botão 🏨 mostra o <b>teto por noite</b> que cabe no seu orçamento.',ai_faq_how:'Simples: você diz <b>orçamento + dias + origem</b>; eu cruzo transporte, companhias e hotéis e ranqueio do mais barato ao mais caro. No Lab ainda tem clima ao vivo, quiz e mais!',ai_faq_lab:'O <b>Rumo Lab</b> 🧪 tem clima ao vivo via satélite, quiz de perfil viajante, rachador de custos e radar de ofertas. Clica em "Lab" no menu!',ex_kicker:'página 2 · modo turista',ex_title:'Explore o mundo',ex_sub:'Galeria de destinos, companhias de viagem, conversor de moedas, checklist de mala e curiosidades.',gal_title:'Galeria de destinos',gal_sub:'preços "a partir de" para 5 dias saindo da sua origem',gal_from:'a partir de {v}',gal_plan:'Planejar esta →',conv_title:'Conversor de moedas',conv_lbl:'Valor em R$',conv_to:'Moeda',conv_note:'cotações aproximadas, só pra ter noção 😉',chk_title:'Checklist de mala',chk_reset:'Zerar',chk_count:'{a} de {b} itens',fun_title:'Curiosidades de viagem',fun_sub:'pra contar no avião e parecer interessante',lab_kicker:'inovação nível premium',lab_title:'Rumo Lab',lab_sub:'ferramentas que nenhum outro site de viagem te dá: clima ao vivo, quiz de perfil, rachador de custos e radar de ofertas.',wx_title:'Clima ao vivo no destino',wx_sub:'dados reais via Open-Meteo — sem chave de API',wx_dest:'Destino',wx_btn:'Consultar agora',wx_loading:'consultando satélites… 🛰️',wx_err:'não consegui consultar o clima agora 😅 tenta já já.',wx_wind:'vento de {v} km/h',wx_tip_cold:'❄️ {t}°C — leva casaco!',wx_tip_hot:'🔥 {t}°C — protetor solar!',wx_tip_ok:'😎 {t}°C — clima gostoso',wx_best:'melhor época: {e}',wx_clear:'céu limpo',wx_clouds:'nuvens',wx_fog:'névoa',wx_drizzle:'garoa',wx_rain:'chuva',wx_snow:'neve',wx_showers:'pancadas',wx_storm:'trovoada',quiz_title:'Quiz do perfil viajante',quiz_sub:'5 perguntas e a AURORA lê seu DNA de viagem',quiz_next:'Próxima →',quiz_res:'Seu perfil:',quiz_apply:'Aplicar recomendações →',quiz_again:'↺ Refazer',split_title:'Rachador de custos',split_sub:'viaja em grupo? divide sem briga',split_total:'Total da viagem (R$)',split_ppl:'Pessoas',split_each:'por pessoa',split_tip:'com 10% de gorjeta: {v}',radar_title:'Radar de ofertas',radar_sub:'ofertas relâmpago ao vivo (simuladas)',radar_left:'expira em {t}',radar_grab:'Aproveitar!',prem_cta_short:'Seja Premium',prem_title:'Rumo Premium',prem_sub:'Viagens ilimitadas salvas, exportação em PDF/impressão e prioridade nas novidades do Lab.',prem_b1:'Salve viagens ilimitadas (no plano grátis são só 3).',prem_b2:'Exporte e imprima seu roteiro em PDF a qualquer hora.',prem_b3:'Acesso antecipado às novas ferramentas do Rumo Lab.',prem_status_on:'✅ Você já é Premium desde {d}',prem_status_off:'Ainda no plano grátis',prem_redeem_t:'Resgatar código',prem_redeem_ph:'RUMO-XXXX-XXXX-XXXX',prem_redeem_btn:'Resgatar',prem_redeem_ok:'🎉 Premium ativado! Aproveite.',prem_redeem_invalid:'Código inválido.',prem_redeem_used:'Esse código já foi usado.',prem_redeem_login:'Entre na sua conta pra resgatar um código.',prem_fav_limit:'Plano grátis: até 3 viagens salvas. Vire Premium pra salvar sem limite ⭐',prem_print:'🖨 Exportar / imprimir',prem_admin_t:'⭐ Premium',prem_admin_gen:'Gerar código',prem_admin_codes:'Códigos gerados',prem_admin_col:'Premium',prem_admin_grant:'Conceder',prem_admin_revoke:'Revogar',prem_admin_used:'usado por',prem_admin_unused:'não usado',prem_code_copied:'Código copiado 📋'},
+en:{doc_title:'Rumo — travel on the budget you have',nav_home:'Home',nav_explore:'Explore',nav_lab:'Lab',nav_results:'Results',nav_how:'How it works',login:'Log in',signup:'Sign up',logout:'Log out',hello:'hi, ',kicker:'Budget-based trip planning',h1a:'Tell us your budget.',h1b:"We'll tell you where you can go.",lead1:'No more juggling comparison tabs. Pick where you leave from, where you want to go and how much you can spend — or let ',leadStrong:'AURORA',lead2:' (our AI) build it all: destinations, carriers and hotels that fit your pocket.',ex_label:'Try it →',tk_head_l:'RUMO AIR · SEARCH PASS',tk_none:'your city',tk_dest_free:'wherever fits',tk_title:'Where to',f_budget:'Total budget (BRL)',f_days:'Days of travel',f_region:'Preferred region',f_origem:'Origin (where you depart)',f_destino:'Destination (where to go)',dest_any:'Surprise me ✨',grp_n:'North',grp_ne:'Northeast',grp_co:'Midwest',grp_se:'Southeast',grp_s:'South',reg_any:'Anywhere',reg_Brasil:'Brazil',reg_EUA:'USA',reg_Portugal:'Portugal',reg_Canada:'Canada',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguay',reg_Uruguai:'Uruguay',reg_Mexico:'Mexico',btn_search:'Search destinations →',res_title:'Possible destinations',res_idle:'waiting for a search — cheapest to priciest',dest1:'destination fits in',destN:'destinations fit in',rs_for:'for',rs_order:'cheapest to priciest',day1:'day',dayN:'days',night1:'night',nightN:'nights',stamp1:'route cleared',stampN:'routes cleared',load1:'Crunching costs across',load2:'destinations…',empty_t:'No results yet',empty_p:'Fill in the ticket above — or call AURORA ✨ in the corner.',nfit_t:'No destination fit',nfit_p:'Not this time with that budget. Raise the amount or cut a few days — or peek at the close calls:',almost_t:'✈ so close',bd_flight:'✈ Flights (round trip)',bd_bus:'🚌 By bus (round trip)',bd_car:'🚗 By car (round trip)',bd_daily:'🍜 Daily costs',total_label:'Estimated total',sobra:'leftover',falta:'short by',tight:'tight',note_est:'estimates for demo purposes',from_note:'departing from {c}',btn_hotels:'🏨 Hotels ({n})',btn_comps:'🧭 Carriers ({n})',how_kicker:'// takeoff route',how_t:'How it works',s1t:'Plot your route',s1p:'Enter your city, your destination (or let us suggest), the total budget and how many days you have.',s2t:'AURORA ranks them',s2p:'The AI crosses transport + carriers + daily costs + lodging and sorts everything from cheapest to priciest.',s3t:'Pick everything',s3p:'Carrier, hotel, nightly ceiling — the total updates instantly.',st_dest:'destinations',st_hot:'estimated hotels',st_comp:'travel companies',st_ai:'AI copilot',st_lab:'Lab tools',st_db:'external DB + PBKDF2',foot_tag:'travel on the budget you have',foot_note:'Rumo — a personal travel-planning project. Costs, transport, carriers, hotels and weather are estimates or demo data, not offers.',foot_r:'MADE WITH ☕ AND WANDERLUST',ml_t:'Welcome back',ml_sub:'Log in to save your favorite destinations.',f_email:'Email',f_pass:'Password',f_name:'Name',btn_enter:'Log in',btn_create:'Create account',ml_sw:'No account yet?',ml_go:'Sign up',ms_sw:'Already have an account?',ms_go:'Log in',ms_t:'Create your account',ms_sub:'Takes less than a minute. Your password is checked only by the server, hashed with a salt — never stored in plain text.',f_city:'Your city',city_ph:'Pick your city',g_br:'Brazil',g_int:'International',err_name:'Enter your name 🙂',err_email:'Invalid email.',err_pass:'Password needs at least 6 characters.',err_exists:'This email already has an account. Log in!',err_city:'Pick your city.',err_creds:'Wrong email or password.',err_offline:'Server unavailable right now. Try again shortly.',err_rate:'Too many attempts. Wait a minute and try again.',toast_created:"Account created. Let's travel, {n}! 🎉",toast_welcome:'Welcome back, {n}! ✈',toast_bye:'See you next trip 👋',toast_needlogin:'Log in to save destinations 😉',toast_saved:'{c} saved to your trips ❤',toast_removed:'Removed from saved.',toast_budget:'I adjusted the budget to fit. Search again! 🤞',toast_hotel:'🏨 {h} picked in {c}!',toast_comp:'🧭 Traveling with {c}!',toast_sync:'🖥 Database synced with the server!',fav_t:'✈ Saved trips',fav_empty:'Nothing saved yet. Tap the 🤍 on a destination.',fav_redo:'Redo',hm_t:'Where to stay in {c}',hm_meta:'{n} {nw} · total budget {b}',teto_l:'Nightly ceiling*',teto_neg:'BRL 0 — tight',teto_note:'*after deducting transport ({f}) and daily costs ({d}/day).',f_all:'All',tier1:'Budget',tier2:'Comfort',tier3:'Premium',f_fit:'only what fits my budget',per_night:'/night',ht_total:'{n} nights: {v}',fits_ok:'fits ✓ {v} left',fits_over:'over by {v}',choose:'Pick this one',chosen:'Picked ✓',hm_none:'No options here with that filter.',hm_none2:'Try "All" or uncheck "only what fits".',hm_suf:'option(s) · {n} in total',hm_foot:'ESTIMATED PRICE PER NIGHT · DOUBLE ROOM',comp_title:'Travel companies',comp_sub:'airlines and bus carriers for your route — compare and pick',comp_aerea:'Airline',comp_onibus:'Bus carrier',comp_t:'How to get to {c}',comp_est:'round trip estimate',comp_best:'💸 best price',comp_usar:'Use this',comp_usada:'In use ✓',comp_none:'No companies for this route.',comp_foot:'ESTIMATED PRICES PER PERSON · ROUND TRIP',comp_suf:'company(ies) on route',db_open:'🗄 Database',db_note:'Passwords hashed with PBKDF2 + salt (never stored in plain text). Panel protected by an admin key — only whoever runs server.js has access.',db_title:'RumoDB · external database',db_sub:'users and logins stored outside the site (server.js → rumodb.json)',db_users:'Users',db_name:'name',db_email:'email',db_city:'city',db_created:'created',db_last:'last login',db_hash:'password hash',db_trips:'trips',db_logins:'Recent logins',db_when:'when',db_empty:'no records yet — create an account!',db_clear:'Wipe all',db_clear_confirm:'Delete EVERYTHING? Accounts, sessions and trips vanish from the external DB and device.',db_cleared:'Database wiped. All clean 🧹',db_sync:'🔄 Sync',db_st_cloud:'🖥 connected to external DB (server.js)',db_st_local:'💾 server offline — local mode on',ai_title:'AURORA',ai_sub:'AI travel copilot',ai_send:'Send',ai_ph:'e.g.: I have 3k, 6 days, beach for 2 people',ai_hello:"Hi, I'm <b>AURORA</b> ✨ your travel copilot. I understand budget, days, people, travel month and your vibe — and I answer site questions too. Try: \"I have 4k for 2 people in July, want the beach\".",ai_chip1:'💸 BRL 3,000 · 5 days · beach',ai_chip2:'🍷 cold & wine for 2 · 6k',ai_chip3:'👨‍👩‍ family · 7 days · 8k',ai_understood:'Got it: <b>{b}</b> · <b>{d} days</b>{p} · vibe: <b>{tags}</b>.',ai_people:' · {p} people',ai_ask_budget:'Tell me <b>how much you want to spend</b> and I will refine the search 😉 (e.g.: "I have 4k").',ai_picks:'My picks for you:',ai_fit:'fits your pocket · {v} left',ai_over:'over by {v}',ai_roteiro:'🗓️ Flash itinerary in <b>{c}</b>:',ai_day:'Day {n}',ai_cta:'🎯 Apply search',ai_cta_done:'Search applied! 👇',ai_none:'Hmm, that budget and vibe is tough 😅 Try fewer days or raise the budget.',ai_group:'for {p} people the group would spend ~{v} total.',ai_month_ok:'{m} is a good season for {c}!',ai_month_bad:'{m} is not the best season for {c} (best: {e}).',ai_follow_cheaper:'💸 cheaper',ai_follow_more:'✨ more options',ai_follow_hotels:'🏨 top-1 hotels',ai_follow_comps:'🧭 carriers',ai_faq_bank:'The DB is <b>server.js</b>: PBKDF2 + salt hashed passwords, all outside the site. The 🗄 panel in the footer is protected by an admin key.',ai_faq_comp:'We track <b>24 carriers</b> (GOL, LATAM, Azul, TAP, Itapemirim...). Every destination has a 🧭 button comparing round-trip prices.',ai_faq_hotel:'Each destination has 3–4 hotels in 3 tiers. The 🏨 button shows the <b>nightly ceiling</b> that fits your budget.',ai_faq_how:'Simple: <b>budget + days + origin</b>; I cross transport, carriers and hotels and rank cheapest to priciest. The Lab adds live weather, a quiz and more!',ai_faq_lab:'The <b>Rumo Lab</b> 🧪 has live satellite weather, traveler profile quiz, cost splitter and deal radar. Click "Lab" in the menu!',ex_kicker:'page 2 · tourist mode',ex_title:'Explore the world',ex_sub:'Destination gallery, travel companies, currency converter, packing checklist and fun facts.',gal_title:'Destination gallery',gal_sub:'"from" prices for 5 days leaving from your origin',gal_from:'from {v}',gal_plan:'Plan this one →',conv_title:'Currency converter',conv_lbl:'Amount in BRL',conv_to:'Currency',conv_note:'approximate rates, just to get a feel 😉',chk_title:'Packing checklist',chk_reset:'Reset',chk_count:'{a} of {b} items',fun_title:'Travel fun facts',fun_sub:'to drop on the plane and sound interesting',lab_kicker:'premium-level innovation',lab_title:'Rumo Lab',lab_sub:'tools no other travel site gives you: live weather, profile quiz, cost splitter and deal radar.',wx_title:'Live weather at destination',wx_sub:'real data via Open-Meteo — no API key',wx_dest:'Destination',wx_btn:'Check now',wx_loading:'asking the satellites… 🛰️',wx_err:"couldn't fetch weather right now 😅 try again soon.",wx_wind:'wind {v} km/h',wx_tip_cold:'❄️ {t}°C — bring a jacket!',wx_tip_hot:'🔥 {t}°C — sunscreen!',wx_tip_ok:'😎 {t}°C — lovely weather',wx_best:'best season: {e}',wx_clear:'clear sky',wx_clouds:'cloudy',wx_fog:'fog',wx_drizzle:'drizzle',wx_rain:'rain',wx_snow:'snow',wx_showers:'showers',wx_storm:'thunderstorm',quiz_title:'Traveler profile quiz',quiz_sub:'5 questions and AURORA reads your travel DNA',quiz_next:'Next →',quiz_res:'Your profile:',quiz_apply:'Apply recommendations →',quiz_again:'↺ Retake',split_title:'Cost splitter',split_sub:'group trip? split without fights',split_total:'Trip total (BRL)',split_ppl:'People',split_each:'per person',split_tip:'with 10% tip: {v}',radar_title:'Deal radar',radar_sub:'live flash deals (simulated)',radar_left:'expires in {t}',radar_grab:'Grab it!',prem_cta_short:'Go Premium',prem_title:'Rumo Premium',prem_sub:'Unlimited saved trips, PDF export/printing and early access to Lab tools.',prem_b1:'Save unlimited trips (free plan is capped at 3).',prem_b2:'Export and print your itinerary as PDF anytime.',prem_b3:'Early access to new Rumo Lab tools.',prem_status_on:'✅ You have been Premium since {d}',prem_status_off:'Still on the free plan',prem_redeem_t:'Redeem a code',prem_redeem_ph:'RUMO-XXXX-XXXX-XXXX',prem_redeem_btn:'Redeem',prem_redeem_ok:'🎉 Premium activated! Enjoy.',prem_redeem_invalid:'Invalid code.',prem_redeem_used:'That code was already used.',prem_redeem_login:'Log in to redeem a code.',prem_fav_limit:'Free plan: up to 3 saved trips. Go Premium to save unlimited ⭐',prem_print:'🖨 Export / print',prem_admin_t:'⭐ Premium',prem_admin_gen:'Generate code',prem_admin_codes:'Generated codes',prem_admin_col:'Premium',prem_admin_grant:'Grant',prem_admin_revoke:'Revoke',prem_admin_used:'used by',prem_admin_unused:'unused',prem_code_copied:'Code copied 📋'},
+es:{doc_title:'Rumo — viaja con el presupuesto que tienes',nav_home:'Inicio',nav_explore:'Explorar',nav_lab:'Lab',nav_results:'Resultados',nav_how:'Cómo funciona',login:'Entrar',signup:'Crear cuenta',logout:'Salir',hello:'hola, ',kicker:'Planificación de viajes por presupuesto',h1a:'Dinos cuánto tienes.',h1b:'Te decimos a dónde puedes ir.',lead1:'Nada de comparar mil pestañas. Elige de dónde sales, a dónde quieres ir y cuánto puedes gastar — o deja que ',leadStrong:'AURORA',lead2:' (nuestra IA) arme todo: destinos, compañías y hoteles que caben en tu bolsillo.',ex_label:'Pruébalo →',tk_head_l:'RUMO AIR · PASE DE BÚSQUEDA',tk_none:'tu ciudad',tk_dest_free:'a donde alcance',tk_title:'¿A dónde vamos',f_budget:'Presupuesto total (R$)',f_days:'Días de viaje',f_region:'Región preferida',f_origem:'Origen (de dónde sales)',f_destino:'Destino (a dónde ir)',dest_any:'Sorpréndeme ✨',grp_n:'Norte',grp_ne:'Nordeste',grp_co:'Centro-Oeste',grp_se:'Sudeste',grp_s:'Sur',reg_any:'Cualquiera',reg_Brasil:'Brasil',reg_EUA:'EE. UU.',reg_Portugal:'Portugal',reg_Canada:'Canadá',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguay',reg_Uruguai:'Uruguai',reg_Mexico:'México',btn_search:'Buscar destinos →',res_title:'Destinos posibles',res_idle:'esperando la búsqueda — del más barato al más caro',dest1:'destino cabe en',destN:'destinos caben en',rs_for:'por',rs_order:'del más barato al más caro',day1:'día',dayN:'días',night1:'noche',nightN:'noches',stamp1:'ruta liberada',stampN:'rutas liberadas',load1:'Cruzando costos de',load2:'destinos…',empty_t:'Aún sin resultados',empty_p:'Completa el billete — o llama a AURORA ✨ en la esquina.',nfit_t:'Ningún destino cupo',nfit_p:'Con ese presupuesto no alcanzó esta vez. Sube el monto o recorta días, o mira los que casi cupieron:',almost_t:'✈ faltó poco',bd_flight:'✈ Vuelos (ida y vuelta)',bd_bus:'🚌 En autobús (ida y vuelta)',bd_car:'🚗 En auto (ida y vuelta)',bd_daily:'🍜 Día a día',total_label:'Total estimado',sobra:'sobran',falta:'faltan',tight:'ajustado',note_est:'estimaciones para demostración',from_note:'saliendo de {c}',btn_hotels:'🏨 Hoteles ({n})',btn_comps:'🧭 Compañías ({n})',how_kicker:'// ruta de despegue',how_t:'Cómo funciona',s1t:'Arma tu ruta',s1p:'Di tu ciudad, el destino (o déjanos sugerir), el total y cuántos días tienes.',s2t:'AURORA rankea',s2p:'La IA cruza transporte + compañías + día a día + alojamiento y ordena todo del más barato al más caro.',s3t:'Elige todo',s3p:'Compañía, hotel, tope por noche — el total se actualiza al instante.',st_dest:'destinos',st_hot:'hoteles estimados',st_comp:'compañías de viaje',st_ai:'IA copiloto',st_lab:'herramientas del Lab',st_db:'BD externa + PBKDF2',foot_tag:'viaja con el presupuesto que tienes',foot_note:'Rumo: proyecto personal de planificación de viajes. Costos, transporte, compañías, hoteles y clima son estimaciones o datos de demostración, no ofertas.',foot_r:'HECHO CON ☕ Y GANAS DE VIAJAR',ml_t:'Bienvenido de nuevo',ml_sub:'Inicia sesión para guardar tus destinos favoritos.',f_email:'Correo',f_pass:'Contraseña',f_name:'Nombre',btn_enter:'Entrar',btn_create:'Crear cuenta',ml_sw:'¿No tienes cuenta?',ml_go:'Créala ahora',ms_sw:'¿Ya tienes cuenta?',ms_go:'Entrar',ms_t:'Crea tu cuenta',ms_sub:'Toma menos de 1 minuto. Tu contraseña se valida solo en el servidor, con hash + salt — nunca se guarda en texto plano.',f_city:'Tu ciudad',city_ph:'Elige tu ciudad',g_br:'Brasil',g_int:'Internacional',err_name:'Pon tu nombre 🙂',err_email:'Correo inválido.',err_pass:'La contraseña necesita al menos 6 caracteres.',err_exists:'Ese correo ya tiene cuenta. ¡Entra!',err_city:'Elige tu ciudad.',err_creds:'Correo o contraseña incorrectos.',err_offline:'Servidor no disponible ahora. Intenta en un momento.',err_rate:'Demasiados intentos. Espera un minuto e intenta de nuevo.',toast_created:'Cuenta creada. ¡A viajar, {n}! 🎉',toast_welcome:'¡Bienvenido de nuevo, {n}! ✈',toast_bye:'Hasta el próximo viaje 👋',toast_needlogin:'Inicia sesión para guardar destinos 😉',toast_saved:'{c} guardado en tus viajes ❤',toast_removed:'Quitado de guardados.',toast_budget:'Ajusté el presupuesto para que quepa. ¡Busca de nuevo! 🤞',toast_hotel:'🏨 ¡{h} elegido en {c}!',toast_comp:'🧭 ¡Viajando con {c}!',toast_sync:'🖥 ¡Base sincronizada con el server!',fav_t:'✈ Viajes guardados',fav_empty:'Nada guardado aún. Toca el 🤍 de un destino.',fav_redo:'Rehacer',hm_t:'Dónde alojarse en {c}',hm_meta:'{n} {nw} · presupuesto total {b}',teto_l:'Tope por noche*',teto_neg:'R$ 0 — ajustado',teto_note:'*después de descontar el transporte ({f}) y el día a día ({d}/día).',f_all:'Todos',tier1:'Económico',tier2:'Confort',tier3:'Premium',f_fit:'solo lo que cabe en mi bolsillo',per_night:'/noche',ht_total:'{n} noches: {v}',fits_ok:'cabe ✓ sobran {v}',fits_over:'excede {v}',choose:'Elegir este',chosen:'Elegido ✓',hm_none:'Ninguna opción aquí con ese filtro.',hm_none2:'Prueba "Todos" o desmarca "solo lo que cabe".',hm_suf:'opción(es) · {n} en total',hm_foot:'VALORES ESTIMADOS POR NOCHE · HABITACIÓN DOBLE',comp_title:'Compañías de viaje',comp_sub:'aéreas y rodoviarias para tu ruta — compara y elige',comp_aerea:'Aérea',comp_onibus:'Rodoviaria',comp_t:'Cómo llegar a {c}',comp_est:'estimación ida y vuelta',comp_best:'💸 mejor precio',comp_usar:'Usar esta',comp_usada:'En uso ✓',comp_none:'Sin compañías para esta ruta.',comp_foot:'PRECIOS ESTIMADOS POR PERSONA · IDA Y VUELTA',comp_suf:'compañía(s) en la ruta',db_open:'🗄 Base de datos',db_note:'Contraseñas con hash PBKDF2 + salt (nunca en texto plano). Panel protegido por clave admin — solo quien ejecuta server.js tiene acceso.',db_title:'RumoDB · base externa',db_sub:'usuarios y logins guardados fuera del sitio (server.js → rumodb.json)',db_users:'Usuarios',db_name:'nombre',db_email:'correo',db_city:'ciudad',db_created:'creado',db_last:'última entrada',db_hash:'hash de contraseña',db_trips:'viajes',db_logins:'Últimos logins',db_when:'cuándo',db_empty:'sin registros aún — ¡crea una cuenta!',db_clear:'Borrar todo',db_clear_confirm:'¿Borrar TODO? Cuentas, sesiones y viajes desaparecen de la base externa y del equipo.',db_cleared:'Base borrada. Todo limpio 🧹',db_sync:'🔄 Sincronizar',db_st_cloud:'🖥 conectado a la base externa (server.js)',db_st_local:'💾 server offline — modo local',ai_title:'AURORA',ai_sub:'copiloto de viajes con IA',ai_send:'Enviar',ai_ph:'ej.: tengo 3 mil, 6 días, playa para 2 personas',ai_hello:'Hola, soy <b>AURORA</b> ✨ tu copiloto de viajes. Entiendo presupuesto, días, personas, mes del viaje y tu vibra — y respondo dudas del sitio. Prueba: "tengo 4 mil para 2 personas en julio, quiero playa".',ai_chip1:'💸 R$ 3.000 · 5 días · playa',ai_chip2:'🍷 frío y vino para 2 · 6 mil',ai_chip3:'👨‍‍ familia · 7 días · 8 mil',ai_understood:'Entendido: <b>{b}</b> · <b>{d} días</b>{p} · vibra de <b>{tags}</b>.',ai_people:' · {p} personas',ai_ask_budget:'Dime <b>cuánto quieres gastar</b> y afino la búsqueda 😉 (ej.: "tengo 4 mil").',ai_picks:'Mis apuestas para ti:',ai_fit:'cabe en el bolsillo · sobran {v}',ai_over:'excede {v}',ai_roteiro:'🗓️ Itinerario exprés en <b>{c}</b>:',ai_day:'Día {n}',ai_cta:'🎯 Aplicar búsqueda',ai_cta_done:'¡Búsqueda aplicada! 👇',ai_none:'Hmm, con esa plata y esa vibra está difícil 😅 Prueba menos días o sube el presupuesto.',ai_group:'para {p} personas el grupo gastaría ~{v} en total.',ai_month_ok:'{m} es buena época para {c}!',ai_month_bad:'{m} no es la mejor época para {c} (mejor: {e}).',ai_follow_cheaper:'💸 más barato',ai_follow_more:'✨ más opciones',ai_follow_hotels:'🏨 hoteles del top 1',ai_follow_comps:'🧭 compañías',ai_faq_bank:'La base es <b>server.js</b>: contraseñas con hash PBKDF2 + salt, todo fuera del sitio. El panel 🗄 del pie está protegido por una clave admin.',ai_faq_comp:'Tenemos <b>24 compañías</b> (GOL, LATAM, Azul, TAP, Itapemirim...). Cada destino tiene el botón 🧭 que compara precios ida y vuelta.',ai_faq_hotel:'Cada destino tiene 3–4 hoteles en 3 categorías. El botón 🏨 muestra el <b>tope por noche</b> que cabe en tu presupuesto.',ai_faq_how:'Simple: <b>presupuesto + días + origen</b>; cruzo transporte, compañías y hoteles y rankeo del más barato al más caro. ¡En el Lab hay clima en vivo, quiz y más!',ai_faq_lab:'El <b>Rumo Lab</b> 🧪 tiene clima en vivo vía satélite, quiz de perfil viajero, divisor de costos y radar de ofertas. ¡Haz clic en "Lab" en el menú!',ex_kicker:'página 2 · modo turista',ex_title:'Explora el mundo',ex_sub:'Galería de destinos, compañías de viaje, conversor de monedas, checklist de maleta y curiosidades.',gal_title:'Galería de destinos',gal_sub:'precios "desde" para 5 días saliendo de tu origen',gal_from:'desde {v}',gal_plan:'Planear este →',conv_title:'Conversor de monedas',conv_lbl:'Valor en R$',conv_to:'Moneda',conv_note:'cotizaciones aproximadas, solo para tener idea 😉',chk_title:'Checklist de maleta',chk_reset:'Reiniciar',chk_count:'{a} de {b} ítems',fun_title:'Curiosidades de viaje',fun_sub:'para contar en el avión y parecer interesante',lab_kicker:'innovación nivel premium',lab_title:'Rumo Lab',lab_sub:'herramientas que ningún otro sitio de viajes te da: clima en vivo, quiz de perfil, divisor de costos y radar de ofertas.',wx_title:'Clima en vivo en el destino',wx_sub:'datos reales vía Open-Meteo — sin clave de API',wx_dest:'Destino',wx_btn:'Consultar ahora',wx_loading:'consultando satélites… 🛰️',wx_err:'no pude consultar el clima ahora 😅 intenta enseguida.',wx_wind:'viento de {v} km/h',wx_tip_cold:'❄️ {t}°C — ¡lleva abrigo!',wx_tip_hot:'🔥 {t}°C — ¡protector solar!',wx_tip_ok:'😎 {t}°C — clima agradable',wx_best:'mejor época: {e}',wx_clear:'cielo despejado',wx_clouds:'nublado',wx_fog:'niebla',wx_drizzle:'llovizna',wx_rain:'lluvia',wx_snow:'nieve',wx_showers:'chubascos',wx_storm:'tormenta',quiz_title:'Quiz del perfil viajero',quiz_sub:'5 preguntas y AURORA lee tu ADN de viaje',quiz_next:'Siguiente →',quiz_res:'Tu perfil:',quiz_apply:'Aplicar recomendaciones →',quiz_again:'↺ Repetir',split_title:'Divisor de costos',split_sub:'¿viaje en grupo? divide sin peleas',split_total:'Total del viaje (R$)',split_ppl:'Personas',split_each:'por persona',split_tip:'con 10% de propina: {v}',radar_title:'Radar de ofertas',radar_sub:'ofertas relámpago en vivo (simuladas)',radar_left:'expira en {t}',radar_grab:'¡Aprovechar!',prem_cta_short:'Ser Premium',prem_title:'Rumo Premium',prem_sub:'Viajes guardados ilimitados, exportación en PDF/impresión y acceso anticipado al Lab.',prem_b1:'Guarda viajes ilimitados (el plan gratis tiene solo 3).',prem_b2:'Exporta e imprime tu itinerario en PDF cuando quieras.',prem_b3:'Acceso anticipado a las nuevas herramientas del Rumo Lab.',prem_status_on:'✅ Eres Premium desde {d}',prem_status_off:'Aún en el plan gratis',prem_redeem_t:'Canjear código',prem_redeem_ph:'RUMO-XXXX-XXXX-XXXX',prem_redeem_btn:'Canjear',prem_redeem_ok:'🎉 ¡Premium activado! Disfruta.',prem_redeem_invalid:'Código inválido.',prem_redeem_used:'Ese código ya fue usado.',prem_redeem_login:'Inicia sesión para canjear un código.',prem_fav_limit:'Plan gratis: hasta 3 viajes guardados. Hazte Premium para guardar sin límite ⭐',prem_print:'🖨 Exportar / imprimir',prem_admin_t:'⭐ Premium',prem_admin_gen:'Generar código',prem_admin_codes:'Códigos generados',prem_admin_col:'Premium',prem_admin_grant:'Conceder',prem_admin_revoke:'Revocar',prem_admin_used:'usado por',prem_admin_unused:'no usado',prem_code_copied:'Código copiado 📋'}};
+let LANG=localStorage.getItem('rumo_lang')||'pt';
+function t(k,v){let s=(I18N[LANG]&&I18N[LANG][k])!==undefined?I18N[LANG][k]:(I18N.pt[k]!==undefined?I18N.pt[k]:k);if(v)for(const key in v)s=s.replaceAll('{'+key+'}',v[key]);return s}
+function applyI18n(){
+  document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{el.placeholder=t(el.dataset.i18nPh)});
+  document.querySelectorAll('[data-i18n-label]').forEach(el=>{el.label=t(el.dataset.i18nLabel)});
+  document.documentElement.lang=LANG==='pt'?'pt-BR':LANG;document.title=t('doc_title');
+}
+const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
+const brl=v=>Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('#toastWrap').appendChild(el);setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),350)},2600)}
+function countUp(el,to){if(reduced){el.textContent=brl(to);return}const dur=700,t0=performance.now();(function f(tm){const k=Math.min(1,(tm-t0)/dur);const e=1-Math.pow(1-k,3);el.textContent=brl(Math.round(to*e));if(k<1)requestAnimationFrame(f)})(t0)}
+const TAG_I18N={urbano:{en:'urban',es:'urbano'},gastronomia:{en:'food',es:'gastronomía'},cultura:{en:'culture',es:'cultura'},praia:{en:'beach',es:'playa'},paisagem:{en:'scenery',es:'paisaje'},festa:{en:'nightlife',es:'fiesta'},serra:{en:'mountains',es:'sierra'},'família':{en:'family',es:'familia'},natureza:{en:'nature',es:'naturaleza'},aventura:{en:'adventure',es:'aventura'},parques:{en:'parks',es:'parques'},compras:{en:'shopping',es:'compras'},vinho:{en:'wine',es:'vino'},deserto:{en:'desert',es:'desierto'},neve:{en:'snow',es:'nieve'},economia:{en:'budget-friendly',es:'económico'},'verão':{en:'summer',es:'verano'},resort:{en:'resort',es:'resort'},multicultural:{en:'multicultural',es:'multicultural'}};
+const AMEN={W:{i:'📶',pt:'Wi-Fi grátis',en:'Free Wi-Fi',es:'Wi-Fi gratis'},C:{i:'☕',pt:'Café incluso',en:'Breakfast included',es:'Desayuno incluido'},P:{i:'🏊',pt:'Piscina',en:'Pool',es:'Piscina'},A:{i:'🏋️',pt:'Academia',en:'Gym',es:'Gimnasio'},T:{i:'🚐',pt:'Traslado',en:'Airport transfer',es:'Traslado'},B:{i:'🍸',pt:'Bar',en:'Bar',es:'Bar'},K:{i:'🍳',pt:'Cozinha compartilhada',en:'Shared kitchen',es:'Cocina compartida'},R:{i:'🌇',pt:'Rooftop',en:'Rooftop',es:'Terraza rooftop'},S:{i:'💆',pt:'Spa',en:'Spa',es:'Spa'}};
+const REGION_EMOJI={Brasil:'🌴',EUA:'🗽',Portugal:'⛵','Canadá':'🍁',Chile:'🏔️',Argentina:'🥩',Paraguai:'🛍️',Uruguai:'🧉','México':'🌮'};
+const REGION_COLOR={Brasil:'#D9A441',EUA:'#8FA8B8',Portugal:'#7FA98C','Canadá':'#A9B7C6',Chile:'#C08268',Argentina:'#9A8FAF',Paraguai:'#C6A38A',Uruguai:'#7FA0B5','México':'#B5767E'};
+const tagLabel=g=>LANG==='pt'?g:((TAG_I18N[g]&&TAG_I18N[g][LANG])||g);
+const amenLabel=c=>AMEN[c]?(AMEN[c][LANG]||AMEN[c].pt):'';
+const LATLON={aju:[-10.94,-37.07],rec:[-8.05,-34.90],mcz:[-9.66,-35.73],jpa:[-7.12,-34.86],nat:[-5.79,-35.21],sp:[-23.55,-46.63],rj:[-22.91,-43.17],ssa:[-12.97,-38.50],gra:[-29.38,-50.87],for:[-3.72,-38.54],foz:[-25.51,-54.58],bhz:[-19.92,-43.94],bsb:[-15.79,-47.88],cwb:[-25.43,-49.27],fln:[-27.60,-48.55],orl:[28.54,-81.38],nyc:[40.71,-74.01],mia:[25.76,-80.19],lis:[38.72,-9.14],por:[41.15,-8.61],tor:[43.65,-79.38],van:[49.28,-123.12],san:[-33.45,-70.67],ata:[-22.91,-68.20],bue:[-34.60,-58.38],bar:[-41.13,-71.31],men:[-32.89,-68.85],asu:[-25.26,-57.58],cde:[-25.51,-54.61],mvd:[-34.90,-56.16],pde:[-34.96,-54.95],cdmx:[19.43,-99.13],cun:[21.16,-86.85]};
+const EPOCA_T={praia:'set–mar',neve:'jun–set',serra:'abr–set',deserto:'mar–mai · set–nov',urbano:'ano todo'};
+function epocaDe(d){for(const tg of d.tags){if(EPOCA_T[tg])return EPOCA_T[tg]}return'ano todo'}
+const CP=(id,nome,tipo,nota,preco,tags,desc,fator,cor)=>({id,nome,tipo,nota,preco,tags,desc,fator,cor});
+const COMPANHIAS=[
+CP('gol','GOL','aerea',8.2,'$',['nacional','internacional'],{pt:'Low-cost brasileira com promoções semanais.',en:'Brazilian low-cost with weekly deals.',es:'Low-cost brasileña con ofertas semanales.'},0.9,'#FF7A00'),
+CP('latam','LATAM','aerea',8.8,'$$',['nacional','internacional'],{pt:'Maior malha da América do Sul.',en:'Largest network in South America.',es:'La red más grande de Sudamérica.'},1.1,'#E11343'),
+CP('azul','Azul','aerea',8.6,'$$',['nacional'],{pt:'Cobertura das cidades menores do Brasil.',en:'Covers smaller Brazilian cities.',es:'Cubre ciudades pequeñas de Brasil.'},1.0,'#1465E7'),
+CP('tap','TAP Portugal','aerea',8.4,'$$',['internacional'],{pt:'Porta de entrada pra Europa via Lisboa.',en:'Gateway to Europe via Lisbon.',es:'Puerta a Europa vía Lisboa.'},1.15,'#00795D'),
+CP('iberia','Iberia','aerea',8.5,'$$$',['internacional'],{pt:'Conexões pra Europa toda via Madri.',en:'Connections across Europe via Madrid.',es:'Conexiones por Europa vía Madrid.'},1.25,'#D7192D'),
+CP('american','American','aerea',8.3,'$$$',['internacional'],{pt:'Forte pra EUA e Caribe.',en:'Strong for USA and Caribbean.',es:'Fuerte para EE. UU. y Caribe.'},1.25,'#0078D2'),
+CP('united','United','aerea',8.4,'$$$',['internacional'],{pt:'Opções pros EUA com escala.',en:'Options to the USA with a stop.',es:'Opciones a EE. UU. con escala.'},1.3,'#005DAA'),
+CP('aircanada','Air Canada','aerea',8.5,'$$$',['internacional'],{pt:'Rota direta pra Toronto e Vancouver.',en:'Direct route to Toronto and Vancouver.',es:'Ruta directa a Toronto y Vancouver.'},1.3,'#D22630'),
+CP('aeromexico','Aeroméxico','aerea',8.3,'$$',['internacional'],{pt:'Melhor caminho pro México.',en:'Best way into Mexico.',es:'La mejor vía a México.'},1.2,'#0B2343'),
+CP('aerolineas','Aerolíneas','aerea',8.2,'$$',['internacional'],{pt:'Buenos Aires e Patagônia sem sufoco.',en:'Buenos Aires and Patagonia made easy.',es:'Buenos Aires y Patagonia sin estrés.'},1.0,'#00A9E0'),
+CP('sky','SKY Airline','aerea',8.0,'$',['internacional'],{pt:'Low-cost pra Chile e Peru.',en:'Low-cost to Chile and Peru.',es:'Low-cost a Chile y Perú.'},0.8,'#FF4C69'),
+CP('jetsmart','JetSmart','aerea',7.8,'$',['internacional'],{pt:'Tarifa pelada pra Argentina e Chile.',en:'Bare fares to Argentina and Chile.',es:'Tarifas bajas a Argentina y Chile.'},0.75,'#00A650'),
+CP('copa','Copa','aerea',8.6,'$$',['internacional'],{pt:'Hub das Américas via Panamá.',en:'Hub of the Americas via Panama.',es:'Hub de las Américas vía Panamá.'},1.15,'#003D7C'),
+CP('paranair','Paranair','aerea',7.9,'$',['internacional'],{pt:'Assunção barata saindo do Sul.',en:'Cheap Asunción from the South.',es:'Asunción barata saliendo del Sur.'},0.85,'#1B4FA0'),
+CP('gontijo','Gontijo','onibus',7.8,'$',[],{pt:'Liga o Nordeste ao Sudeste pagando pouco.',en:'Connects Northeast to Southeast on a budget.',es:'Une el Nordeste al Sudeste económico.'},0.9,'#00529C'),
+CP('itapemirim','Itapemirim','onibus',8.0,'$$',[],{pt:'Semi-leito confortável pra rotas longas.',en:'Comfy semi-sleeper for long routes.',es:'Semicama cómoda para rutas largas.'},1.0,'#F2A900'),
+CP('guanabara','Guanabara','onibus',8.2,'$$',[],{pt:'Forte no Nordeste, serviço top.',en:'Strong in the Northeast, top service.',es:'Fuerte en el Nordeste, servicio top.'},1.0,'#007A33'),
+CP('penha','Penha','onibus',8.1,'$$',[],{pt:'Sul e Sudeste com leito cama.',en:'South and Southeast with sleeper seats.',es:'Sur y Sudeste con asiento cama.'},1.05,'#C8102E'),
+CP('realexpresso','Real Expresso','onibus',7.9,'$',[],{pt:'Brasília–Goiânia e todo o Centro-Oeste.',en:'Brasília–Goiânia and the whole Midwest.',es:'Brasilia–Goiânia y todo el Centro-Oeste.'},0.95,'#004B8D'),
+CP('av1001','Viação 1001','onibus',7.8,'$',[],{pt:'Rio–Niterói–Búzios a toda hora.',en:'Rio–Niterói–Búzios all day long.',es:'Rio–Niterói–Búzios a toda hora.'},0.9,'#0095DA'),
+CP('progresso','Progresso','onibus',7.7,'$',[],{pt:'Pernambuco ↔ Bahia pagando pouco.',en:'Pernambuco ↔ Bahia on the cheap.',es:'Pernambuco ↔ Bahia pagando poco.'},0.9,'#E0B400'),
+CP('catarinense','Catarinense','onibus',8.3,'$$',[],{pt:'Santa Catarina com luxo acessível.',en:'Santa Catarina with affordable luxury.',es:'Santa Catarina con lujo accesible.'},1.05,'#006940'),
+CP('andesmar','Andesmar','onibus',8.0,'$',[],{pt:'Mendoza e Chile de ônibus panorâmico.',en:'Mendoza and Chile by panoramic bus.',es:'Mendoza y Chile en bus panorámico.'},0.9,'#7A2E2E'),
+CP('nordeste','Viação Nordeste','onibus',7.6,'$',[],{pt:'Rotas curtas do agreste e do sertão.',en:'Short routes across the backcountry.',es:'Rutas cortas del interior.'},0.95,'#E8590C')];
+const getComp=id=>COMPANHIAS.find(c=>c.id===id);
+const ACT={chegada:{pt:'Chegada, check-in e primeiro rolê pelo entorno',en:'Arrival, check-in and a first stroll around',es:'Llegada, check-in y primer paseo'},volta:{pt:'Lembrancinhas e volta pra casa',en:'Souvenirs and heading home',es:'Souvenirs y de vuelta a casa'},praia:{pt:'Dia de praia com água de coco',en:'Beach day with coconut water',es:'Día de playa con agua de coco'},serra:{pt:'Mirante ou teleférico + fondue à noite',en:'Viewpoint or cable car + fondue at night',es:'Mirador o teleférico + fondue'},neve:{pt:'Dia de neve e chocolate quente',en:'Snow day and hot chocolate',es:'Día de nieve y chocolate caliente'},deserto:{pt:'Tour pelo deserto ao pôr do sol',en:'Sunset desert tour',es:'Tour por el desierto al atardecer'},cultura:{pt:'Centro histórico e museus',en:'Old town and museums',es:'Centro histórico y museos'},gastronomia:{pt:'Tour gastronômico (coma sem culpa)',en:'Food tour (eat guilt-free)',es:'Tour gastronómico'},festa:{pt:'Noite agitada: bares e música ao vivo',en:'Big night out: bars and live music',es:'Noche de fiesta: bares y música en vivo'},'família':{pt:'Programa em família: parque ou aquário',en:'Family plan: park or aquarium',es:'Plan familiar: parque o acuario'},natureza:{pt:'Trilha ou parque natural cedinho',en:'Early trail or nature park',es:'Sendero o parque natural tempranito'},aventura:{pt:'Dia radical: buggy, tirolesa ou mergulho',en:'Adventure day: buggy, zipline or diving',es:'Día radical: buggy, tirolesa o buceo'},compras:{pt:'Dia de compras com lista na mão',en:'Shopping day, list in hand',es:'Día de compras con lista en mano'},vinho:{pt:'Visita a vinícola com degustação',en:'Winery visit with tasting',es:'Visita a bodega con degustación'},parques:{pt:'Parque temático do café ao fechamento',en:'Theme park from open to close',es:'Parque temático de apertura a cierre'},urbano:{pt:'Bairros famosos, café e fotos',en:'Famous neighborhoods, coffee and photos',es:'Barrios famosos, café y fotos'},paisagem:{pt:'Caça aos melhores mirantes e fotos',en:'Hunting the best viewpoints and photos',es:'Caza de los mejores miradores'},resort:{pt:'Dia de resort: piscina e recreação',en:'Resort day: pool and activities',es:'Día de resort: piscina y recreación'},'verão':{pt:'Sorvete, fim de tarde e calor gostoso',en:'Ice cream, golden hour and warm vibes',es:'Helado, atardecer y buen calor'},economia:{pt:'Dia econômico: museu grátis e street food',en:'Budget day: free museum and street food',es:'Día económico: museo gratis y street food'},multicultural:{pt:'Passeio pelos bairros do mundo todo',en:'Tour through neighborhoods worldwide',es:'Paseo por barrios de todo el mundo'}};
+const ORIGENS=[['Manaus','AM'],['Belém','PA'],['Porto Velho','RO'],['Boa Vista','RR'],['Rio Branco','AC'],['Palmas','TO'],['Macapá','AP'],['Salvador','BA'],['Recife','PE'],['Fortaleza','CE'],['São Luís','MA'],['Maceió','AL'],['João Pessoa','PB'],['Natal','RN'],['Teresina','PI'],['Aracaju','SE'],['Petrolina','PE'],['Caruaru','PE'],['Campina Grande','PB'],['Juazeiro','BA'],['Juazeiro do Norte','CE'],['Feira de Santana','BA'],['Ilhéus','BA'],['Porto Seguro','BA'],['Brasília','DF'],['Goiânia','GO'],['Campo Grande','MS'],['Cuiabá','MT'],['Bonito','MS'],['São Paulo','SP'],['Rio de Janeiro','RJ'],['Belo Horizonte','MG'],['Vitória','ES'],['Campinas','SP'],['Santos','SP'],['Niterói','RJ'],['Paraty','RJ'],['Búzios','RJ'],['Ouro Preto','MG'],['Uberlândia','MG'],['Curitiba','PR'],['Florianópolis','SC'],['Porto Alegre','RS'],['Foz do Iguaçu','PR'],['Gramado','RS'],['Balneário Camboriú','SC'],['Londrina','PR'],['Joinville','SC'],['Caxias do Sul','RS'],['Bento Gonçalves','RS']];
+const REG_UF={AC:'N',AP:'N',AM:'N',PA:'N',RO:'N',RR:'N',TO:'N',AL:'NE',BA:'NE',CE:'NE',MA:'NE',PB:'NE',PE:'NE',PI:'NE',RN:'NE',SE:'NE',DF:'CO',GO:'CO',MT:'CO',MS:'CO',ES:'SE',MG:'SE',RJ:'SE',SP:'SE',PR:'S',RS:'S',SC:'S'};
+const ORIGEM_BY_NAME={};ORIGENS.forEach(([n,uf])=>ORIGEM_BY_NAME[n]={nome:n,uf});
+const H=(name,b,p,r,tier,a)=>({name,b,p,r,t:tier,a});
+const D=(id,city,country,region,flight,food,tags,desc,hot,alt,uf,bus)=>({id,city,country,region,flight,food,tags,desc,hot:hot.map(h=>H(...h)),alt,uf,bus});
+const cityName=d=>(d.alt&&d.alt[LANG])||d.city;
+const DESTS=[
+D('aju','Aracaju','Brasil','Brasil',650,130,['praia','festa','gastronomia'],{pt:'Orla de coqueiros, forró e caranguejo na quinta-feira.',en:'Palm-lined boardwalk, forró and Thursday crab.',es:'Costanera de cocoteros, forró y cangrejo.'},[['Hostel Atalaia','Atalaia',110,8.2,1,'WKP'],['Del Mar Hotel','Atalaia',260,8.7,2,'WAPC'],['Vidam Hotel','Coroa do Meio',430,9.0,3,'WAPR']],null,'SE',240),
+D('rec','Recife','Brasil','Brasil',700,140,['cultura','urbano','gastronomia'],{pt:'Frevo, pontes e comida boa no Recife Antigo.',en:'Frevo, bridges and great food in Old Recife.',es:'Frevo, puentes y buena comida en el Recife Antiguo.'},[['Hostel Recife Antigo','Recife Antigo',100,8.1,1,'WKB'],['Hotel Atlante Plaza','Boa Viagem',340,8.8,2,'WAP'],['Sheraton Reserva do Paiva','Paiva',650,9.2,3,'WAPSR']],null,'PE',300),
+D('mcz','Maceió','Brasil','Brasil',720,135,['praia','paisagem','resort'],{pt:'O mar mais azul do Nordeste brasileiro.',en:'The bluest sea in the Brazilian Northeast.',es:'El mar más azul del Nordeste brasileño.'},[['Pousada Jatiúca','Jatiúca',120,8.3,1,'WC'],['Ritz Lagoa da Anta','Lagoa da Anta',360,8.9,2,'WAP'],['Kenoa Resort','Barra de São Miguel',800,9.5,3,'WAPS']],null,'AL',260),
+D('jpa','João Pessoa','Brasil','Brasil',700,125,['praia','paisagem','família'],{pt:'Sol nascente, falésias e tranquilidade à beira-mar.',en:'Rising sun, cliffs and laid-back seaside vibes.',es:'Sol naciente, acantilados y tranquilidad frente al mar.'},[['Hostel Tambaú','Tambaú',105,8.2,1,'WKP'],['Hotel Verde Green','Manaíra',300,8.8,2,'WAPC'],['Hardman Praia Hotel','Manaíra',480,9.0,3,'WAP']],null,'PB',280),
+D('nat','Natal','Brasil','Brasil',750,130,['praia','aventura','família'],{pt:'Dunas, buggy e camarão em Ponta Negra.',en:'Dunes, buggy rides and shrimp at Ponta Negra.',es:'Dunas, buggy y camarones en Ponta Negra.'},[['Hostel Natal','Ponta Negra',110,8.0,1,'WKP'],['Hotel Paradise Flat','Ponta Negra',320,8.6,2,'WAP'],['Ocean Palace All Inclusive','Via Costeira',680,9.3,3,'WAPSR']],null,'RN',320),
+D('sp','São Paulo','Brasil','Brasil',600,150,['urbano','gastronomia','cultura'],{pt:'A cidade que nunca para: museus, comida boa e show toda noite.',en:'The city that never stops: museums, great food and live music.',es:'La ciudad que nunca para: museos, comida y música en vivo.'},[['Hostel Paulistano','Centro',90,8.1,1,'WKC'],['Hotel Bandeirantes','República',260,8.6,2,'WACT'],['Casa Jardim Boutique','Jardins',480,9.2,3,'WABR'],['Paulista Prime','Av. Paulista',900,9.5,3,'WAPBS']],null,'SP',280),
+D('rj','Rio de Janeiro','Brasil','Brasil',700,170,['praia','paisagem','festa'],{pt:'Praia, morro e pôr do sol — o clássico que nunca erra.',en:'Beach, hills and sunset — the classic that never misses.',es:'Playa, cerros y atardecer: el clásico que nunca falla.'},[['Hostel Lapa','Lapa',120,8.3,1,'WKB'],['Selina Copacabana','Copacabana',320,8.8,2,'WAPB'],['Santa Teresa Charme','Santa Teresa',550,9.3,3,'WCRP'],['Atlântico Royal','Ipanema',1100,9.6,3,'WAPSR']],null,'RJ',250),
+D('ssa','Salvador','Brasil','Brasil',800,130,['cultura','praia','gastronomia'],{pt:'Pelourinho, acarajé e o axé de todo dia.',en:"Pelourinho, acarajé and Bahia's daily energy.",es:'Pelourinho, acarajé y la energía de Bahía.'},[['Pousada do Porto','Barra',100,8.2,1,'WC'],['Casa do Amarelindo','Pelourinho',240,8.9,2,'WCAB'],['Zank by Toano','Rio Vermelho',420,9.1,3,'WAPB']],null,'BA',320),
+D('gra','Gramado','Brasil','Brasil',750,160,['serra','família','gastronomia'],{pt:'Frio bom, chocolate e rua coberta.',en:'Cozy cold, chocolate and covered streets.',es:'Frío rico, chocolate y calles techadas.'},[['Pousada Serra Verde','Centro',180,8.7,2,'WC'],['Hotel Refúgio Alpino','Bavária',380,9.0,2,'WCBS'],['Wish Serrano','Av. Borges de Medeiros',700,9.3,3,'WAPSR']],null,'RS',420),
+D('for','Fortaleza','Brasil','Brasil',850,130,['praia','família','paisagem'],{pt:'Sol o ano inteiro e praia a perder de vista.',en:'Sun all year and endless beaches.',es:'Sol todo el año y playas sin fin.'},[['Hostel Beira-Mar','Meireles',110,8.0,1,'WK'],['Praiano Hotel','Meireles',280,8.6,2,'WAPC'],['Vila Galé Cumbuco','Cumbuco',520,9.0,3,'WAPSR']],null,'CE',400),
+D('foz','Foz do Iguaçu','Brasil','Brasil',800,140,['natureza','aventura','família'],{pt:'As cataratas que fazem qualquer foto parecer filtro.',en:'Waterfalls that make every photo look filtered.',es:'Cataratas que hacen que toda foto parezca filtro.'},[['Pousada das Águas','Centro',130,8.3,1,'WCP'],['Hotel Cataratas Park','Av. das Cataratas',300,8.8,2,'WAP'],['Belmond Das Cataratas','Parque Nacional',600,9.5,3,'WAPSR']],null,'PR',380),
+D('bhz','Belo Horizonte','Brasil','Brasil',650,140,['urbano','gastronomia','cultura'],{pt:'Barzinho em cada esquina e pão de queijo raiz.',en:'A bar on every corner and the best cheese bread.',es:'Bares en cada esquina y el mejor pan de queso.'},[['Br Hostel','Savassi',95,8.4,1,'WKC'],['Hotel Financial','Centro',240,8.5,2,'WAC'],['Hotel Fasano','Funcionários',750,9.4,3,'WABR']],null,'MG',250),
+D('bsb','Brasília','Brasil','Brasil',700,150,['urbano','cultura'],{pt:'Arquitetura futurista e céu aberto sem fim.',en:'Futuristic architecture and endless open skies.',es:'Arquitectura futurista y cielos infinitos.'},[['Hostel 700','Asa Sul',100,8.1,1,'WKC'],['Fusion Hplus','Asa Norte',290,8.6,2,'WAP'],['Royal Tulip','Setor Hoteleiro Norte',620,9.1,3,'WAPSR']],null,'DF',350),
+D('cwb','Curitiba','Brasil','Brasil',650,140,['urbano','natureza','família'],{pt:'Capital ecológica, frio charmoso e parques de sobra.',en:'Green capital, charming cold weather and great parks.',es:'Capital ecológica, frío con encanto y grandes parques.'},[['Hostel Curitiba','Centro',90,8.3,1,'WKC'],['Hotel Mabu','Centro',310,8.7,2,'WAB'],['Nomaa Hotel','Batel',560,9.2,3,'WABR']],null,'PR',300),
+D('fln','Florianópolis','Brasil','Brasil',700,155,['praia','natureza','festa'],{pt:'A ilha da magia: trilhas, surf e pôr do sol na lagoa.',en:'Magic island: trails, surf and lagoon sunsets.',es:'La isla de la magia: senderos, surf y atardeceres.'},[['Hostel Floripa','Lagoa da Conceição',120,8.5,1,'WKP'],['Hotel Castelmar','Centro',330,8.6,2,'WAC'],['Majestic Palace','Beira-Mar Norte',600,9.2,3,'WAPSR']],null,'SC',350),
+D('orl','Orlando','EUA','EUA',3800,350,['parques','família','compras'],{pt:'Parques, outlets e muito sorvete.',en:'Theme parks, outlets and lots of ice cream.',es:'Parques, outlets y mucho helado.'},[['Rosen Inn Closest','International Drive',400,8.0,2,'WAP'],['Holiday Inn Resort','Lake Buena Vista',700,8.6,2,'WAPTB'],['Grand Vista Suites','Disney Springs',1200,9.1,3,'WAPSR']]),
+D('nyc','Nova York','EUA','EUA',4200,450,['urbano','cultura','compras'],{pt:'A cidade que faz você se sentir dentro de um filme.',en:'The city that makes you feel inside a movie.',es:'La ciudad que te hace sentir dentro de una película.'},[['Pod 51','Midtown',700,8.2,2,'WB'],['Hotel Pennsylvania','Penn Station',1100,8.4,2,'WA'],['The Standard High Line','Meatpacking',1900,9.3,3,'WABR']],{en:'New York',es:'Nueva York'}),
+D('mia','Miami','EUA','EUA',3600,380,['praia','compras','festa'],{pt:'Art déco, praia e compras sem fim.',en:'Art déco, beach and endless shopping.',es:'Art déco, playa y compras sin fin.'},[['Freehand Miami','Miami Beach',450,8.3,2,'WAPB'],['Kimpton Surfcomber','Collins Ave',800,8.8,2,'WAP'],['Faena Miami','Mid Beach',1500,9.4,3,'WAPSR']]),
+D('lis','Lisboa','Portugal','Portugal',4000,280,['cultura','gastronomia','urbano'],{pt:'Pastel de nata, fado e ladeiras charmosas.',en:'Pastel de nata, fado and charming hills.',es:'Pastel de nata, fado y cuestas con encanto.'},[['Home Lisbon Hostel','Baixa',350,9.2,1,'WKC'],['Hotel Santa Justa','Baixa',600,8.9,2,'WAC'],['Bairro Alto Hotel','Chiado',950,9.4,3,'WABR']]),
+D('por','Porto','Portugal','Portugal',4100,250,['gastronomia','cultura','paisagem','vinho'],{pt:'Vinho, rio Douro e azulejos por todo lado.',en:'Wine, the Douro river and tiles everywhere.',es:'Vino, el río Duero y azulejos por todas partes.'},[['Galleria Hostel','Cedofeita',300,8.9,1,'WKC'],['Hotel da Bolsa','Ribeira',520,9.0,2,'WCB'],['The Yeatman','Vila Nova de Gaia',850,9.5,3,'WAPSR']]),
+D('tor','Toronto','Canadá','Canadá',4500,380,['urbano','cultura','multicultural'],{pt:'A cidade mais multicultural do mundo.',en:'The most multicultural city in the world.',es:'La ciudad más multicultural del mundo.'},[['Hotel Victoria','Downtown',500,8.1,2,'W'],['Chelsea Hotel','Garden District',800,8.5,2,'WAP'],['Shangri-La Toronto','Financial District',1300,9.3,3,'WAPSR']]),
+D('van','Vancouver','Canadá','Canadá',4800,400,['natureza','paisagem','aventura'],{pt:'Montanha, mar e trilha no mesmo dia.',en:'Mountain, sea and trails in one day.',es:'Montaña, mar y senderos en un solo día.'},[['St. Regis Bar None','Robson',550,8.2,2,'WC'],['YWCA Hotel','Downtown',850,8.6,2,'WA'],['Fairmont Pacific Rim','Coal Harbour',1400,9.4,3,'WAPSR']]),
+D('san','Santiago','Chile','Chile',2200,220,['urbano','vinho','paisagem'],{pt:'Cordilheira no horizonte e vinho bom e barato.',en:'The Andes on the horizon and great cheap wine.',es:'La Cordillera en el horizonte y vino bueno y barato.'},[['Hostal Providencia','Providencia',250,8.4,1,'WKC'],['Hotel Plaza San Francisco','Centro',420,8.8,2,'WAB'],['The Singular Lastarria','Lastarria',700,9.2,3,'WAPR']]),
+D('ata','San Pedro de Atacama','Chile','Chile',2600,260,['deserto','aventura','natureza'],{pt:'O deserto mais árido (e mais estrelado) do mundo.',en:'The driest (and starriest) desert on Earth.',es:'El desierto más árido (y más estrellado) del mundo.'},[['Hostal Atacama','San Pedro',300,8.3,1,'WC'],['Hotel Cumbres','San Pedro',600,9.0,3,'WAP'],['Awasi Lodge','Afuera',1200,9.6,3,'WCSPT']]),
+D('bue','Buenos Aires','Argentina','Argentina',1800,180,['cultura','gastronomia','urbano'],{pt:'Tango, parrilla e livrarias gigantes.',en:'Tango, parrilla and giant bookstores.',es:'Tango, parrilla y librerías gigantes.'},[['Selina Palermo','Palermo',200,8.4,1,'WKB'],['Mine Hotel Boutique','Palermo Soho',350,9.0,2,'WAP'],['Alvear Palace','Recoleta',600,9.5,3,'WAPSR']]),
+D('bar','Bariloche','Argentina','Argentina',2400,220,['neve','serra','aventura'],{pt:'Chocolate quente com vista pra neve.',en:'Hot chocolate with a view of the snow.',es:'Chocolate caliente con vista a la nieve.'},[['Hostel Inn Bariloche','Centro',260,8.3,1,'WCK'],['Hotel Tres Reyes','Centro',480,8.7,2,'WCB'],['Llao Llao Resort','Puerto Pañuelo',900,9.4,3,'WAPSG']]),
+D('men','Mendoza','Argentina','Argentina',2300,200,['vinho','natureza','gastronomia'],{pt:'Vinhedos aos pés dos Andes.',en:'Vineyards at the foot of the Andes.',es:'Viñedos al pie de los Andes.'},[['Hostel Lagares','Centro',220,8.2,1,'WCP'],['Diplomatic Hotel','Centro',400,8.9,2,'WAP'],['Casa de Uco','Vale do Uco',700,9.5,3,'WAPSC']]),
+D('asu','Assunção','Paraguai','Paraguai',1200,120,['urbano','cultura','economia'],{pt:'Vizinha barata e cheia de história.',en:'A cheap neighbor full of history.',es:'Una vecina barata y llena de historia.'},[['Hostel Asunción','Centro',150,8.0,1,'WKC'],['Granados Park','Centro',280,8.5,2,'WAP'],['Bourbon Conmebol','Aviadores del Chaco',480,8.9,3,'WAPS']],{en:'Asunción',es:'Asunción'}),
+D('cde','Ciudad del Este','Paraguai','Paraguai',900,110,['compras','economia'],{pt:'O paraíso das compras na fronteira.',en:'The shopping paradise at the border.',es:'El paraíso de las compras en la frontera.'},[['Hotel Mirador','Km 7',130,7.9,1,'WC'],['Hotel Firenze','Microcentro',240,8.4,2,'WA'],['Bourbon Ciudad del Este','Av. Monday',420,8.8,3,'WAP']]),
+D('mvd','Montevidéu','Uruguai','Uruguai',1500,190,['cultura','gastronomia','paisagem'],{pt:'Rambla, mate e pôr do sol no rio.',en:'Rambla, mate and sunset over the river.',es:'Rambla, mate y atardecer junto al río.'},[['Ukelele Hostel','Cidade Velha',220,8.3,1,'WKC'],['Esplendor Cervantes','Centro',380,8.7,2,'WAC'],['Sofitel Carrasco','Carrasco',620,9.3,3,'WAPSR']],{en:'Montevideo',es:'Montevideo'}),
+D('pde','Punta del Este','Uruguai','Uruguai',1700,260,['praia','verão','festa'],{pt:'O balneário mais famoso do Rio da Prata.',en:'The most famous resort town of the Río de la Plata.',es:'El balneario más famoso del Río de la Plata.'},[['Hostel La Cimarrona','La Barra',300,8.4,1,'WKP'],['Hotel Arapey','Península',550,8.7,2,'WAP'],['Enjoy Conrad','Parada 4 Mansa',1100,9.2,3,'WAPSB']]),
+D('cdmx','Cidade do México','México','México',3400,220,['urbano','gastronomia','cultura'],{pt:'Tacos, museus e Frida por todo lado.',en:'Tacos, museums and Frida everywhere.',es:'Tacos, museos y Frida por todas partes.'},[['Hostel Amigo','Centro Histórico',260,8.6,1,'WKB'],['Hotel Casa Blanca','Reforma',450,8.8,2,'WAC'],['W Mexico City','Polanco',800,9.2,3,'WAPBR']],{en:'Mexico City',es:'Ciudad de México'}),
+D('cun','Cancún','México','México',3900,320,['praia','resort','festa'],{pt:'Mar azul-turquesa de outro planeta.',en:'Turquoise sea from another planet.',es:'Mar turquesa de otro planeta.'},[['Nomads Hotel','Zona Hoteleira',500,8.5,2,'WAPB'],['Aloft Cancún','Centro',900,8.7,2,'WAP'],['Hyatt Zilara','Costa Mujeres',1800,9.5,3,'WAPSBR']])];
+function transportFor(d,origemName){
+  const o=origemName?ORIGEM_BY_NAME[origemName]:null;
+  if(!o||d.country!=='Brasil')return{cost:d.flight,key:'bd_flight'};
+  if(o.uf===d.uf)return{cost:Math.max(120,Math.round((d.bus||300)*0.45)),key:'bd_car'};
+  if(REG_UF[o.uf]===REG_UF[d.uf])return{cost:d.bus||300,key:'bd_bus'};
+  return{cost:d.flight,key:'bd_flight'};
+}
+function compsFor(d,tr){
+  if(tr.key==='bd_flight'){const intl=d.country!=='Brasil';return COMPANHIAS.filter(c=>c.tipo==='aerea'&&c.tags.includes(intl?'internacional':'nacional'))}
+  return COMPANHIAS.filter(c=>c.tipo==='onibus');
+}
+const defaultHotel=d=>d.hot.find(h=>h.t===2)||d.hot[Math.floor(d.hot.length/2)];
+const tripTotal=(d,days,hotel,tcost)=>tcost+(d.food+hotel.p)*days;
+const destById=id=>DESTS.find(x=>x.id===id);
+/* ===== RUMODB (autenticação via servidor) =====
+   O navegador nunca guarda a lista inteira de usuários nem hashes de senha.
+   Login/cadastro são validados no server.js (hash PBKDF2 + salt) e o site
+   só recebe um token de sessão + os dados públicos do usuário logado. */
+const DB={mode:'offline'};
+let API_URL=null;
+const USERS={}; // cache local só dos usuários já autenticados nesta sessão do navegador
+async function detectAPI(){const cands=[location.origin+'/api','http://localhost:3000/api'];for(const c of cands){try{const r=await fetch(c+'/ping');if(r.ok){API_URL=c;return true}}catch(e){}}return false}
+async function apiCall(path,opts){
+  if(!API_URL)throw new Error('offline');
+  const r=await fetch(API_URL+path,opts);
+  let data=null;try{data=await r.json()}catch(e){}
+  if(!r.ok)throw Object.assign(new Error((data&&data.error)||'erro'),{status:r.status,data});
+  return data;
+}
+async function dbInit(){
+  const ok=await detectAPI();
+  DB.mode=ok?'server':'offline';
+  if(!ok)return;
+  const token=localStorage.getItem('rumo_token');
+  if(!token)return;
+  try{
+    const j=await apiCall('/me',{headers:{Authorization:'Bearer '+token}});
+    state.token=token;state.session=j.user.email;USERS[j.user.email]=j.user;
+  }catch(e){
+    localStorage.removeItem('rumo_token');localStorage.removeItem('rumo_session');state.token=null;state.session=null;
+  }
+}
+const findUser=email=>USERS[email];
+function getFavsFor(email){try{return JSON.parse(localStorage.getItem('rumo_favs_'+email)||'[]')}catch(e){return[]}}
+const state={budget:0,days:0,region:'any',origem:'',destino:'',chosen:{},chosenComp:{},session:localStorage.getItem('rumo_session')||null,token:localStorage.getItem('rumo_token')||null,lastQuery:null};
+try{state.chosen=JSON.parse(localStorage.getItem('rumo_chosen')||'{}')}catch(e){state.chosen={}}
+try{state.chosenComp=JSON.parse(localStorage.getItem('rumo_comp')||'{}')}catch(e){state.chosenComp={}}
+const getFavs=()=>state.session?getFavsFor(state.session):[];
+const setFavs=a=>localStorage.setItem('rumo_favs_'+state.session,JSON.stringify(a));
+function tripParts(d){
+  const tr=transportFor(d,state.origem);
+  const cid=state.chosenComp[d.id];
+  let comp=cid?getComp(cid):null;
+  if(comp&&!compsFor(d,tr).some(x=>x.id===comp.id))comp=null;
+  const tcost=comp?Math.round(tr.cost*comp.fator):tr.cost;
+  return{tr,comp,tcost};
+}
+const qOrigem=$('#qOrigem'),qDestino=$('#qDestino');
+function buildOrigemSelect(){
+  const prev=qOrigem.value;const grupos={N:[],NE:[],CO:[],SE:[],S:[]};
+  ORIGENS.forEach(([n,uf])=>grupos[REG_UF[uf]].push([n,uf]));
+  let html=`<option value="">${t('city_ph')}</option>`;
+  [['N','grp_n'],['NE','grp_ne'],['CO','grp_co'],['SE','grp_se'],['S','grp_s']].forEach(([g,key])=>{html+=`<optgroup label="${esc(t(key))}">`+grupos[g].map(([n,uf])=>`<option value="${esc(n)}">${esc(n)} – ${uf}</option>`).join('')+'</optgroup>'});
+  qOrigem.innerHTML=html;
+  if(prev){if([...qOrigem.options].some(o=>o.value===prev))qOrigem.value=prev;else{const o=document.createElement('option');o.value=prev;o.textContent=prev;qOrigem.appendChild(o);qOrigem.value=prev}}
+}
+function buildDestinoSelect(){
+  const prev=qDestino.value;const ordem=['Brasil','EUA','Portugal','Canadá','Chile','Argentina','Paraguai','Uruguai','México'];
+  let html=`<option value="">${t('dest_any')}</option>`;
+  ordem.forEach(r=>{html+=`<optgroup label="${esc(t('reg_'+r))}">`;DESTS.filter(d=>d.region===r).forEach(d=>{html+=`<option value="${d.id}">${esc(cityName(d))}</option>`});html+='</optgroup>'});
+  qDestino.innerHTML=html;
+  if(prev&&destById(prev))qDestino.value=prev;
+}
+function updateTicketRoute(){
+  const de=qOrigem.value||((state.session&&findUser(state.session)&&findUser(state.session).cidade)||'');
+  const para=qDestino.value&&destById(qDestino.value)?cityName(destById(qDestino.value)):'';
+  $('#tkRoute').innerHTML=`<b>${esc(de?de.toUpperCase():t('tk_none'))}</b> <span class="aviao">✈</span> <b>${esc(para?para.toUpperCase():t('tk_dest_free'))}</b>`;
+}
+qOrigem.addEventListener('change',()=>{state.origem=qOrigem.value;updateTicketRoute()});
+qDestino.addEventListener('change',()=>{state.destino=qDestino.value;updateTicketRoute()});
+function setLang(l){LANG=l;localStorage.setItem('rumo_lang',l);$('#langSel').value=l;applyI18n();buildMarquee();buildOrigemSelect();buildDestinoSelect();buildWxDest();updateTicketRoute();updateAuthUI();if($$('.modal.open').length)closeOverlay();if(state.lastQuery)computeAndRender();renderFavPanel();if(!$('#page-explorar').hidden)renderExplore();if(!$('#page-lab').hidden)renderLab()}
+$('#langSel').addEventListener('change',e=>setLang(e.target.value));
+function buildMarquee(){const track=DESTS.map(d=>cityName(d).toUpperCase()).join(' <b>✈</b> ')+' <b>✈</b> ';$('#mqInner').innerHTML=`<span class="mq-track">${track}</span><span class="mq-track">${track}</span>`}
+function route(){
+  const h=location.hash;
+  const exp=h.startsWith('#/explorar'),lab=h.startsWith('#/lab');
+  $('#page-home').hidden=exp||lab;$('#page-explorar').hidden=!exp;$('#page-lab').hidden=!lab;
+  $('#navHome').classList.toggle('on',!exp&&!lab);$('#navExp').classList.toggle('on',exp);$('#navLab').classList.toggle('on',lab);
+  if(exp){renderExplore();window.scrollTo({top:0,behavior:'auto'})}
+  if(lab){renderLab();window.scrollTo({top:0,behavior:'auto'})}
+}
+window.addEventListener('hashchange',route);
+const form=$('#ticket'),inpB=$('#qOrca'),inpD=$('#qDias'),inpR=$('#qRegiao');
+inpB.addEventListener('input',e=>{const v=e.target.value.replace(/\D/g,'').slice(0,9);e.target.value=v?Number(v).toLocaleString('pt-BR'):''});
+form.addEventListener('submit',e=>{e.preventDefault();runSearch();return false});
+function runSearch(){
+  const budget=parseInt(inpB.value.replace(/\D/g,''))||0;
+  const days=Math.min(30,Math.max(1,parseInt(inpD.value)||0));
+  if(budget<100){toast('💸 '+t('f_budget')+'?');inpB.focus();return}
+  if(!days){toast('📅 '+t('f_days')+'?');inpD.focus();return}
+  state.budget=budget;state.days=days;state.region=inpR.value;state.origem=qOrigem.value;state.destino=qDestino.value;
+  state.lastQuery={budget,days};showLoading();setTimeout(computeAndRender,reduced?60:950);
+}
+function showLoading(){$('#resultStamp').classList.remove('show');$('#resSub').textContent='…';$('#resultsWrap').innerHTML=`<div class="loader"><div class="loader-track"><span class="loader-plane">✈</span></div><p>${t('load1')} ${DESTS.length} ${t('load2')}</p></div>`}
+function computeAndRender(){
+  let list=DESTS.filter(d=>state.destino?d.id===state.destino:(state.region==='any'||d.region===state.region))
+    .map(d=>{
+      const {tr,comp,tcost}=tripParts(d);
+      const chosen=state.chosen[d.id]?d.hot.find(h=>h.name===state.chosen[d.id]):null;
+      const hotel=chosen||defaultHotel(d);
+      return{d,hotel,tr,comp,tcost,total:tripTotal(d,state.days,hotel,tcost)};
+    }).sort((a,b)=>a.total-b.total);
+  const fits=list.filter(x=>x.total<=state.budget);
+  const almost=list.filter(x=>x.total>state.budget);
+  renderResults(fits,state.destino?almost:almost.slice(0,3));
+}
+function renderResults(fits,almost){
+  const wrap=$('#resultsWrap');const stamp=$('#resultStamp');
+  const from=state.origem?' · '+t('from_note',{c:state.origem}):'';
+  $('#resSub').innerHTML=`<b>${fits.length}</b> ${t(fits.length===1?'dest1':'destN')} <b>${brl(state.budget)}</b> ${t('rs_for')} <b>${state.days} ${t(state.days>1?'dayN':'day1')}</b>${from} · ${t('rs_order')}`;
+  stamp.textContent=(fits.length+' '+t(fits.length===1?'stamp1':'stampN')).toUpperCase();
+  stamp.classList.remove('show');void stamp.offsetWidth;stamp.classList.add('show');
+  if(!fits.length){
+    wrap.innerHTML=`<div class="empty quente"><span class="empty-ico">🛫</span><h3>${t('nfit_t')}</h3><p>${t('nfit_p')}</p></div>${almost.length?`<p class="quase-titulo">${t('almost_t')}</p><div class="grid">${almost.map((x,i)=>cardHTML(x,i,true)).join('')}</div>`:''}`;
+    bindCards();return;
+  }
+  wrap.innerHTML=`<div class="grid">${fits.map((x,i)=>cardHTML(x,i,false)).join('')}</div>`;
+  bindCards();
+  $$('#resultsWrap [data-count]').forEach(el=>countUp(el,+el.dataset.count));
+}
+function cardHTML(x,i,quase){
+  const {d,hotel,tr,comp,tcost,total}=x;
+  const sobra=state.budget-total;const falta=total-state.budget;
+  const band=REGION_COLOR[d.region]||'#8FA8B8';
+  const isFav=state.session&&getFavs().some(f=>f.d===d.id);
+  const nightW=t(state.days>1?'nightN':'night1');
+  const nComp=compsFor(d,tr).length;
+  const trLabel=comp?(comp.tipo==='aerea'?'✈ ':'🚌 ')+comp.nome:t(tr.key);
+  return `
+  <article class="card ${quase?'quase':''}" data-id="${d.id}" style="--i:${i}">
+    <span class="card-num">${String(i+1).padStart(2,'0')}º</span>
+    <div class="card-band" style="background-color:${band}">
+      <span class="card-flag">${REGION_EMOJI[d.region]||'📍'}</span>
+      <span class="card-region">${esc(t('reg_'+d.region))}</span>
+      <button class="favbtn ${isFav?'on':''}" data-fav="${d.id}" aria-label="❤">${isFav?'❤':'🤍'}</button>
+    </div>
+    <div class="card-body">
+      <h3 class="card-city">${esc(cityName(d))}</h3>
+      <p class="card-country">${esc(t('reg_'+d.country))} · ${state.days} ${t(state.days>1?'dayN':'day1')}${state.origem?' · '+t('from_note',{c:state.origem}):''}</p>
+      <p class="card-desc">${esc(d.desc[LANG]||d.desc.pt)}</p>
+      <div class="card-tags">${d.tags.map(g=>`<span class="tag">${esc(tagLabel(g))}</span>`).join('')}</div>
+      <div class="breakdown">
+        <div class="bd-row ${comp?'comp-line':''}"><span>${esc(trLabel)}</span><span>${brl(tcost)}</span></div>
+        <div class="bd-row hotel-line"><span>🏨 ${esc(hotel.name)} · ${state.days} ${nightW}</span><span>${brl(hotel.p*state.days)}</span></div>
+        <div class="bd-row"><span>${t('bd_daily')} (${state.days}×)</span><span>${brl(d.food*state.days)}</span></div>
+      </div>
+      <div class="total-line">
+        <div><span class="total-label">${t('total_label')}</span><div class="total-val" data-count="${total}">${brl(total)}</div></div>
+        ${quase?`<span class="sobra quente">${t('falta')} ${brl(falta)}</span>`:`<span class="sobra ${sobra>=0?'ok':'quente'}">${sobra>=0?t('sobra')+' '+brl(sobra):t('tight')}</span>`}
+      </div>
+      <p class="card-note">${t('note_est')}</p>
+      <div class="card-actions">
+        <button class="btn yellow sm" data-hotels="${d.id}">${t('btn_hotels',{n:d.hot.length})}</button>
+        <button class="btn sky sm" data-comps="${d.id}">${t('btn_comps',{n:nComp})}</button>
+      </div>
+    </div>
+  </article>`;
+}
+function bindCards(){
+  $$('#resultsWrap [data-hotels]').forEach(b=>b.addEventListener('click',()=>openHotels(b.dataset.hotels)));
+  $$('#resultsWrap [data-comps]').forEach(b=>b.addEventListener('click',()=>openComps(b.dataset.comps)));
+  $$('#resultsWrap [data-fav]').forEach(b=>b.addEventListener('click',()=>toggleFav(b.dataset.fav,b)));
+  $$('#resultsWrap .card.quase').forEach(c=>{c.style.cursor='pointer';c.addEventListener('click',()=>{
+    const d=destById(c.dataset.id);if(!d)return;
+    const {tcost}=tripParts(d);
+    const def=state.chosen[d.id]?d.hot.find(h=>h.name===state.chosen[d.id])||defaultHotel(d):defaultHotel(d);
+    inpB.value=String(tripTotal(d,state.days,def,tcost)).replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+    toast(t('toast_budget'));
+    window.scrollTo({top:$('#buscar').offsetTop-80,behavior:reduced?'auto':'smooth'});
+  })});
+}
+function openComps(destId){
+  const d=destById(destId);if(!d)return;
+  const {tr,comp}=tripParts(d);
+  const list=compsFor(d,tr).map(c=>({c,preco:Math.round(tr.cost*c.fator)})).sort((a,b)=>a.preco-b.preco);
+  $('#compHead').innerHTML=`<div class="hh-top"><span class="hh-flag">${tr.key==='bd_flight'?'✈':'🚌'}</span><div><h3>${t('comp_t',{c:cityName(d)})}</h3><p class="hh-meta">${state.origem?esc(state.origem)+' → ':''}${esc(cityName(d))} · ${t('comp_est')}</p></div></div>`;
+  if(!list.length){$('#compList').innerHTML=`<div class="hotels-none">😕 ${t('comp_none')}</div>`;$('#compCount').textContent='0 '+t('comp_suf');openOverlay('mComps');return}
+  const best=list[0].preco;
+  $('#compList').innerHTML=list.map(({c,preco})=>`
+    <div class="comp-row ${comp&&comp.id===c.id?'usada':''}">
+      <div class="comp-logo" style="background:${c.cor}">${esc(c.nome.slice(0,2).toUpperCase())}</div>
+      <div>
+        <div class="hr-name">${esc(c.nome)} <span class="comp-type">${c.tipo==='aerea'?t('comp_aerea'):t('comp_onibus')}</span> ${preco===best?`<span class="best-badge">${t('comp_best')}</span>`:''}</div>
+        <div class="comp-meta">★ ${c.nota.toFixed(1)} · ${c.preco} · ${esc(c.desc[LANG]||c.desc.pt)}</div>
+      </div>
+      <div class="hr-right">
+        <div class="hr-price">${brl(preco)}</div>
+        <button class="btn mini ${comp&&comp.id===c.id?'yellow':'primary'}" data-usecomp="${c.id}">${comp&&comp.id===c.id?t('comp_usada'):t('comp_usar')}</button>
+      </div>
+    </div>`).join('');
+  $('#compCount').textContent=list.length+' '+t('comp_suf');
+  $$('#compList [data-usecomp]').forEach(b=>b.addEventListener('click',()=>chooseComp(d.id,b.dataset.usecomp)));
+  openOverlay('mComps');
+}
+function chooseComp(destId,compId){
+  state.chosenComp[destId]=compId;
+  localStorage.setItem('rumo_comp',JSON.stringify(state.chosenComp));
+  closeOverlay();
+  toast(t('toast_comp',{c:getComp(compId).nome}));
+  if(state.lastQuery){computeAndRender();setTimeout(()=>{const el=document.querySelector(`.card[data-id="${destId}"]`);if(el){el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});el.classList.add('pulse');setTimeout(()=>el.classList.remove('pulse'),1600)}},80)}
+}
+let hotelCtx=null;
+function openHotels(destId){
+  const d=destById(destId);if(!d)return;
+  const {budget,days}=state;const {tcost}=tripParts(d);
+  const maxNight=Math.floor((budget-tcost)/days-d.food);
+  hotelCtx={d,tcost,maxNight,tier:'all',fitOnly:false};
+  const nightW=t(days>1?'nightN':'night1');
+  $('#hotelsHead').innerHTML=`<div class="hh-top"><span class="hh-flag">${REGION_EMOJI[d.region]||'📍'}</span><div><h3>${t('hm_t',{c:cityName(d)})}</h3><p class="hh-meta">${t('hm_meta',{n:days,nw:nightW,b:brl(budget)})}${state.origem?' · '+t('from_note',{c:state.origem}):''}</p></div></div>
+  <div class="teto-bar"><div><span class="tb-l">${t('teto_l')}</span><div class="tb-v ${maxNight<0?'neg':''}">${maxNight<0?t('teto_neg'):brl(maxNight)}</div></div><p class="tb-note">${t('teto_note',{f:brl(tcost),d:brl(d.food)})}</p></div>`;
+  $('#hotelsFilters').innerHTML=`<button class="f-chip on" data-tier="all">${t('f_all')}</button><button class="f-chip" data-tier="1">${t('tier1')}</button><button class="f-chip" data-tier="2">${t('tier2')}</button><button class="f-chip" data-tier="3">${t('tier3')}</button><label class="f-check"><input type="checkbox" id="fitOnly"> ${t('f_fit')}</label>`;
+  $$('#hotelsFilters .f-chip').forEach(c=>c.addEventListener('click',()=>{hotelCtx.tier=c.dataset.tier;$$('#hotelsFilters .f-chip').forEach(x=>x.classList.toggle('on',x===c));renderHotelRows()}));
+  $('#fitOnly').addEventListener('change',e=>{hotelCtx.fitOnly=e.target.checked;renderHotelRows()});
+  renderHotelRows();openOverlay('mHotels');
+}
+function renderHotelRows(){
+  const {d,tcost,maxNight,tier,fitOnly}=hotelCtx;const chosenName=state.chosen[d.id];
+  let list=[...d.hot].sort((a,b)=>a.p-b.p);
+  if(tier!=='all')list=list.filter(h=>String(h.t)===tier);
+  if(fitOnly)list=list.filter(h=>h.p<=maxNight);
+  $('#hotelsCount').textContent=`${list.length} ${t('hm_suf',{n:d.hot.length})}`;
+  if(!list.length){$('#hotelsList').innerHTML=`<div class="hotels-none">😕 ${t('hm_none')}<br><small>${t('hm_none2')}</small></div>`;return}
+  $('#hotelsList').innerHTML=list.map(h=>{
+    const cabe=h.p<=maxNight;const diff=state.budget-tripTotal(d,state.days,h,tcost);
+    const amen=h.a.split('').map(c=>AMEN[c]?`<span title="${esc(amenLabel(c))}">${AMEN[c].i}</span>`:'').join('');
+    return `<div class="hotel-row ${cabe?'':'fora'} ${chosenName===h.name?'escolhido':''}">
+      <div><div class="hr-name">${esc(h.name)}<span class="hr-tier t${h.t}">${t('tier'+h.t)}</span></div><div class="hr-bairro">📍 ${esc(h.b)}</div><div class="hr-amen">${amen}</div></div>
+      <div class="hr-right"><span class="hr-rating">★ ${h.r.toFixed(1)}</span><div class="hr-price">${brl(h.p)}<small> ${t('per_night')}</small></div><div class="hr-total">${t('ht_total',{n:state.days,v:brl(h.p*state.days)})}</div>
+      ${cabe?`<span class="hr-fit ok">${t('fits_ok',{v:brl(diff)})}</span>`:`<span class="hr-fit no">${t('fits_over',{v:brl(-diff)})}</span>`}
+      <button class="btn mini ${chosenName===h.name?'yellow':'primary'}" data-choose="${esc(h.name)}">${chosenName===h.name?t('chosen'):t('choose')}</button></div></div>`;
+  }).join('');
+  $$('#hotelsList [data-choose]').forEach(b=>b.addEventListener('click',()=>chooseHotel(b.dataset.choose)));
+}
+function chooseHotel(name){
+  const d=hotelCtx.d;state.chosen[d.id]=name;localStorage.setItem('rumo_chosen',JSON.stringify(state.chosen));
+  closeOverlay();toast(t('toast_hotel',{h:name,c:cityName(d)}));
+  if(state.lastQuery){computeAndRender();setTimeout(()=>{const el=document.querySelector(`.card[data-id="${d.id}"]`);if(el){el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});el.classList.add('pulse');setTimeout(()=>el.classList.remove('pulse'),1600)}},80)}
+}
+function openOverlay(id){$('#overlay').classList.add('open');$('#'+id).classList.add('open');document.body.style.overflow='hidden'}
+function closeOverlay(){$('#overlay').classList.remove('open');$$('.modal').forEach(m=>m.classList.remove('open'));document.body.style.overflow=''}
+$('#overlay').addEventListener('click',closeOverlay);
+$$('[data-close]').forEach(b=>b.addEventListener('click',closeOverlay));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOverlay();$('#favPanel').hidden=true;$('#chatPanel').hidden=true}});
+$$('[data-goto]').forEach(b=>b.addEventListener('click',()=>{$$('.modal').forEach(m=>m.classList.remove('open'));openOverlay(b.dataset.goto)}));
+$('#btnLogin').addEventListener('click',()=>openOverlay('mLogin'));
+$('#btnSignup').addEventListener('click',()=>openOverlay('mSignup'));
+$$('.eye-btn').forEach(btn=>{btn.addEventListener('click',()=>{const inp=document.getElementById(btn.dataset.eye);const show=inp.type==='password';inp.type=show?'text':'password';btn.classList.toggle('off',!show);btn.setAttribute('aria-pressed',String(show));inp.focus()})});
+$('#signupForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const nome=$('#suNome').value.trim(),email=$('#suEmail').value.trim().toLowerCase();
+  const senha=$('#suSenha').value,cidade=$('#suCidade').value;const err=$('#signupErr');
+  if(nome.length<2)return err.textContent=t('err_name');
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))return err.textContent=t('err_email');
+  if(!cidade)return err.textContent=t('err_city');
+  if(senha.length<6)return err.textContent=t('err_pass');
+  if(!API_URL){err.textContent=t('err_offline');return}
+  const btn=e.target.querySelector('[type=submit]');if(btn)btn.disabled=true;
+  try{
+    const j=await apiCall('/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,email,senha,cidade})});
+    USERS[email]=j.user;state.token=j.token;localStorage.setItem('rumo_token',j.token);
+    err.textContent='';e.target.reset();loginLocal(email);
+    toast(t('toast_created',{n:nome.split(' ')[0]}));
+  }catch(ex){
+    err.textContent=ex.status===409?t('err_exists'):(ex.status===429?t('err_rate'):t('err_creds'));
+  }finally{if(btn)btn.disabled=false}
+});
+$('#loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=$('#liEmail').value.trim().toLowerCase(),senha=$('#liSenha').value;const err=$('#loginErr');
+  if(!API_URL){err.textContent=t('err_offline');return}
+  const btn=e.target.querySelector('[type=submit]');if(btn)btn.disabled=true;
+  try{
+    const j=await apiCall('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,senha})});
+    USERS[email]=j.user;state.token=j.token;localStorage.setItem('rumo_token',j.token);
+    err.textContent='';e.target.reset();loginLocal(email);
+    toast(t('toast_welcome',{n:j.user.nome.split(' ')[0]}));
+  }catch(ex){
+    if(ex.status===429){err.textContent=t('err_rate')}else{err.textContent=t('err_creds');shakeLogin()}
+  }finally{if(btn)btn.disabled=false}
+});
+function shakeLogin(){const card=$('#mLogin .modal-card');card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake')}
+function loginLocal(email){
+  state.session=email;localStorage.setItem('rumo_session',email);
+  if(state.token)localStorage.setItem('rumo_token',state.token);
+  const u=findUser(email);
+  if(u&&u.cidade){if(![...qOrigem.options].some(o=>o.value===u.cidade)){const o=document.createElement('option');o.value=u.cidade;o.textContent=u.cidade;qOrigem.appendChild(o)}qOrigem.value=u.cidade;state.origem=u.cidade}
+  updateTicketRoute();updateAuthUI();closeOverlay();renderFavPanel();
+}
+$('#btnLogout').addEventListener('click',()=>{
+  if(API_URL&&state.token)fetch(API_URL+'/logout',{method:'POST',headers:{Authorization:'Bearer '+state.token}}).catch(()=>{});
+  state.session=null;state.token=null;localStorage.removeItem('rumo_session');localStorage.removeItem('rumo_token');
+  $('#favPanel').hidden=true;updateAuthUI();if(state.lastQuery)computeAndRender();toast(t('toast_bye'));
+});
+const FREE_FAV_LIMIT=3;
+function isPremium(){const u=state.session&&findUser(state.session);return!!(u&&u.premium)}
+function updateAuthUI(){
+  document.body.classList.toggle('logged',!!state.session);
+  document.body.classList.toggle('premium',isPremium());
+  if(state.session){const u=findUser(state.session);$('#userName').textContent=t('hello')+(u?u.nome.split(' ')[0]:'')}
+  const pb=$('#btnPremium');
+  if(pb)pb.innerHTML=isPremium()?`<span class="pbadge">⭐ PREMIUM</span>`:`⭐ <span data-i18n="prem_cta_short">${esc(t('prem_cta_short'))}</span>`;
+  renderFavBadge();
+}
+function toggleFav(destId,btn){
+  if(!state.session){openOverlay('mLogin');toast(t('toast_needlogin'));return}
+  let favs=getFavs();const idx=favs.findIndex(f=>f.d===destId);
+  if(idx>-1){favs.splice(idx,1);toast(t('toast_removed'))}
+  else{
+    if(!isPremium()&&favs.length>=FREE_FAV_LIMIT){openOverlay('mPremium');renderPremiumBody();toast(t('prem_fav_limit'));return}
+    const d=destById(destId);favs.push({d:destId,h:state.chosen[destId]||defaultHotel(d).name,budget:state.budget,days:state.days,origem:state.origem,ts:Date.now()});toast(t('toast_saved',{c:cityName(d)}))
+  }
+  setFavs(favs);
+  if(btn){btn.classList.toggle('on',idx===-1);btn.textContent=idx===-1?'❤':'🤍'}
+  renderFavBadge();renderFavPanel();
+}
+function renderFavBadge(){$('#favCount').textContent=state.session?(getFavs().length||''):''}
+$('#navFav').addEventListener('click',e=>{e.stopPropagation();const p=$('#favPanel');p.hidden=!p.hidden;if(!p.hidden)renderFavPanel()});
+document.addEventListener('click',e=>{if(!e.target.closest('#favPanel')&&!e.target.closest('#navFav'))$('#favPanel').hidden=true});
+function renderFavPanel(){
+  if(!state.session)return;
+  const box=$('#favList');const favs=getFavs();
+  let html='';
+  if(!favs.length)html=`<p class="fav-empty">${t('fav_empty')}</p>`;
+  else html=favs.map(f=>{
+    const d=destById(f.d);if(!d)return'';
+    const h=d.hot.find(x=>x.name===f.h)||defaultHotel(d);const {tcost}=tripParts(d);
+    return `<div class="fav-item"><span>${REGION_EMOJI[d.region]||'📍'}</span><div class="fi-info"><div class="fi-city">${esc(cityName(d))}</div><div class="fi-meta">${f.origem?esc(f.origem)+' → ':''}${f.days} ${t(f.days>1?'dayN':'day1')} · ${brl(tripTotal(d,f.days,h,tcost))}</div></div><button class="btn mini" data-load="${f.d}">${t('fav_redo')}</button><button class="fav-remove" data-unfav="${f.d}" title="✕">✕</button></div>`;
+  }).join('');
+  if(!isPremium()&&favs.length>=FREE_FAV_LIMIT)html+=`<div class="fav-limit-note">${esc(t('prem_fav_limit'))}</div>`;
+  if(isPremium()&&favs.length)html+=`<button class="btn mini sky wide" id="favPrint" style="margin-top:.5rem">${esc(t('prem_print'))}</button>`;
+  box.innerHTML=html;
+  $$('#favList [data-load]').forEach(b=>b.addEventListener('click',()=>loadTrip(b.dataset.load)));
+  $$('#favList [data-unfav]').forEach(b=>b.addEventListener('click',()=>{setFavs(getFavs().filter(f=>f.d!==b.dataset.unfav));renderFavPanel();renderFavBadge();if(state.lastQuery)computeAndRender()}));
+  const pr=$('#favPrint');if(pr)pr.addEventListener('click',printFavs);
+}
+function printFavs(){
+  const favs=getFavs();
+  const rows=favs.map(f=>{
+    const d=destById(f.d);if(!d)return'';
+    const h=d.hot.find(x=>x.name===f.h)||defaultHotel(d);const {tcost}=tripParts(d);
+    return `<tr><td>${esc(cityName(d))}</td><td>${f.origem?esc(f.origem):'—'}</td><td>${f.days}</td><td>${esc(h.name)}</td><td>${brl(tripTotal(d,f.days,h,tcost))}</td></tr>`;
+  }).join('');
+  const win=window.open('','_blank');
+  if(!win){toast('🔒 Permita pop-ups pra imprimir');return}
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Rumo — Roteiro</title>
+    <style>body{font-family:Arial,sans-serif;padding:2rem;color:#1F2A30}h1{margin-bottom:.2rem}table{width:100%;border-collapse:collapse;margin-top:1rem}th,td{border:1px solid #ccc;padding:.5rem .7rem;text-align:left;font-size:.9rem}th{background:#f0f0f0}</style>
+    </head><body><h1>✈ Rumo — meu roteiro</h1><p>Gerado em ${new Date().toLocaleString('pt-BR')}</p>
+    <table><tr><th>Destino</th><th>Origem</th><th>Dias</th><th>Hotel</th><th>Total estimado</th></tr>${rows}</table>
+    </body></html>`);
+  win.document.close();win.focus();
+  setTimeout(()=>win.print(),300);
+}
+function loadTrip(destId){
+  const fav=getFavs().find(f=>f.d===destId);if(!fav)return;
+  $('#favPanel').hidden=true;
+  inpB.value=String(fav.budget).replace(/\B(?=(\d{3})+(?!\d))/g,'.');inpD.value=fav.days;inpR.value='any';qDestino.value=fav.d;state.destino=fav.d;
+  if(fav.origem){if(![...qOrigem.options].some(o=>o.value===fav.origem)){const o=document.createElement('option');o.value=fav.origem;o.textContent=fav.origem;qOrigem.appendChild(o)}qOrigem.value=fav.origem;state.origem=fav.origem}
+  if(!$('#page-home').hidden===false)location.hash='#/';
+  updateTicketRoute();runSearch();
+  setTimeout(()=>{const el=document.querySelector(`.card[data-id="${destId}"]`);if(el){el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});el.classList.add('pulse');setTimeout(()=>el.classList.remove('pulse'),1600)}},1200);
+}
+/* Painel admin: protegido por chave (gerada pelo server.js no primeiro boot,
+   em admin.key). O navegador nunca baixa a lista de usuários sem essa chave,
+   e mesmo com a chave o hash da senha não é devolvido — só uma prévia. */
+function adminKey(){return sessionStorage.getItem('rumo_admin_key')||''}
+async function fetchAdminDB(key){
+  if(!API_URL)throw new Error('offline');
+  const r=await fetch(API_URL+'/admin/db',{headers:{'X-Admin-Key':key}});
+  if(!r.ok)throw new Error('unauthorized');
+  return r.json();
+}
+function renderDB(){
+  const st=$('#dbStatus');
+  st.className='db-status '+(DB.mode==='server'?'cloud':'local');
+  st.textContent=DB.mode==='server'?t('db_st_cloud'):t('db_st_local');
+  const loc=LANG==='pt'?'pt-BR':LANG==='es'?'es-ES':'en-US';
+  const fmt=iso=>{try{return new Date(iso).toLocaleString(loc,{dateStyle:'short',timeStyle:'short'})}catch(e){return iso}};
+  const key=adminKey();
+  if(!API_URL){$('#dbBody').innerHTML=`<p class="db-empty">${t('err_offline')}</p>`;return}
+  if(!key){
+    $('#dbBody').innerHTML=`<div class="db-section"><p class="db-empty">🔒 Painel protegido. Só quem roda o server.js localmente tem a chave (impressa no terminal / arquivo admin.key).</p>
+      <div style="display:flex;gap:.5rem;margin-top:.6rem"><input type="password" id="dbKeyInput" placeholder="Cole a chave admin aqui" style="flex:1;padding:.5rem;border:2px solid var(--deep);border-radius:8px"><button class="btn sm" id="dbKeyGo">Entrar</button></div></div>`;
+    $('#dbKeyGo').addEventListener('click',async()=>{
+      const v=$('#dbKeyInput').value.trim();if(!v)return;
+      try{await fetchAdminDB(v);sessionStorage.setItem('rumo_admin_key',v);renderDB()}
+      catch(e){toast('🔒 Chave inválida ou servidor offline');}
+    });
+    return;
+  }
+  fetchAdminDB(key).then(async data=>{
+    let html=`<div class="db-section"><h4>👥 ${t('db_users')} (${data.total_users})</h4>`;
+    if(!data.users.length)html+=`<p class="db-empty">${t('db_empty')}</p>`;
+    else html+=`<table class="db-table"><tr><th>#</th><th>${t('db_name')}</th><th>${t('db_email')}</th><th>${t('db_city')}</th><th>${t('db_created')}</th><th>${t('db_last')}</th><th>${t('db_hash')}</th><th>${t('prem_admin_col')}</th></tr>`+data.users.map(u=>`<tr><td>${u.id}</td><td>${esc(u.nome)}</td><td>${esc(u.email)}</td><td>${esc(u.cidade||'—')}</td><td>${fmt(u.criado_em)}</td><td>${u.ultima_entrada?fmt(u.ultima_entrada):'—'}</td><td title="hash oculto por segurança">${esc(u.hash_preview)}</td><td>${u.premium?`⭐ <button class="btn mini danger" data-prem-toggle="${esc(u.email)}" data-grant="0">${esc(t('prem_admin_revoke'))}</button>`:`<button class="btn mini yellow" data-prem-toggle="${esc(u.email)}" data-grant="1">${esc(t('prem_admin_grant'))}</button>`}</td></tr>`).join('')+'</table>';
+    html+='</div>';
+    const lg=data.logins||[];
+    html+=`<div class="db-section"><h4>🔑 ${t('db_logins')} (${data.total_logins})</h4>`;
+    html+=lg.length?`<table class="db-table"><tr><th>${t('db_email')}</th><th>${t('db_when')}</th></tr>`+lg.map(l=>`<tr><td>${esc(l.email)}</td><td>${fmt(l.em)}</td></tr>`).join('')+'</table>':`<p class="db-empty">—</p>`;
+    html+='</div>';
+    html+=await renderAdminPremium();
+    html+=`<div class="db-actions"><button class="btn sky sm" id="dbSync">${t('db_sync')}</button><button class="btn sm" id="dbLock">🔒 Sair do painel</button><button class="btn danger sm" id="dbClear">🗑 ${t('db_clear')}</button></div>`;
+    $('#dbBody').innerHTML=html;
+    $('#dbSync').addEventListener('click',()=>{renderDB();toast(t('toast_sync'))});
+    $('#dbLock').addEventListener('click',()=>{sessionStorage.removeItem('rumo_admin_key');renderDB()});
+    $('#dbClear').addEventListener('click',async()=>{
+      if(!confirm(t('db_clear_confirm')))return;
+      try{
+        const r=await fetch(API_URL+'/admin/db',{method:'DELETE',headers:{'X-Admin-Key':key}});
+        if(!r.ok)throw new Error('unauthorized');
+        state.session=null;state.token=null;localStorage.removeItem('rumo_session');localStorage.removeItem('rumo_token');
+        closeOverlay();updateAuthUI();renderFavBadge();toast(t('db_cleared'));renderDB();
+      }catch(e){toast('🔒 Não foi possível apagar (chave inválida?)')}
+    });
+    bindAdminPremium();
+  }).catch(()=>{sessionStorage.removeItem('rumo_admin_key');renderDB();toast('🔒 Chave inválida — tenta de novo')});
+}
+$('#btnDB').addEventListener('click',()=>{renderDB();openOverlay('mDB')});
+/* ===== Premium (usuário) ===== */
+function renderPremiumBody(){
+  const box=$('#premiumBody');if(!box)return;
+  const u=state.session&&findUser(state.session);
+  const premiumOn=!!(u&&u.premium);
+  const loc=LANG==='pt'?'pt-BR':LANG==='es'?'es-ES':'en-US';
+  const fmtDate=iso=>{try{return new Date(iso).toLocaleDateString(loc)}catch(e){return''}};
+  let html=`<div class="premium-status ${premiumOn?'on':''}">${premiumOn?esc(t('prem_status_on',{d:fmtDate(u.premium_desde)})):esc(t('prem_status_off'))}</div>
+    <ul class="premium-benefits">
+      <li><span>♾️</span><div>${esc(t('prem_b1'))}</div></li>
+      <li><span>🖨️</span><div>${esc(t('prem_b2'))}</div></li>
+      <li><span>🧪</span><div>${esc(t('prem_b3'))}</div></li>
+    </ul>`;
+  if(!premiumOn){
+    html+=`<div class="premium-redeem">
+      <div class="field"><label>${esc(t('prem_redeem_t'))}</label>
+        <div class="field-row">
+          <input type="text" id="premCodeInput" placeholder="${esc(t('prem_redeem_ph'))}" style="text-transform:uppercase" ${state.session?'':'disabled'}>
+          <button class="btn primary sm" id="premRedeemBtn" ${state.session?'':'disabled'}>${esc(t('prem_redeem_btn'))}</button>
+        </div>
+        <p class="form-err" id="premRedeemErr"></p>
+      </div>
+    </div>`;
+  }
+  box.innerHTML=html;
+  const rb=$('#premRedeemBtn');
+  if(rb)rb.addEventListener('click',async()=>{
+    if(!state.session){toast(t('prem_redeem_login'));return}
+    const code=$('#premCodeInput').value.trim().toUpperCase();
+    const err=$('#premRedeemErr');err.textContent='';
+    if(!code)return;
+    try{
+      const j=await apiCall('/premium/redeem',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+state.token},body:JSON.stringify({code})});
+      USERS[state.session]=j.user;updateAuthUI();renderPremiumBody();toast(t('prem_redeem_ok'));
+    }catch(e){
+      const key=e.data&&e.data.error==='code_used'?'prem_redeem_used':'prem_redeem_invalid';
+      err.textContent=t(key);
+    }
+  });
+}
+const btnPremiumEl=$('#btnPremium');
+if(btnPremiumEl)btnPremiumEl.addEventListener('click',()=>{if(!state.session){openOverlay('mLogin');toast(t('toast_needlogin'));return}renderPremiumBody();openOverlay('mPremium')});
+/* ===== Premium (painel admin) ===== */
+async function renderAdminPremium(){
+  const key=adminKey();if(!key||!API_URL)return'';
+  try{
+    const j=await fetch(API_URL+'/admin/premium/codes',{headers:{'X-Admin-Key':key}}).then(r=>r.json());
+    const rows=(j.codes||[]).slice(0,15).map(c=>`<tr><td style="font-family:var(--mono)">${esc(c.code)}</td><td>${c.usado?esc(t('prem_admin_used'))+': '+esc(c.usado_por||''):esc(t('prem_admin_unused'))}</td></tr>`).join('');
+    return `<div class="db-section"><h4>${esc(t('prem_admin_t'))}</h4>
+      <button class="btn sm yellow" id="premGenBtn">${esc(t('prem_admin_gen'))}</button>
+      <p class="db-empty" id="premGenResult" style="margin-top:.5rem"></p>
+      <table class="db-table" style="margin-top:.7rem"><tr><th>${esc(t('prem_admin_codes'))}</th><th>Status</th></tr>${rows||'<tr><td colspan="2" class="db-empty">—</td></tr>'}</table>
+    </div>`;
+  }catch(e){return''}
+}
+function bindAdminPremium(){
+  const key=adminKey();
+  const genBtn=$('#premGenBtn');
+  if(genBtn)genBtn.addEventListener('click',async()=>{
+    try{
+      const j=await fetch(API_URL+'/admin/premium/codes',{method:'POST',headers:{'X-Admin-Key':key}}).then(r=>r.json());
+      if(!j.ok)throw new Error();
+      $('#premGenResult').innerHTML=`✅ <b style="font-family:var(--mono)">${esc(j.code)}</b> <button class="btn mini" id="premCopyBtn">📋</button>`;
+      const cb=$('#premCopyBtn');if(cb)cb.addEventListener('click',()=>{navigator.clipboard.writeText(j.code).then(()=>toast(t('prem_code_copied')))});
+      renderDB();
+    }catch(e){toast('Erro ao gerar código')}
+  });
+  $$('[data-prem-toggle]').forEach(b=>b.addEventListener('click',async()=>{
+    const email=b.dataset.premToggle,grant=b.dataset.grant==='1';
+    try{
+      await fetch(API_URL+'/admin/premium/grant',{method:'POST',headers:{'Content-Type':'application/json','X-Admin-Key':key},body:JSON.stringify({email,grant})});
+      renderDB();
+    }catch(e){toast('Erro ao atualizar Premium')}
+  }));
+}
+/* ===== AURORA (IA melhorada) ===== */
+const KW={praia:['praia','mar ','beach','playa','litoral','costa','orla'],serra:['serra','frio','montanha','cold','sierra','mountain'],neve:['neve','snow','nieve','esqui','ski'],deserto:['deserto','desert','atacama'],cultura:['cultura','museu','museum','hist','arte','culture'],gastronomia:['comida','gastronomia','food','comer','culin','taco','vinho','wine'],festa:['festa','balada','night','party','fiesta','agito'],'família':['família','filho','criança','family','kids','niños','familia'],natureza:['natureza','trilha','nature','cachoeira','trail'],aventura:['aventura','adventure','radical','buggy','mergulho'],compras:['compras','shopping','outlet','compra'],urbano:['cidade grande','urbano','metrópole','metropolis','city'],parques:['disney','universal','parque temático','theme park'],vinho:['vinho','wine','vinícola','bodega'],economia:['barato','econômico','pouca grana','cheap','económico','pouco dinheiro']};
+const MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const MESES_EN=['january','february','march','april','may','june','july','august','september','october','november','december'];
+const MESES_ES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+function parseMonth(low){
+  for(let i=0;i<12;i++){if(low.includes(MESES[i])||low.includes(MESES_EN[i])||low.includes(MESES_ES[i]))return i}
+  return null;
+}
+function monthName(m){const loc=LANG==='pt'?'pt-BR':LANG==='es'?'es-ES':'en-US';const s=new Date(2025,m,1).toLocaleString(loc,{month:'long'});return s.charAt(0).toUpperCase()+s.slice(1)}
+function goodSeason(d,m){
+  if(m===null)return null;
+  const sul=LATLON[d.id]&&LATLON[d.id][0]<0;
+  if(d.tags.includes('neve'))return sul?(m>=5&&m<=8):(m===11||m<=2);
+  if(d.tags.includes('praia')||d.tags.includes('verão'))return sul?(m>=8||m<=3):(m>=4&&m<=9);
+  if(d.tags.includes('serra'))return sul?(m>=3&&m<=8):true;
+  if(d.tags.includes('deserto'))return(m>=2&&m<=4)||(m>=8&&m<=10);
+  return true;
+}
+const _ai={ctx:null,shown:[],voice:false};
+function aiParse(text){
+  const low=' '+text.toLowerCase()+' ';let budget=null;
+  // "3 mil", "2,5 mil", "3k", "3.5k" — tudo antes de tentar casar valores em R$
+  const mil=low.match(/(\d+(?:[.,]\d+)?)\s*(mil|k)\b/);if(mil)budget=Math.round(parseFloat(mil[1].replace(',','.'))*1000);
+  // "R$ 2.500,00", "R$2500", "R$ 2,500.00" (formato en-US ocasional)
+  if(!budget){const m=low.match(/r\$\s*([\d.,]+)/);if(m){
+    let raw=m[1];
+    if(/,\d{2}$/.test(raw))raw=raw.replace(/\./g,'').replace(',','.'); // 2.500,00 -> 2500.00
+    else raw=raw.replace(/,/g,''); // 2,500 -> 2500
+    const v=parseFloat(raw);if(!isNaN(v))budget=Math.round(v);
+  }}
+  if(!budget){const m=low.match(/\b(\d{1,3}(?:\.\d{3})+)\b/);if(m)budget=parseInt(m[1].replace(/\./g,''))} // "3.500" sem R$
+  if(!budget){const m=low.match(/\b(\d{3,7})\b/);if(m)budget=parseInt(m[1])}
+  let days=null;const dm=low.match(/(\d{1,2})\s*(dias|d[ií]as|days|noites|nights)/);if(dm)days=parseInt(dm[1]);
+  if(!days){if(/fim de semana|weekend|fin de semana/.test(low))days=3;
+    else{const sm=low.match(/(\d{1,2})?\s*semanas?|weeks?|semanas?/);if(/semana|week/.test(low))days=(sm&&sm[1]?parseInt(sm[1]):1)*7;}}
+  let people=null;const pm=low.match(/(\d{1,2})\s*(pessoas|people|personas)/)||low.match(/pra\s+(\d{1,2})\b/)||low.match(/for\s+(\d{1,2})\b/)||low.match(/para\s+(\d{1,2})\b/);if(pm)people=parseInt(pm[1]);
+  if(!people&&/(a dois|nós dois|casal|us two|the two of us|en pareja)/.test(low))people=2;
+  const month=parseMonth(low);
+  const likes=new Set();for(const tag in KW){if(KW[tag].some(k=>low.includes(k)))likes.add(tag)}
+  return{budget,days,people,month,likes:[...likes]};
+}
+function aiScore(d,likes,budget,days,people){
+  const hotel=defaultHotel(d);const {tcost}=tripParts(d);const total=tripTotal(d,days,hotel,tcost);
+  let score=0;d.tags.forEach(tg=>{if(likes.includes(tg))score+=3});
+  const group=total*(people||1);
+  if(budget){if(group<=budget)score+=2+(budget-group)/budget*2;else score-=5}
+  if(likes.includes('economia'))score+=(6000-total)/1200;
+  return{d,total,score};
+}
+function buildRoteiro(d,days){
+  const pool=d.tags.filter(tg=>ACT[tg]);if(!pool.length)pool.push('urbano','gastronomia');
+  const acts=['chegada'];const mid=Math.max(0,days-2);
+  for(let i=0;i<mid;i++)acts.push(pool[i%pool.length]);
+  if(days>1)acts.push('volta');
+  return acts.map((a,i)=>`<b>${t('ai_day',{n:i+1})}:</b> ${esc(ACT[a][LANG]||ACT[a].pt)}`).join('<br>');
+}
+function addMsg(html,who){const m=document.createElement('div');m.className='msg '+who;m.innerHTML=html;$('#chatMsgs').appendChild(m);$('#chatMsgs').scrollTop=$('#chatMsgs').scrollHeight;return m}
+function plainify(h){return h.replace(/<br\s*\/?>/g,'\n').replace(/<[^>]+>/g,'')}
+function streamMsg(fullHtml){
+  const m=addMsg('','ai');
+  const plain=plainify(fullHtml);
+  const words=plain.split(/\s+/);let i=0;
+  const iv=setInterval(()=>{
+    i=Math.min(words.length,i+3);
+    m.textContent=words.slice(0,i).join(' ');
+    $('#chatMsgs').scrollTop=$('#chatMsgs').scrollHeight;
+    if(i>=words.length){clearInterval(iv);m.innerHTML=fullHtml;$('#chatMsgs').scrollTop=$('#chatMsgs').scrollHeight;bindAiBtns(m)}
+  },reduced?1:40);
+  if(_ai.voice&&'speechSynthesis'in window){const u=new SpeechSynthesisUtterance(plain);u.lang=LANG==='pt'?'pt-BR':LANG==='es'?'es-ES':'en-US';speechSynthesis.cancel();speechSynthesis.speak(u)}
+}
+function bindAiBtns(m){
+  m.querySelectorAll('[data-ai-apply]').forEach(b=>b.addEventListener('click',()=>{
+    if(!_ai.ctx)return;
+    inpB.value=String(_ai.ctx.budget).replace(/\B(?=(\d{3})+(?!\d))/g,'.');inpD.value=_ai.ctx.days;inpR.value='any';qDestino.value='';state.destino='';
+    location.hash='#/';runSearch();b.textContent=t('ai_cta_done');b.disabled=true;$('#chatPanel').hidden=true;
+    setTimeout(()=>$('#resultado').scrollIntoView({behavior:reduced?'auto':'smooth'}),300);
+  }));
+  m.querySelectorAll('[data-ai-hotels]').forEach(b=>b.addEventListener('click',()=>openHotels(b.dataset.aiHotels)));
+  m.querySelectorAll('[data-ai-comps]').forEach(b=>b.addEventListener('click',()=>openComps(b.dataset.aiComps)));
+  m.querySelectorAll('[data-ai-follow]').forEach(b=>b.addEventListener('click',()=>sendAI(b.dataset.aiFollow,true)));
+}
+function isFaqQuery(low){
+  return (/banco|senha|dados|database|login/.test(low)&&/como|funciona|o que|what|how|dónde|donde/.test(low))||/banco de dados|database/.test(low)
+    ||/companhia|aérea|aerea|ônibus|onibus|carrier|airline|compañía/.test(low)
+    ||(/hotel|hosped|pousada|stay|aloj/.test(low)&&!/quero|pra|for|tenho/.test(low))
+    ||/lab|clima|weather|quiz|radar|rachad|split/.test(low)
+    ||/como funciona|how (does|it)|cómo funciona/.test(low);
+}
+/* AURORA "de verdade": quando o server.js tem ANTHROPIC_API_KEY configurada,
+   a gente manda a mensagem + o contexto (orçamento/dias/destinos já
+   calculados aqui no site) pro servidor, que chama a Anthropic e devolve uma
+   resposta natural — sempre baseada nos dados reais do site, nunca
+   inventada. Se o servidor não tiver a chave, estiver offline, sem internet
+   ou responder com erro, cai automaticamente no modo local (aiRespondRule),
+   que sempre funciona sem depender de nada externo. */
+async function tryAiSmart(text){
+  if(!API_URL)return false;
+  const p=aiParse(text);
+  const ctx=_ai.ctx||{};
+  const budget=p.budget||ctx.budget||null;
+  const days=p.days||ctx.days||5;
+  const people=p.people||ctx.people||null;
+  const month=p.month!==null?p.month:(ctx.month!==undefined?ctx.month:null);
+  const likes=p.likes.length?p.likes:(ctx.likes||[]);
+  let scored=[];
+  if(budget){
+    scored=DESTS.map(d=>aiScore(d,likes,budget,days,people)).filter(x=>x.total*(people||1)<=budget).sort((a,b)=>b.score-a.score||a.total-b.total).slice(0,3);
+    if(scored.length){_ai.ctx={budget,days,people,month,likes};scored.forEach(x=>_ai.shown.push(x.d.id))}
+  }
+  const context={budget,days,people,month:month!==null?monthName(month):null,likes:likes.map(tagLabel),top:scored.map(x=>({city:cityName(x.d),total:x.total,tags:x.d.tags.map(tagLabel)}))};
+  _ai.history=(_ai.history||[]).slice(-6);
+  let j=null;
+  try{
+    const r=await fetch(API_URL+'/ai/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,lang:LANG,context,history:_ai.history})});
+    j=await r.json().catch(()=>null);
+    if(!r.ok||!j||!j.ok||!j.reply)return false;
+  }catch(e){return false}
+  _ai.history.push({role:'user',content:text});
+  _ai.history.push({role:'assistant',content:j.reply});
+  let html=esc(j.reply).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
+  if(scored.length){
+    const first=scored[0];
+    html+=`<span class="ai-btns"><button class="btn mini primary" data-ai-apply="1">${t('ai_cta')}</button><button class="btn mini sky" data-ai-hotels="${first.d.id}">${t('ai_follow_hotels')}</button><button class="btn mini yellow" data-ai-comps="${first.d.id}">${t('ai_follow_comps')}</button><button class="btn mini" data-ai-follow="mais barato">${t('ai_follow_cheaper')}</button></span>`;
+  }
+  streamMsg(html);
+  return true;
+}
+async function sendAI(text,fromBtn){
+  const v=(text||'').trim();if(!v)return;
+  if(!fromBtn){addMsg(esc(v),'user')}
+  $('#chatInput').value='';
+  const ty=addMsg('<span class="typing"><span></span><span></span><span></span></span>','ai');
+  const low=' '+v.toLowerCase()+' ';
+  if(isFaqQuery(low)||!API_URL){
+    setTimeout(()=>{ty.remove();aiRespondRule(v)},reduced?60:700+Math.random()*500);
+    return;
+  }
+  const ok=await tryAiSmart(v).catch(()=>false);
+  ty.remove();
+  if(!ok)aiRespondRule(v);
+}
+function aiRespondRule(text){
+  const low=' '+text.toLowerCase()+' ';
+  if(/banco|senha|dados|database|login/.test(low)&&/como|funciona|o que|what|how|dónde|donde/.test(low)||/banco de dados|database/.test(low)){streamMsg(t('ai_faq_bank'));return}
+  if(/companhia|aérea|aerea|ônibus|onibus|carrier|airline|compañía/.test(low)){streamMsg(t('ai_faq_comp'));return}
+  if(/hotel|hosped|pousada|stay|aloj/.test(low)&&!/quero|pra|for|tenho/.test(low)){streamMsg(t('ai_faq_hotel'));return}
+  if(/lab|clima|weather|quiz|radar|rachad|split/.test(low)){streamMsg(t('ai_faq_lab'));return}
+  if(/como funciona|how (does|it)|cómo funciona/.test(low)){streamMsg(t('ai_faq_how'));return}
+  const p=aiParse(text);
+  const ctx=_ai.ctx||{};
+  const budget=p.budget||ctx.budget||null;
+  const days=p.days||ctx.days||5;
+  const people=p.people||ctx.people||null;
+  const month=p.month!==null?p.month:(ctx.month!==undefined?ctx.month:null);
+  const likes=p.likes.length?p.likes:(ctx.likes||[]);
+  if(/mais barato|cheaper|más barato/.test(low)){
+    const all=DESTS.map(d=>aiScore(d,likes,budget||999999,days,people)).sort((a,b)=>a.total-b.total);
+    const next=all.filter(x=>!_ai.shown.includes(x.d.id)).slice(0,3);
+    if(!next.length){streamMsg(t('ai_none'));return}
+    next.forEach(x=>_ai.shown.push(x.d.id));
+    _ai.ctx={budget,days,people,month,likes};
+    let html='<b>'+t('ai_picks')+'</b>';
+    next.forEach((x,i)=>{html+=`<span class="pick">${i+1}. <b>${esc(cityName(x.d))}</b> · ${brl(x.total)} · ${t('ai_fit',{v:brl((budget||x.total)-x.total)})}</span>`});
+    streamMsg(html);return;
+  }
+  if(!budget){streamMsg(t('ai_ask_budget'));return}
+  _ai.ctx={budget,days,people,month,likes};
+  const scored=DESTS.map(d=>aiScore(d,likes,budget,days,people)).filter(x=>x.total*(people||1)<=budget).sort((a,b)=>b.score-a.score||a.total-b.total).slice(0,3);
+  if(!scored.length){streamMsg(t('ai_none'));return}
+  scored.forEach(x=>_ai.shown.push(x.d.id));
+  const tagsTxt=likes.length?likes.map(tagLabel).join(', '):'🎲';
+  let html=t('ai_understood',{b:brl(budget),d:days,p:people?t('ai_people',{p:people}):'',tags:tagsTxt});
+  if(month!==null){const top=scored[0].d;const ok=goodSeason(top,month);html+='<br>'+(ok?t('ai_month_ok',{m:monthName(month),c:cityName(top)}):t('ai_month_bad',{m:monthName(month),c:cityName(top),e:epocaDe(top)}))}
+  if(people)html+='<br>'+t('ai_group',{p:people,v:brl(scored[0].total*people)});
+  html+='<br><br><b>'+t('ai_picks')+'</b>';
+  scored.forEach((x,i)=>{html+=`<span class="pick">${i+1}. <b>${esc(cityName(x.d))}</b> · ${brl(x.total)}<br><small>🏷 ${x.d.tags.map(tagLabel).map(esc).join(', ')} · ${t('ai_fit',{v:brl(budget-x.total)})}</small></span>`});
+  html+='<br><br>'+t('ai_roteiro',{c:cityName(scored[0].d)})+'<br>'+buildRoteiro(scored[0].d,days);
+  html+=`<span class="ai-btns"><button class="btn mini primary" data-ai-apply="1">${t('ai_cta')}</button><button class="btn mini sky" data-ai-hotels="${scored[0].d.id}">${t('ai_follow_hotels')}</button><button class="btn mini yellow" data-ai-comps="${scored[0].d.id}">${t('ai_follow_comps')}</button><button class="btn mini" data-ai-follow="mais barato">${t('ai_follow_cheaper')}</button><button class="btn mini" data-ai-follow="mais opções">${t('ai_follow_more')}</button></span>`;
+  streamMsg(html);
+}
+$('#fabAI').addEventListener('click',()=>{const p=$('#chatPanel');p.hidden=!p.hidden;if(!p.hidden&&!_ai.hello){streamMsg(t('ai_hello'));_ai.hello=true}if(!p.hidden)$('#chatInput').focus()});
+$('#chatClose').addEventListener('click',()=>{$('#chatPanel').hidden=true});
+$('#chatSend').addEventListener('click',()=>sendAI($('#chatInput').value));
+$('#chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendAI($('#chatInput').value)}});
+$$('.chat-chip').forEach(c=>c.addEventListener('click',()=>sendAI(t('ai_chip'+c.dataset.say))));
+$('#voiceBtn').addEventListener('click',()=>{_ai.voice=!_ai.voice;$('#voiceBtn').textContent=_ai.voice?'🔊':'';toast(_ai.voice?t('ai_voice_on',''):'' )});
+/* ===== PÁGINA 2 ===== */
+const RATES={USD:['US$',5.40],EUR:['€',5.85],ARS:['AR$',0.006],CLP:['CLP$',0.0057],PYG:['₲',0.00075],UYU:['$U',0.13],MXN:['MX$',0.31],CAD:['C$',3.95]};
+const CHK=[['docs','📄',{pt:'Documentos e reservas impressos',en:'Documents and printed bookings',es:'Documentos y reservas impresos'}],['money','💳',{pt:'Cartão + dinheiro trocado',en:'Card + some cash',es:'Tarjeta + efectivo cambiado'}],['clothes','👕',{pt:'Roupas pros dias + 1 extra',en:'Clothes for the days + 1 extra',es:'Ropa para los días + 1 extra'}],['meds','💊',{pt:'Remédios pessoais',en:'Personal meds',es:'Medicinas personales'}],['charge','🔌',{pt:'Carregadores e adaptador',en:'Chargers and adapter',es:'Cargadores y adaptador'}],['sun','🧴',{pt:'Protetor solar e óculos',en:'Sunscreen and sunglasses',es:'Protector solar y lentes'}],['apps','📱',{pt:'Mapas e tradução offline',en:'Offline maps and translation',es:'Mapa y traducción offline'}],['insurance','🛡️',{pt:'Seguro viagem',en:'Travel insurance',es:'Seguro de viaje'}],['copies','📸',{pt:'Fotos dos documentos na nuvem',en:'Photos of documents in the cloud',es:'Fotos de documentos en la nube'}],['snack','🥨',{pt:'Lanche pra viagem',en:'Snacks for the trip',es:'Snacks para el viaje'}]];
+const FUN=[['🗼',{pt:'A Torre Eiffel fica ~15 cm mais alta no verão, por causa do calor no metal.',en:'The Eiffel Tower grows ~15 cm taller in summer, thanks to heat expanding the metal.',es:'La Torre Eiffel crece ~15 cm en verano por el calor que dilata el metal.'}],['🛂',{pt:'O ranking dos passaportes mais poderosos muda todo ano — confere antes de viajar.',en:'The most powerful passport ranking changes every year — check before you fly.',es:'El ranking de pasaportes más poderosos cambia cada año; consúltalo antes de volar.'}],['🌍',{pt:'Voar terça e quarta pode ficar até 30% mais barato que no fim de semana.',en:'Flying Tuesday or Wednesday can be up to 30% cheaper than the weekend.',es:'Volar martes o miércoles puede ser hasta 30% más barato que el fin de semana.'}],['🧳',{pt:'Regra de viajante velho: metade das roupas, o dobro de dinheiro.',en:'Old traveler rule: half the clothes, double the money.',es:'Regla del viajero experto: la mitad de ropa, el doble de dinero.'}]];
+function renderExplore(){
+  const origem=qOrigem.value;
+  $('#galGrid').innerHTML=DESTS.map((d,i)=>{
+    const {tcost}=tripParts(d);const min=tripTotal(d,5,defaultHotel(d),tcost);
+    return `<div class="gal-card" style="animation:cardIn .5s ${i*30}ms both"><div class="gal-band" style="background-color:${REGION_COLOR[d.region]||'#8FA8B8'}">${REGION_EMOJI[d.region]||'📍'}</div><div class="gal-body"><h3>${esc(cityName(d))}</h3><div class="g-meta">${esc(t('reg_'+d.country))} · ${d.tags.map(tagLabel).map(esc).join(' · ')}</div><div class="g-from">${t('gal_from',{v:brl(min)})}</div><button class="btn sky sm" data-plan="${d.id}">${t('gal_plan')}</button></div></div>`;
+  }).join('');
+  $$('#galGrid [data-plan]').forEach(b=>b.addEventListener('click',()=>{
+    qDestino.value=b.dataset.plan;state.destino=b.dataset.plan;location.hash='#/';
+    updateTicketRoute();toast('✈ '+cityName(destById(b.dataset.plan))+'!');
+    setTimeout(()=>$('#buscar').scrollIntoView({behavior:reduced?'auto':'smooth'}),60);
+  }));
+  $('#compGrid').innerHTML=COMPANHIAS.map((c,i)=>`
+    <div class="comp-card" style="animation:cardIn .5s ${i*25}ms both">
+      <div class="comp-top"><div class="comp-logo" style="background:${c.cor}">${esc(c.nome.slice(0,2).toUpperCase())}</div>
+        <div><div class="comp-name">${esc(c.nome)}</div><span class="comp-type">${c.tipo==='aerea'?t('comp_aerea'):t('comp_onibus')}</span></div></div>
+      <div class="comp-meta">★ ${c.nota.toFixed(1)} · ${c.preco}</div>
+      <div class="comp-desc">${esc(c.desc[LANG]||c.desc.pt)}</div>
+    </div>`).join('');
+  convCalc();
+  let done=[];try{done=JSON.parse(localStorage.getItem('rumo_chk')||'[]')}catch(e){}
+  $('#chkList').innerHTML=CHK.map(([id,ico,txt])=>`<label class="chk-item ${done.includes(id)?'done':''}"><input type="checkbox" data-chk="${id}" ${done.includes(id)?'checked':''}><span>${ico} ${esc(txt[LANG]||txt.pt)}</span></label>`).join('');
+  chkCount();
+  $$('#chkList [data-chk]').forEach(c=>c.addEventListener('change',()=>{
+    let d2=[];try{d2=JSON.parse(localStorage.getItem('rumo_chk')||'[]')}catch(e){}
+    if(c.checked)d2.push(c.dataset.chk);else d2=d2.filter(x=>x!==c.dataset.chk);
+    localStorage.setItem('rumo_chk',JSON.stringify(d2));
+    c.closest('.chk-item').classList.toggle('done',c.checked);chkCount();
+  }));
+  $('#funGrid').innerHTML=FUN.map(([ico,txt])=>`<div class="fun-card"><span class="f-ico">${ico}</span><p>${esc(txt[LANG]||txt.pt)}</p></div>`).join('');
+}
+function chkCount(){let done=[];try{done=JSON.parse(localStorage.getItem('rumo_chk')||'[]')}catch(e){}$('#chkFill').style.width=Math.round(done.length/CHK.length*100)+'%';$('#chkCount').textContent=t('chk_count',{a:done.length,b:CHK.length})}
+$('#chkReset').addEventListener('click',()=>{localStorage.setItem('rumo_chk','[]');renderExplore()});
+function convCalc(){
+  const v=parseInt($('#convVal').value.replace(/\D/g,''))||0;
+  const m=$('#convMoeda').value;const [sym,rate]=RATES[m];const out=v/rate;
+  $('#convOut').textContent=sym+' '+out.toLocaleString(LANG==='pt'?'pt-BR':LANG==='es'?'es-ES':'en-US',{maximumFractionDigits:out<100?2:0});
+  $('#convLbl').textContent='R$ '+v.toLocaleString('pt-BR')+' → '+m;
+}
+$('#convVal').addEventListener('input',e=>{const v=e.target.value.replace(/\D/g,'').slice(0,9);e.target.value=v?Number(v).toLocaleString('pt-BR'):'';convCalc()});
+$('#convMoeda').addEventListener('change',convCalc);
+/* ===== RUMO LAB ===== */
+function buildWxDest(){
+  const prev=$('#wxDest').value;
+  $('#wxDest').innerHTML=DESTS.map(d=>`<option value="${d.id}">${esc(cityName(d))} · ${esc(t('reg_'+d.country))}</option>`).join('');
+  if(prev&&destById(prev))$('#wxDest').value=prev;
+}
+function wxGroup(code){
+  if(code<=1)return'clear';if(code<=3)return'clouds';if(code<=48)return'fog';if(code<=57)return'drizzle';if(code<=67)return'rain';if(code<=77)return'snow';if(code<=82)return'showers';return'storm';
+}
+const WX_EMO={clear:'☀️',clouds:'⛅',fog:'🌫️',drizzle:'🌦️',rain:'🌧️',snow:'🌨️',showers:'️',storm:'️'};
+$('#wxBtn').addEventListener('click',async()=>{
+  const id=$('#wxDest').value;const out=$('#wxOut');out.hidden=false;
+  out.innerHTML=`<span class="wx-emoji">🛰️</span><div class="wx-info"><b>${t('wx_loading')}</b></div>`;
+  try{
+    const [la,lo]=LATLON[id];
+    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${la}&longitude=${lo}&current_weather=true`);
+    const j=await r.json();const cw=j.current_weather;
+    const g=wxGroup(cw.weathercode);const temp=Math.round(cw.temperature);
+    const tip=temp<=10?t('wx_tip_cold',{t:temp}):temp>=27?t('wx_tip_hot',{t:temp}):t('wx_tip_ok',{t:temp});
+    const d=destById(id);
+    out.innerHTML=`<span class="wx-emoji">${WX_EMO[g]}</span><div class="wx-temp">${temp}°C</div>
+      <div class="wx-info"><b>${esc(cityName(d))}</b><span>${t('wx_'+g)} · ${t('wx_wind',{v:Math.round(cw.windspeed)})}</span><span>${tip}</span><span>📅 ${t('wx_best',{e:epocaDe(d)})}</span></div>`;
+  }catch(e){out.innerHTML=`<span class="wx-emoji">😅</span><div class="wx-info"><b>${t('wx_err')}</b></div>`}
+});
+const QUIZ=[
+{q:{pt:'Sua sexta-feira ideal?',en:'Your ideal Friday?',es:'¿Tu viernes ideal?'},o:[{t:{pt:'Praia + drink gelado',en:'Beach + cold drink',es:'Playa + trago frío'},s:{praia:2,festa:1}},{t:{pt:'Trilha ao pôr do sol',en:'Sunset hike',es:'Senderismo al atardecer'},s:{natureza:2,aventura:1}},{t:{pt:'Museu + café charmoso',en:'Museum + cozy café',es:'Museo + café con encanto'},s:{cultura:2,gastronomia:1}},{t:{pt:'Lareira, vinho e friozinho',en:'Fireplace, wine and chill',es:'Chimenea, vino y frío'},s:{serra:2,vinho:1}}]},
+{q:{pt:'O que não pode faltar na mala?',en:'What must be in your bag?',es:'¿Qué no puede faltar en tu maleta?'},o:[{t:{pt:'Chinelo e canga',en:'Flip-flops and sarong',es:'Chanclas y pareo'},s:{praia:2}},{t:{pt:'Tênis de trilha',en:'Hiking shoes',es:'Zapatillas de trekking'},s:{aventura:2,natureza:1}},{t:{pt:'Câmera ou caderninho',en:'Camera or notebook',es:'Cámara o libreta'},s:{cultura:2}},{t:{pt:'Casaco pesado',en:'Heavy jacket',es:'Abrigo pesado'},s:{serra:2,neve:1}}]},
+{q:{pt:'Comida dos sonhos?',en:'Dream food?',es:'¿Comida de tus sueños?'},o:[{t:{pt:'Frutos do mar na praia',en:'Seafood at the beach',es:'Mariscos en la playa'},s:{praia:1,gastronomia:2}},{t:{pt:'Street food na cidade',en:'City street food',es:'Street food en la ciudad'},s:{urbano:1,gastronomia:2}},{t:{pt:'Fondue na serra',en:'Fondue in the mountains',es:'Fondue en la sierra'},s:{serra:1,vinho:1,gastronomia:1}},{t:{pt:'Churrasco de fogo de chão',en:'Open-fire barbecue',es:'Asado criollo'},s:{cultura:1,gastronomia:1}}]},
+{q:{pt:'Clima perfeito?',en:'Perfect weather?',es:'¿Clima perfecto?'},o:[{t:{pt:'27°C e sol',en:'27°C and sun',es:'27°C y sol'},s:{praia:2,'verão':1}},{t:{pt:'15°C com brisa',en:'15°C with a breeze',es:'15°C con brisa'},s:{natureza:1,urbano:1}},{t:{pt:'8°C pra usar casaco',en:'8°C to wear a coat',es:'8°C para usar abrigo'},s:{serra:2}},{t:{pt:'Neve, óbvio!',en:'Snow, obviously!',es:'¡Nieve, obvio!'},s:{neve:2}}]},
+{q:{pt:'Foto do perfil seria…',en:'Your profile pic would be…',es:'Tu foto de perfil sería…'},o:[{t:{pt:'Pôr do sol na praia',en:'Beach sunset',es:'Atardecer en la playa'},s:{praia:2}},{t:{pt:'Topo de montanha',en:'Mountain top',es:'Cima de montaña'},s:{aventura:2,natureza:1}},{t:{pt:'Rua histórica colorida',en:'Colorful historic street',es:'Calle histórica colorida'},s:{cultura:2}},{t:{pt:'Cabana nevada',en:'Snowy cabin',es:'Cabaña nevada'},s:{neve:2,serra:1}}]}];
+const PROFILES=[{id:'sol',n:{pt:'Alma de Praia 🌊',en:'Beach Soul 🌊',es:'Alma de Playa 🌊'},tags:['praia','festa','verão']},{id:'selva',n:{pt:'Explorador Selvagem 🌿',en:'Wild Explorer 🌿',es:'Explorador Salvaje 🌿'},tags:['natureza','aventura']},{id:'cult',n:{pt:'Caçador de Cultura 🏛️',en:'Culture Hunter 🏛️',es:'Cazador de Cultura 🏛️'},tags:['cultura','gastronomia','urbano']},{id:'frio',n:{pt:'Romântico do Frio ❄️',en:'Cold Romantic ❄️',es:'Romántico del Frío ❄️'},tags:['serra','neve','vinho']}];
+let _quiz={i:0,scores:{}};
+function renderQuiz(){
+  const box=$('#quizBox');
+  if(_quiz.i<QUIZ.length){
+    const q=QUIZ[_quiz.i];
+    box.innerHTML=`<p style="font-weight:800;margin-bottom:.7rem">${_quiz.i+1}/5 · ${esc(q.q[LANG]||q.q.pt)}</p>`+
+      q.o.map((o,idx)=>`<button class="quiz-opt" data-qo="${idx}">${esc(o.t[LANG]||o.t.pt)}</button>`).join('');
+    box.querySelectorAll('[data-qo]').forEach(b=>b.addEventListener('click',()=>{
+      const s=QUIZ[_quiz.i].o[+b.dataset.qo].s;
+      for(const k in s)_quiz.scores[k]=(_quiz.scores[k]||0)+s[k];
+      _quiz.i++;renderQuiz();
+    }));
+  }else{
+    let best=PROFILES[0],bestV=-1;
+    PROFILES.forEach(p=>{const v=p.tags.reduce((a,tg)=>a+(_quiz.scores[tg]||0),0);if(v>bestV){bestV=v;best=p}});
+    const recs=DESTS.map(d=>({d,v:d.tags.reduce((a,tg)=>a+(_quiz.scores[tg]||0),0)})).sort((a,b)=>b.v-a.v).slice(0,3);
+    box.innerHTML=`<div class="quiz-res"><h4>${t('quiz_res')} ${esc(best.n[LANG]||best.n.pt)}</h4>
+      ${recs.map(r=>`<div class="comp-meta">✈ ${esc(cityName(r.d))} · ${esc(t('reg_'+r.d.country))}</div>`).join('')}
+      <div style="display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap">
+        <button class="btn mini primary" id="quizApply">${t('quiz_apply')}</button>
+        <button class="btn mini" id="quizAgain">${t('quiz_again')}</button>
+      </div></div>`;
+    $('#quizAgain').addEventListener('click',()=>{_quiz={i:0,scores:{}};renderQuiz()});
+    $('#quizApply').addEventListener('click',()=>{
+      const top=recs[0].d;
+      qDestino.value=top.id;state.destino=top.id;location.hash='#/';
+      updateTicketRoute();toast('🧬 '+cityName(top)+'!');
+      setTimeout(()=>$('#buscar').scrollIntoView({behavior:reduced?'auto':'smooth'}),60);
+    });
+  }
+}
+function splitCalc(){
+  const tot=parseInt($('#splitTotal').value.replace(/\D/g,''))||0;
+  const ppl=Math.max(1,parseInt($('#splitPpl').value)||1);
+  $('#splitEach').textContent=brl(Math.round(tot/ppl));
+  $('#splitTip').textContent=t('split_tip',{v:brl(Math.round(tot/ppl*1.1))});
+}
+$('#splitTotal').addEventListener('input',e=>{const v=e.target.value.replace(/\D/g,'').slice(0,9);e.target.value=v?Number(v).toLocaleString('pt-BR'):'';splitCalc()});
+$('#splitPpl').addEventListener('input',splitCalc);
+let _radar={deals:[],tick:null};
+function radarPush(){
+  const d=DESTS[Math.floor(Math.random()*DESTS.length)];
+  const disc=10+Math.floor(Math.random()*31);
+  const {tcost}=tripParts(d);
+  const base=tripTotal(d,5,defaultHotel(d),tcost);
+  _radar.deals.unshift({id:d.id,city:cityName(d),flag:REGION_EMOJI[d.region],disc,price:Math.round(base*(1-disc/100)),left:600});
+  _radar.deals=_radar.deals.slice(0,4);
+  radarRender();
+}
+function radarRender(){
+  $('#radarFeed').innerHTML=_radar.deals.map(dl=>{
+    const mm=String(Math.floor(dl.left/60)).padStart(2,'0'),ss=String(dl.left%60).padStart(2,'0');
+    return `<div class="deal"><span class="d-off">-${dl.disc}%</span>
+      <div class="d-info"><div class="d-city">${dl.flag} ${esc(dl.city)}</div><div class="d-meta">${brl(dl.price)} · ${t('radar_left',{t:mm+':'+ss})}</div></div>
+      <button class="btn mini primary" data-deal="${dl.id}" data-price="${dl.price}">${t('radar_grab')}</button></div>`;
+  }).join('');
+  $$('#radarFeed [data-deal]').forEach(b=>b.addEventListener('click',()=>{
+    qDestino.value=b.dataset.deal;state.destino=b.dataset.deal;
+    inpB.value=String(b.dataset.price).replace(/\B(?=(\d{3})+(?!\d))/g,'.');inpD.value=5;
+    location.hash='#/';updateTicketRoute();runSearch();
+    setTimeout(()=>$('#resultado').scrollIntoView({behavior:reduced?'auto':'smooth'}),300);
+  }));
+}
+function renderLab(){
+  buildWxDest();renderQuiz();splitCalc();
+  if(!_radar.deals.length){radarPush();radarPush()}else radarRender();
+  if(!_radar.tick){
+    _radar.tick=setInterval(()=>{
+      if($('#page-lab').hidden)return;
+      _radar.deals.forEach(dl=>dl.left--);
+      _radar.deals=_radar.deals.filter(dl=>dl.left>0);
+      if(Math.random()<0.12)radarPush();else radarRender();
+    },1000);
+  }
+}
+$$('.chip-ex').forEach(c=>c.addEventListener('click',()=>{inpB.value=Number(c.dataset.b).toLocaleString('pt-BR');inpD.value=c.dataset.d;inpR.value='any';runSearch();$('#resultado').scrollIntoView({behavior:reduced?'auto':'smooth'})}));
+addEventListener('scroll',()=>$('#hdr').classList.toggle('scrolled',scrollY>10),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.reveal').forEach(el=>io.observe(el));
+try{
+  $('#langSel').value=LANG;applyI18n();buildOrigemSelect();buildDestinoSelect();buildWxDest();buildMarquee();updateTicketRoute();updateAuthUI();route();
+  $('#ano').textContent=new Date().getFullYear();
+}catch(e){console.warn('init parcial:',e)}
+(async()=>{try{await dbInit();updateAuthUI()}catch(e){console.warn('banco:',e)}})();
+</script>
+</body>
+</html>
