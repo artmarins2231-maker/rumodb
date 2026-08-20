@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rumodb.onrender.com/sitemap.xml
+Sitemap: https://traja.onrender.com/sitemap.xml

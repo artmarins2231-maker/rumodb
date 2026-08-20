@@ -4,34 +4,35 @@
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="y5S7DaFkN3nvrerWnyyhgay65M0PI1su7Wj0PgYVRxk" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rumo — viaje com o orçamento que você tem</title>
-<meta name="description" content="Diga quanto você tem pra gastar e o Rumo mostra pra onde dá pra viajar: passagens, hotéis e dia a dia calculados na hora, com a AURORA, nossa copiloto de IA.">
+<title>Traja — viaje com o orçamento que você tem</title>
+<meta name="description" content="Diga quanto você tem pra gastar e o Traja mostra pra onde dá pra viajar: passagens, hotéis e dia a dia calculados na hora, com a AURORA, nossa copiloto de IA.">
 <meta name="keywords" content="viagem barata, planejar viagem, orçamento de viagem, roteiro de viagem, comparador de passagens, hotéis baratos">
-<meta name="author" content="Rumo">
+<meta name="author" content="Traja">
 <meta name="robots" content="index, follow">
 <!-- Troque __SITE_URL__ pelo domínio final (ex: https://www.seurumo.com.br) aqui, no robots.txt e no sitemap.xml. -->
 <link rel="canonical" href="__SITE_URL__/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#1F2A30">
 
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Rumo">
-<meta property="og:title" content="Rumo — viaje com o orçamento que você tem">
-<meta property="og:description" content="Diga quanto você tem pra gastar e o Rumo mostra pra onde dá pra viajar, com passagens, hotéis e dia a dia calculados na hora.">
+<meta property="og:site_name" content="Traja">
+<meta property="og:title" content="Traja — viaje com o orçamento que você tem">
+<meta property="og:description" content="Diga quanto você tem pra gastar e o Traja mostra pra onde dá pra viajar, com passagens, hotéis e dia a dia calculados na hora.">
 <meta property="og:url" content="__SITE_URL__/">
 <meta property="og:image" content="__SITE_URL__/favicon.svg">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rumo — viaje com o orçamento que você tem">
-<meta name="twitter:description" content="Diga quanto você tem pra gastar e o Rumo mostra pra onde dá pra viajar.">
+<meta name="twitter:title" content="Traja — viaje com o orçamento que você tem">
+<meta name="twitter:description" content="Diga quanto você tem pra gastar e o Traja mostra pra onde dá pra viajar.">
 <meta name="twitter:image" content="__SITE_URL__/favicon.svg">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Rumo",
+  "name": "Traja",
   "url": "__SITE_URL__/",
   "description": "Planejador de viagens por orçamento: destinos, passagens e hotéis calculados a partir do valor que você tem pra gastar.",
   "applicationCategory": "TravelApplication",
@@ -44,14 +45,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --fundo:#F4F1E8;--card:#FFFEFB;--ice:#E9E3D3;--sky2:#D8CFB4;--sky:#8C7A55;
-  --blue:#1B3A4B;--navy:#12283A;--deep:#0B1C28;--abyss:#060F17;
-  --sun:#C9A227;--orange:#B8792E;--ok:#3E7A5F;--danger:#A83E3E;
-  --ink:#16232B;--muted:#5C6B72;--linha:rgba(11,28,40,.14);
-  --sombra:0 18px 40px -12px rgba(11,28,40,.35),0 2px 6px rgba(11,28,40,.12);
-  --sombra-sm:0 10px 22px -8px rgba(11,28,40,.28),0 1px 3px rgba(11,28,40,.1);
+  --fundo:#0B0812;--card:#15101F;--ice:#1E1730;--sky2:#2A2140;--sky:#564A72;
+  --blue:#B18CFF;--navy:#120B1C;--deep:#0A0611;--abyss:#040209;
+  --sun:#D6FF3F;--orange:#FF5FA2;--ok:#4ADE9C;--danger:#FF6B6B;
+  --text:#F7F4FF;--ink:#D6CDEE;--muted:#9385AE;--linha:rgba(255,255,255,.12);
+  --sombra:0 18px 40px -12px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.35);
+  --sombra-sm:0 10px 22px -8px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.3);
   --r:16px;--display:'Archivo Black',system-ui,sans-serif;--body:'Archivo',system-ui,sans-serif;--mono:'Space Mono',monospace;
+  color-scheme:dark;
 }
+html[data-theme="light"]{
+  --fundo:#F8F5FC;--card:#FFFFFF;--ice:#EFE7FA;--sky2:#E1D3F5;--sky:#8A76AE;
+  --blue:#7C3AED;--navy:#241938;--deep:#170F26;--abyss:#0D0817;
+  --sun:#8B5CF6;--orange:#E11D74;--ok:#0F9D66;--danger:#D2304A;
+  --text:#1B1226;--ink:#241933;--muted:#6B5C82;--linha:rgba(27,18,38,.14);
+  --sombra:0 18px 40px -12px rgba(27,18,38,.35),0 2px 6px rgba(27,18,38,.12);
+  --sombra-sm:0 10px 22px -8px rgba(27,18,38,.28),0 1px 3px rgba(27,18,38,.1);
+  color-scheme:light;
+}
+body{position:relative}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,rgba(177,140,255,.18) 1px,transparent 1px);background-size:26px 26px;opacity:.5;transition:opacity .3s}
+html[data-theme="light"] body::before{opacity:.3}
+*{transition:background-color .25s ease,border-color .25s ease,color .25s ease}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;border:1.5px solid var(--linha);background:var(--card);color:var(--text);cursor:pointer;font-size:1.05rem;box-shadow:var(--sombra-sm);transition:transform .15s,box-shadow .15s}
+.theme-toggle:hover{transform:translateY(-2px)}
+.planos{padding:clamp(3rem,7vw,6rem) 1.4rem;text-align:center;position:relative}
+.planos-in{max-width:920px;margin:0 auto}
+.planos .sec-kicker{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sun);background:var(--ice);border:1.5px solid var(--linha);padding:.35rem .9rem;border-radius:99px;margin-bottom:1rem}
+.planos h2{font-family:var(--display);font-size:clamp(1.9rem,3.6vw,2.7rem);text-transform:uppercase;color:var(--text);line-height:1.05}
+.planos-sub{color:var(--muted);max-width:560px;margin:.8rem auto 2.6rem;font-size:.98rem}
+.planos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;max-width:720px;margin:0 auto}
+.plano-card{position:relative;background:var(--card);border:1.5px solid var(--linha);border-radius:20px;padding:2rem 1.6rem 1.8rem;text-align:left;box-shadow:var(--sombra-sm);transition:transform .2s,box-shadow .2s,border-color .2s}
+.plano-card:hover{transform:translateY(-4px);box-shadow:var(--sombra)}
+.plano-card.destaque{border-color:var(--sun);box-shadow:0 0 0 1px var(--sun),0 20px 44px -14px rgba(34,211,238,.35)}
+.plano-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(120deg,var(--sun),var(--orange));color:#04121a;font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .8rem;border-radius:99px;white-space:nowrap;box-shadow:0 6px 16px -4px rgba(34,211,238,.5)}
+.plano-ico{width:44px;height:44px;border-radius:12px;background:var(--ice);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:.9rem}
+.plano-tag{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+.plano-preco{font-family:var(--display);font-size:1.9rem;color:var(--text);margin-bottom:1.2rem}
+.plano-preco .pv{background:linear-gradient(120deg,var(--sun),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.plano-lista{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.6rem}
+.plano-lista li{position:relative;padding-left:1.5rem;font-size:.9rem;color:var(--ink);line-height:1.35}
+.plano-lista li::before{content:'✓';position:absolute;left:0;top:0;color:var(--ok);font-weight:800}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{font-family:var(--body);color:var(--ink);background:var(--fundo);
@@ -67,7 +102,11 @@ a{color:inherit}
 .topbar.scrolled{box-shadow:0 6px 24px rgba(12,18,24,.4)}
 .topbar-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:1.1rem;padding:16px 24px;transition:padding .3s}
 .topbar.scrolled .topbar-in{padding:10px 24px}
-.logo{font-family:var(--display);font-size:1.7rem;letter-spacing:-.02em;text-decoration:none;color:#fff;display:flex;align-items:center;gap:.4rem}
+.logo{font-family:var(--display);font-size:1.7rem;letter-spacing:-.02em;text-decoration:none;color:#fff;display:flex;align-items:center;gap:.5rem}
+.logo-mark{display:inline-flex;width:26px;height:26px;flex:0 0 26px}
+.logo-mark svg{width:100%;height:100%}
+.logo-mark svg path{fill:var(--sun);transition:fill .3s}
+.logo:hover .logo-mark svg path{fill:var(--orange)}
 .logo .av{display:inline-block;color:var(--sun);transform:rotate(-12deg);transition:transform .3s}
 .logo:hover .av{transform:rotate(8deg) translateX(3px)}
 .mainnav{display:flex;gap:1.2rem;margin-left:.4rem;flex-wrap:wrap}
@@ -98,7 +137,7 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .lang-wrap{display:flex;align-items:center;gap:.35rem;border:2px solid rgba(255,255,255,.35);border-radius:10px;padding:.32rem .55rem;transition:border-color .2s,transform .15s}
 .lang-wrap:hover{border-color:var(--sun);transform:translateY(-1px)}
 .lang-wrap select{background:transparent;border:none;color:#fff;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;outline:none;cursor:pointer;font-weight:700}
-.lang-wrap select option{color:var(--ink)}
+.lang-wrap select option{color:#1B1226;background:#fff}
 .btn{font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;border:1.5px solid var(--linha);border-radius:12px;padding:.85rem 1.4rem;background:var(--card);color:var(--ink);box-shadow:var(--sombra-sm);transition:transform .18s cubic-bezier(.2,.9,.3,1.1),box-shadow .18s,background .2s;display:inline-flex;align-items:center;gap:.5rem;justify-content:center;text-decoration:none}
 .btn:hover{transform:translateY(-2px)}
 .btn.yellow{background:linear-gradient(135deg,#E4C158,var(--sun) 55%,var(--orange));border-color:transparent;color:var(--abyss);box-shadow:0 14px 28px -10px rgba(201,162,39,.55)}
@@ -129,7 +168,7 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .kicker{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;background:var(--deep);color:var(--sun);padding:.45rem .9rem;border-radius:99px;border:2px solid var(--abyss);box-shadow:3px 3px 0 rgba(19,27,32,.8);margin-bottom:1.6rem}
 .kicker .dot{width:8px;height:8px;border-radius:99px;background:var(--orange);animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.6);opacity:.5}}
-.hero h1{font-family:var(--display);font-size:clamp(2.4rem,5.2vw,4.3rem);line-height:.98;letter-spacing:-.01em;text-transform:uppercase;color:var(--deep)}
+.hero h1{font-family:var(--display);font-size:clamp(2.4rem,5.2vw,4.3rem);line-height:.98;letter-spacing:-.01em;text-transform:uppercase;color:var(--text)}
 .hero h1 .marca{display:inline;background:linear-gradient(transparent 55%,var(--sun) 55%,var(--sun) 92%,transparent 92%);padding:0 .1em}
 .hero h1 .seta{color:var(--orange);display:inline-block;animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -152,11 +191,12 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .ticket-notch::before,.ticket-notch::after{content:'';position:absolute;top:-13px;width:24px;height:24px;border-radius:99px;background:var(--fundo);border:2px solid var(--deep);z-index:2}
 .ticket-notch::before{left:-14px}.ticket-notch::after{right:-14px}
 .ticket-body{padding:1.4rem}
-.ticket-body h2{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;color:var(--deep);margin-bottom:1.1rem}
+.ticket-body h2{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;color:var(--text);margin-bottom:1.1rem}
 .ticket-body h2 span{color:var(--orange)}
 .field{margin-bottom:1rem}
 .field label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
-.field input,.field select{width:100%;border:2px solid var(--deep);border-radius:10px;background:#fff;padding:.8rem .9rem;font-size:1rem;font-weight:600;color:var(--ink);transition:box-shadow .2s,transform .15s;appearance:none}
+.field input,.field select{width:100%;border:2px solid var(--deep);border-radius:10px;background:#fff;padding:.8rem .9rem;font-size:1rem;font-weight:600;color:#1B1226;transition:box-shadow .2s,transform .15s;appearance:none}
+.field select option,.field select optgroup{color:#1B1226;background:#fff}
 .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231F2A30' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .9rem center}
 .field input:focus,.field select:focus{outline:none;box-shadow:4px 4px 0 var(--sun);transform:translate(-1px,-1px)}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
@@ -172,12 +212,12 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .marquee{background:var(--sun);border-block:3px solid var(--deep);overflow:hidden;padding:.7rem 0;transform:rotate(-1deg) scale(1.02)}
 .mq-inner{display:flex;width:max-content;animation:mq 30s linear infinite}
 .marquee:hover .mq-inner{animation-play-state:paused}
-.mq-track{font-family:var(--display);font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--deep);white-space:nowrap;padding-right:2rem}
+.mq-track{font-family:var(--display);font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text);white-space:nowrap;padding-right:2rem}
 .mq-track b{color:var(--orange);margin:0 1rem;font-weight:400}
 @keyframes mq{to{transform:translateX(-50%)}}
 .resultados{max-width:1180px;margin:0 auto;padding:80px 24px 40px}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem}
-.sec-head h2{font-family:var(--display);font-size:clamp(1.9rem,3.6vw,2.9rem);text-transform:uppercase;color:var(--deep);line-height:1}
+.sec-head h2{font-family:var(--display);font-size:clamp(1.9rem,3.6vw,2.9rem);text-transform:uppercase;color:var(--text);line-height:1}
 .res-sub{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-bottom:2rem}
 .res-sub b{color:var(--orange)}
 .stamp{font-family:var(--display);color:var(--orange);border:3px solid var(--orange);border-radius:10px;padding:.35rem .8rem;font-size:.95rem;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-6deg) scale(0);opacity:0;mix-blend-mode:multiply}
@@ -190,7 +230,7 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .loader p{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
 .empty{border:2px dashed var(--deep);border-radius:var(--r);background:rgba(255,255,255,.75);padding:3rem 2rem;text-align:center;max-width:560px;margin:0 auto}
 .empty .empty-ico{font-size:2.6rem;display:inline-block;animation:bob 3s ease-in-out infinite}
-.empty h3{font-family:var(--display);text-transform:uppercase;margin:.8rem 0 .4rem;color:var(--deep)}
+.empty h3{font-family:var(--display);text-transform:uppercase;margin:.8rem 0 .4rem;color:var(--text)}
 .empty p{color:#4a5560;font-size:.95rem;max-width:26rem;margin:0 auto}
 .empty.quente{border-color:var(--orange);background:#F7EDE7}
 .quase-titulo{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin:2.4rem 0 1rem;text-align:center}
@@ -210,7 +250,7 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .favbtn.on{background:var(--orange);animation:heartPop .35s cubic-bezier(.2,1.6,.4,1)}
 @keyframes heartPop{0%{transform:scale(.5)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
 .card-body{padding:1.1rem 1.2rem 1.2rem;display:flex;flex-direction:column;flex:1}
-.card-city{font-family:var(--display);font-size:1.55rem;text-transform:uppercase;color:var(--deep);line-height:1.05}
+.card-city{font-family:var(--display);font-size:1.55rem;text-transform:uppercase;color:var(--text);line-height:1.05}
 .card-country{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--muted);margin:.2rem 0 .55rem}
 .card-desc{font-size:.85rem;color:#3c4650;margin-bottom:.7rem}
 .card-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.9rem}
@@ -222,7 +262,7 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .bd-row.comp-line{color:var(--orange)}
 .total-line{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;margin-bottom:.5rem}
 .total-label{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.total-val{font-family:var(--display);font-size:1.7rem;color:var(--deep)}
+.total-val{font-family:var(--display);font-size:1.7rem;color:var(--text)}
 .sobra{font-family:var(--mono);font-size:.66rem;padding:.2rem .55rem;border-radius:99px;border:1.5px solid;white-space:nowrap}
 .sobra.ok{color:var(--ok);border-color:var(--ok);background:#E3EFE9}
 .sobra.quente{color:var(--danger);border-color:var(--danger);background:#F4E3E3}
@@ -248,24 +288,24 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .stats b{color:#fff}
 .exp-hero{background:linear-gradient(160deg,var(--sky2),var(--ice) 60%,var(--fundo));border-bottom:3px solid var(--deep);padding:70px 24px 60px;position:relative;overflow:hidden}
 .exp-hero .exp-in{max-width:1180px;margin:0 auto}
-.exp-hero h1{font-family:var(--display);font-size:clamp(2rem,4.4vw,3.4rem);text-transform:uppercase;color:var(--deep)}
+.exp-hero h1{font-family:var(--display);font-size:clamp(2rem,4.4vw,3.4rem);text-transform:uppercase;color:var(--text)}
 .exp-hero h1 span{color:var(--orange)}
 .exp-hero p{margin-top:.8rem;max-width:36rem;color:#3c4650;font-size:1.05rem}
 .exp-sec{max-width:1180px;margin:0 auto;padding:60px 24px 10px}
-.exp-sec>h2{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.2rem);text-transform:uppercase;color:var(--deep);margin-bottom:.4rem}
+.exp-sec>h2{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.2rem);text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
 .exp-sec>.sub{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:1.6rem}
 .gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.3rem}
 .gal-card{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);overflow:hidden;box-shadow:var(--sombra-sm);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
 .gal-card:hover{transform:translateY(-5px) rotate(-.6deg);box-shadow:8px 10px 0 rgba(19,27,32,.85)}
 .gal-band{padding:1.2rem 1rem .8rem;font-size:2.2rem;border-bottom:2px solid var(--deep);background-image:repeating-linear-gradient(-45deg,rgba(31,42,48,.06) 0 3px,transparent 3px 14px)}
 .gal-body{padding:.9rem 1rem 1rem;display:flex;flex-direction:column;flex:1}
-.gal-body h3{font-family:var(--display);font-size:1.1rem;text-transform:uppercase;color:var(--deep)}
+.gal-body h3{font-family:var(--display);font-size:1.1rem;text-transform:uppercase;color:var(--text)}
 .gal-body .g-meta{font-family:var(--mono);font-size:.64rem;color:var(--muted);margin:.2rem 0 .5rem}
 .gal-body .g-from{font-family:var(--mono);font-size:.72rem;color:var(--blue);font-weight:700;margin-bottom:.7rem}
 .gal-body .btn{margin-top:auto}
 .exp-duo{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
 .panel{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);box-shadow:var(--sombra-sm);padding:1.4rem}
-.panel h3{font-family:var(--display);font-size:1.15rem;text-transform:uppercase;color:var(--deep);margin-bottom:.9rem}
+.panel h3{font-family:var(--display);font-size:1.15rem;text-transform:uppercase;color:var(--text);margin-bottom:.9rem}
 .conv-row{display:grid;grid-template-columns:1.2fr .8fr;gap:.8rem;margin-bottom:.9rem}
 .conv-out{background:var(--ice);border:2px dashed var(--blue);border-radius:12px;padding:1rem;text-align:center}
 .conv-out .co-v{font-family:var(--display);font-size:1.6rem;color:var(--navy)}
@@ -304,7 +344,7 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;max-width:1180px;margin:0 auto;padding:60px 24px 70px}
 .lab-card{background:var(--card);border:2px solid var(--deep);border-radius:var(--r);box-shadow:var(--sombra);padding:1.5rem;transition:transform .2s}
 .lab-card:hover{transform:translateY(-4px)}
-.lab-card h3{font-family:var(--display);font-size:1.2rem;text-transform:uppercase;color:var(--deep);margin-bottom:.3rem}
+.lab-card h3{font-family:var(--display);font-size:1.2rem;text-transform:uppercase;color:var(--text);margin-bottom:.3rem}
 .lab-card .sub{font-family:var(--mono);font-size:.66rem;color:var(--muted);margin-bottom:1.1rem}
 .wx-out{margin-top:1rem;border:2px dashed var(--blue);border-radius:12px;background:var(--ice);padding:1.1rem;display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap}
 .wx-temp{font-family:var(--display);font-size:2.6rem;color:var(--navy)}
@@ -313,9 +353,9 @@ body.logged .auth-user{display:flex}body.logged .auth-guest{display:none}
 .quiz-opt{display:block;width:100%;text-align:left;margin-bottom:.55rem;border:2px solid var(--deep);border-radius:10px;background:#fff;padding:.65rem .8rem;font-size:.88rem;transition:all .15s}
 .quiz-opt:hover{background:var(--sun);transform:translateX(4px)}
 .quiz-res{border:2px solid var(--ok);border-radius:12px;background:#E3EFE9;padding:1rem;margin-top:.8rem}
-.quiz-res h4{font-family:var(--display);text-transform:uppercase;color:var(--deep);margin-bottom:.4rem}
+.quiz-res h4{font-family:var(--display);text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
 .split-out{margin-top:1rem;text-align:center;border:2px dashed var(--ok);border-radius:12px;background:#E3EFE9;padding:1rem}
-.split-out .so-v{font-family:var(--display);font-size:2rem;color:var(--deep)}
+.split-out .so-v{font-family:var(--display);font-size:2rem;color:var(--text)}
 .split-out .so-l{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
 .radar-feed{display:flex;flex-direction:column;gap:.7rem}
 .deal{display:flex;align-items:center;gap:.8rem;border:2px solid var(--deep);border-radius:12px;background:#fff;padding:.7rem .9rem;animation:cardIn .4s both}
@@ -331,7 +371,9 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
 .foot-note{max-width:26rem;font-size:.8rem;line-height:1.6}
 .foot-db{display:flex;flex-direction:column;gap:.6rem;align-items:flex-start}
 .foot-db small{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;max-width:17rem;line-height:1.5}
-.foot-bottom{max-width:1180px;margin:2.4rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+.foot-bottom{max-width:1180px;margin:2.4rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.12);font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;align-items:center}
+.foot-link{color:inherit;opacity:.75;text-decoration:none;transition:opacity .2s}
+.foot-link:hover{opacity:1;text-decoration:underline}
 .overlay{position:fixed;inset:0;background:rgba(12,18,24,.62);z-index:90;opacity:0;pointer-events:none;transition:opacity .25s}
 .overlay.open{opacity:1;pointer-events:auto}
 .modal{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;overflow-y:auto}
@@ -342,7 +384,7 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .modal-close{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:99px;border:2px solid var(--deep);background:var(--sun);font-size:1rem;font-weight:800;transition:transform .15s}
 .modal-close:hover{transform:rotate(90deg)}
-.modal-card h3{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;color:var(--deep);margin-bottom:.3rem}
+.modal-card h3{font-family:var(--display);font-size:1.5rem;text-transform:uppercase;color:var(--text);margin-bottom:.3rem}
 .modal-card .sub{font-size:.85rem;color:var(--muted);margin-bottom:1.4rem}
 .form-err{color:var(--danger);font-family:var(--mono);font-size:.72rem;min-height:1.1em;margin-bottom:.6rem}
 .modal-switch{margin-top:1.2rem;font-size:.82rem;text-align:center;color:var(--muted)}
@@ -380,7 +422,7 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
 .hr-amen span:hover{transform:scale(1.3)}
 .hr-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:.3rem}
 .hr-rating{font-family:var(--mono);font-size:.7rem;font-weight:700;background:var(--navy);color:var(--sun);padding:.15rem .5rem;border-radius:6px}
-.hr-price{font-family:var(--display);font-size:1.2rem;color:var(--deep)}
+.hr-price{font-family:var(--display);font-size:1.2rem;color:var(--text)}
 .hr-price small{font-family:var(--mono);font-size:.6rem;color:var(--muted);font-weight:400}
 .hr-total{font-family:var(--mono);font-size:.66rem;color:var(--muted)}
 .hr-fit{font-family:var(--mono);font-size:.62rem;padding:.14rem .5rem;border-radius:99px;border:1.5px solid}
@@ -463,7 +505,7 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
 <body>
 <header class="topbar" id="hdr">
   <div class="topbar-in">
-    <a class="logo" href="#/">Rumo<span class="av">✈</span></a>
+    <a class="logo" href="#/"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M32 12 L40 30 L52 34 L40 38 L32 52 L24 38 L12 34 L24 30 Z"/></svg></span>Traja</a>
     <nav class="mainnav" aria-label="Navegação principal">
       <a href="#/" id="navHome" data-i18n="nav_home"></a>
       <a href="#/explorar" id="navExp" data-i18n="nav_explore"></a>
@@ -472,6 +514,8 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
       <a href="#como" data-i18n="nav_how"></a>
     </nav>
     <div class="auth">
+      <button class="btn ghost sm" id="btnInstall" type="button" data-i18n="btn_install" hidden></button>
+      <button class="theme-toggle" id="btnTheme" type="button" title="Alternar tema claro/escuro" aria-label="Alternar tema">🌙</button>
       <label class="lang-wrap" title="Idioma / Language / Idioma">
         <span>🌐</span>
         <select id="langSel" aria-label="Idioma"><option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option></select>
@@ -546,7 +590,7 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
       <div class="ticket-notch" aria-hidden="true"></div>
       <div class="ticket-foot" style="padding-top:1.2rem">
         <div class="barcode" aria-hidden="true"></div>
-        <div class="barcode-label">RMU·0091·BR</div>
+        <div class="barcode-label">TRJ·0091·BR</div>
         <button type="submit" class="btn primary wide" data-i18n="btn_search"></button>
       </div>
     </form>
@@ -580,6 +624,38 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
       <span><b>1</b> <span data-i18n="st_ai"></span></span>
       <span><b></b> <span data-i18n="st_lab"></span></span>
       <span><b>🖥</b> <span data-i18n="st_db"></span></span>
+    </div>
+  </div>
+</section>
+<section class="planos" id="planos">
+  <div class="planos-in">
+    <span class="sec-kicker" data-i18n="planos_kicker"></span>
+    <h2 data-i18n="planos_t"></h2>
+    <p class="planos-sub" data-i18n="planos_sub"></p>
+    <div class="planos-grid">
+      <div class="plano-card">
+        <div class="plano-ico">🎁</div>
+        <span class="plano-tag" data-i18n="planos_free_tag"></span>
+        <div class="plano-preco"><span class="pv">R$ 0</span></div>
+        <ul class="plano-lista">
+          <li data-i18n="planos_free_1"></li>
+          <li data-i18n="planos_free_2"></li>
+          <li data-i18n="planos_free_3"></li>
+        </ul>
+        <button class="btn ghost wide" id="planoFreeBtn" data-i18n="planos_free_btn"></button>
+      </div>
+      <div class="plano-card destaque">
+        <span class="plano-badge" data-i18n="planos_pop"></span>
+        <div class="plano-ico">⭐</div>
+        <span class="plano-tag" data-i18n="prem_title"></span>
+        <div class="plano-preco"><span class="pv" data-i18n="planos_prem_price"></span></div>
+        <ul class="plano-lista">
+          <li data-i18n="prem_b1"></li>
+          <li data-i18n="prem_b2"></li>
+          <li data-i18n="prem_b3"></li>
+        </ul>
+        <button class="btn primary wide" id="planoPremiumBtn" data-i18n="prem_cta_short"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -678,7 +754,7 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
 <footer>
   <div class="foot-in">
     <div>
-      <div class="foot-logo">Rumo<span>.</span></div>
+      <div class="foot-logo">Traja<span>.</span></div>
       <div class="foot-tag" data-i18n="foot_tag"></div>
     </div>
     <p class="foot-note" data-i18n="foot_note"></p>
@@ -687,7 +763,7 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
       <small data-i18n="db_note"></small>
     </div>
   </div>
-  <div class="foot-bottom"><span>© <span id="ano"></span> RUMO</span><span data-i18n="foot_r"></span></div>
+  <div class="foot-bottom"><span>© <span id="ano"></span> TRAJA</span><a href="/terms.html" class="foot-link">Termos de Uso</a><a href="/privacy.html" class="foot-link">Privacidade</a><span data-i18n="foot_r"></span></div>
 </footer>
 <div class="overlay" id="overlay"></div>
 <div class="modal" id="mLogin" role="dialog" aria-modal="true">
@@ -801,10 +877,10 @@ footer{background:var(--abyss);color:#9AA6AD;padding:56px 24px 40px;border-top:3
 <div class="toast-wrap" id="toastWrap" aria-live="polite"></div>
 <script>
 const I18N={
-pt:{doc_title:'Rumo — viaje com o orçamento que você tem',nav_home:'Início',nav_explore:'Explorar',nav_lab:'Lab',nav_results:'Resultados',nav_how:'Como funciona',login:'Entrar',signup:'Criar conta',logout:'Sair',hello:'olá, ',kicker:'Planejamento de viagem por orçamento',h1a:'Diga quanto você tem.',h1b:'Nós dizemos pra onde dá.',lead1:'Sem enrolação de comparar site por site. Escolhe de onde você sai, pra onde quer ir e quanto pode gastar — ou deixa a ',leadStrong:'AURORA',lead2:' (nossa IA) montar tudo: destinos, companhias e hotéis que cabem no bolso.',ex_label:'Testa aí →',tk_head_l:'RUMO AIR · PASSE DE BUSCA',tk_none:'sua cidade',tk_dest_free:'pra onde der',tk_title:'Para onde vamos',f_budget:'Orçamento total (R$)',f_days:'Dias de viagem',f_region:'Região preferida',f_origem:'Origem (de onde você sai)',f_destino:'Destino (pra onde quer ir)',dest_any:'Me surpreenda ✨',grp_n:'Norte',grp_ne:'Nordeste',grp_co:'Centro-Oeste',grp_se:'Sudeste',grp_s:'Sul',reg_any:'Qualquer uma',reg_Brasil:'Brasil',reg_EUA:'EUA',reg_Portugal:'Portugal',reg_Canada:'Canadá',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguai',reg_Uruguai:'Uruguai',reg_Mexico:'México',btn_search:'Buscar destinos →',res_title:'Destinos possíveis',res_idle:'aguardando busca — do mais barato ao mais caro',dest1:'destino cabe em',destN:'destinos cabem em',rs_for:'por',rs_order:'do mais barato ao mais caro',day1:'dia',dayN:'dias',night1:'noite',nightN:'noites',stamp1:'rota liberada',stampN:'rotas liberadas',load1:'Cruzando custos de',load2:'destinos…',empty_t:'Ainda sem resultados',empty_p:'Preencha o bilhete acima — ou chame a AURORA ✨ ali no canto.',nfit_t:'Nenhum destino coube',nfit_p:'Com esse orçamento não deu dessa vez. Aumenta o valor, corta uns dias — ou espia quem quase coube:',almost_t:'✈ faltou pouco',bd_flight:'✈ Passagens (ida e volta)',bd_bus:'🚌 De ônibus (ida e volta)',bd_car:'🚗 De carro (ida e volta)',bd_daily:'🍜 Dia a dia',total_label:'Total estimado',sobra:'sobra',falta:'faltam',tight:'apertado',note_est:'estimativas para demonstração',from_note:'saindo de {c}',btn_hotels:'🏨 Hotéis ({n})',btn_comps:'🧭 Companhias ({n})',how_kicker:'// rota de decolagem',how_t:'Como funciona',s1t:'Monte sua rota',s1p:'Diga sua cidade, o destino (ou deixe a gente sugerir), o valor total e quantos dias você tem.',s2t:'A AURORA ranqueia',s2p:'A IA cruza transporte + companhias + dia a dia + hospedagem e ordena tudo do mais barato ao mais caro.',s3t:'Escolha tudo',s3p:'Companhia de viagem, hotel, teto por noite — o total se atualiza na hora.',st_dest:'destinos',st_hot:'hotéis estimados',st_comp:'companhias de viagem',st_ai:'IA copiloto',st_lab:'ferramentas no Lab',st_db:'banco externo + PBKDF2',foot_tag:'viaje com o orçamento que você tem',foot_note:'Rumo — projeto pessoal de planejamento de viagem. Valores de custo/dia, transporte, companhias, hotéis e clima são estimativas ou dados de demonstração e não constituem oferta.',foot_r:'FEITO COM ☕ E VONTADE DE VIAJAR',ml_t:'Bem-vindo de volta',ml_sub:'Entre com sua conta pra salvar seus destinos favoritos.',f_email:'E-mail',f_pass:'Senha',f_name:'Nome',btn_enter:'Entrar',btn_create:'Criar conta',ml_sw:'Não tem conta?',ml_go:'Criar agora',ms_sw:'Já tem conta?',ms_go:'Entrar',ms_t:'Criar sua conta',ms_sub:'Leva menos de 1 minuto. Sua senha é validada só pelo servidor, com hash + salt — nunca fica salva em texto puro.',f_city:'Sua cidade',city_ph:'Escolha sua cidade',g_br:'Brasil',g_int:'Internacional',err_name:'Coloca seu nome 🙂',err_email:'E-mail inválido.',err_pass:'Senha precisa de pelo menos 6 caracteres.',err_exists:'Esse e-mail já tem conta. Entra aí!',err_city:'Escolha sua cidade.',err_creds:'E-mail ou senha incorretos.',err_offline:'Servidor indisponível agora. Tenta de novo em instantes.',err_rate:'Muitas tentativas. Espera um minuto e tenta de novo.',toast_created:'Conta criada. Bora viajar, {n}! 🎉',toast_welcome:'Bem-vindo de volta, {n}! ✈',toast_bye:'Até a próxima viagem 👋',toast_needlogin:'Entre na conta pra salvar destinos 😉',toast_saved:'{c} salvo nas suas viagens ❤',toast_removed:'Removido dos salvos.',toast_budget:'Ajustei o orçamento pra caber. Busca de novo! 🤞',toast_hotel:'🏨 {h} escolhido em {c}!',toast_comp:'🧭 Viajando com {c}!',toast_sync:'🖥 Banco sincronizado com o server!',fav_t:'✈ Viagens salvas',fav_empty:'Nada salvo ainda. Clique no 🤍 de um destino.',fav_redo:'Refazer',hm_t:'Onde ficar em {c}',hm_meta:'{n} {nw} · orçamento total {b}',teto_l:'Teto por noite*',teto_neg:'R$ 0 — apertado',teto_note:'*depois de descontar transporte ({f}) e dia a dia ({d}/dia).',f_all:'Todos',tier1:'Econômico',tier2:'Conforto',tier3:'Premium',f_fit:'só o que cabe no bolso',per_night:'/noite',ht_total:'{n} noites: {v}',fits_ok:'cabe ✓ sobra {v}',fits_over:'estoura {v}',choose:'Escolher este',chosen:'Escolhido ✓',hm_none:'Nenhuma opção aqui com esse filtro.',hm_none2:'Tenta "Todos" ou desmarca "só o que cabe".',hm_suf:'opção(ões) · {n} no total',hm_foot:'VALORES ESTIMADOS POR NOITE · QUARTO DUPLO',comp_title:'Companhias de viagem',comp_sub:'aéreas e rodoviárias pra sua rota — compara e escolhe',comp_aerea:'Aérea',comp_onibus:'Rodoviária',comp_t:'Como chegar em {c}',comp_est:'estimativa ida e volta',comp_best:'💸 melhor preço',comp_usar:'Usar esta',comp_usada:'Em uso ✓',comp_none:'Sem companhias pra essa rota.',comp_foot:'PREÇOS ESTIMADOS POR PESSOA · IDA E VOLTA',comp_suf:'companhia(s) na rota',db_open:'🗄 Banco de dados',db_note:'Senhas com hash PBKDF2 + salt (nunca em texto puro). Painel protegido por chave admin — só quem roda o server.js tem acesso.',db_title:'RumoDB · banco externo',db_sub:'usuários e logins salvos fora do site (server.js → rumodb.json)',db_users:'Usuários',db_name:'nome',db_email:'e-mail',db_city:'cidade',db_created:'criado em',db_last:'última entrada',db_hash:'hash da senha',db_trips:'viagens',db_logins:'Últimos logins',db_when:'quando',db_empty:'nenhum registro ainda — crie uma conta!',db_clear:'Apagar tudo',db_clear_confirm:'Apagar TUDO? Contas, sessões e viagens somem do banco externo e do aparelho.',db_cleared:'Banco apagado. Tudo zerado 🧹',db_sync:'🔄 Sincronizar',db_st_cloud:'🖥 conectado ao banco externo (server.js)',db_st_local:'💾 server offline — modo local ativado',ai_title:'AURORA',ai_sub:'copiloto de viagens com IA',ai_send:'Enviar',ai_ph:'ex.: tenho 3 mil, 6 dias, quero praia pra 2 pessoas',ai_hello:'Oi, eu sou a <b>AURORA</b> ✨ sua copiloto de viagens. Entendo orçamento, dias, pessoas, mês da viagem e sua vibe — e ainda respondo dúvidas do site. Experimenta: "tenho 4 mil pra 2 pessoas em julho, quero praia".',ai_chip1:'💸 R$ 3.000 · 5 dias · praia',ai_chip2:'🍷 frio e vinho pra 2 · R$ 6.000',ai_chip3:'👨‍ família · 7 dias · R$ 8.000',ai_understood:'Entendi: <b>{b}</b> · <b>{d} dias</b>{p} · vibe de <b>{tags}</b>.',ai_people:' · {p} pessoas',ai_ask_budget:'Me diz <b>quanto você quer gastar</b> que eu refino a busca 😉 (ex.: "tenho 4 mil").',ai_picks:'Minhas apostas pra você:',ai_fit:'cabe no bolso · sobra {v}',ai_over:'estoura {v}',ai_roteiro:'🗓️ Roteiro relâmpago em <b>{c}</b>:',ai_day:'Dia {n}',ai_cta:'🎯 Aplicar busca',ai_cta_done:'Busca aplicada! 👇',ai_none:'Hmm, com essa grana e essa vibe tá difícil 😅 Tenta menos dias ou sobe o orçamento.',ai_group:'pra {p} pessoas o grupo gastaria ~{v} no total.',ai_month_ok:'{m} é boa época pra {c}!',ai_month_bad:'em {m} não é a melhor época de {c} (melhor: {e}).',ai_follow_cheaper:'💸 mais barato',ai_follow_more:'✨ mais opções',ai_follow_hotels:'🏨 hotéis do top 1',ai_follow_comps:'🧭 companhias',ai_faq_bank:'O banco é o <b>server.js</b>: senhas com hash PBKDF2 + salt, tudo fora do site. O painel 🗄 no rodapé é protegido por chave admin.',ai_faq_comp:'Temos <b>24 companhias</b> (GOL, LATAM, Azul, TAP, Itapemirim, Guanabara...). Cada destino tem o botão 🧭 que compara preços ida e volta.',ai_faq_hotel:'Cada destino tem 3–4 hotéis em 3 categorias. O botão 🏨 mostra o <b>teto por noite</b> que cabe no seu orçamento.',ai_faq_how:'Simples: você diz <b>orçamento + dias + origem</b>; eu cruzo transporte, companhias e hotéis e ranqueio do mais barato ao mais caro. No Lab ainda tem clima ao vivo, quiz e mais!',ai_faq_lab:'O <b>Rumo Lab</b> 🧪 tem clima ao vivo via satélite, quiz de perfil viajante, rachador de custos e radar de ofertas. Clica em "Lab" no menu!',ex_kicker:'página 2 · modo turista',ex_title:'Explore o mundo',ex_sub:'Galeria de destinos, companhias de viagem, conversor de moedas, checklist de mala e curiosidades.',gal_title:'Galeria de destinos',gal_sub:'preços "a partir de" para 5 dias saindo da sua origem',gal_from:'a partir de {v}',gal_plan:'Planejar esta →',conv_title:'Conversor de moedas',conv_lbl:'Valor em R$',conv_to:'Moeda',conv_note:'cotações aproximadas, só pra ter noção 😉',chk_title:'Checklist de mala',chk_reset:'Zerar',chk_count:'{a} de {b} itens',fun_title:'Curiosidades de viagem',fun_sub:'pra contar no avião e parecer interessante',lab_kicker:'inovação nível premium',lab_title:'Rumo Lab',lab_sub:'ferramentas que nenhum outro site de viagem te dá: clima ao vivo, quiz de perfil, rachador de custos e radar de ofertas.',wx_title:'Clima ao vivo no destino',wx_sub:'dados reais via Open-Meteo — sem chave de API',wx_dest:'Destino',wx_btn:'Consultar agora',wx_loading:'consultando satélites… 🛰️',wx_err:'não consegui consultar o clima agora 😅 tenta já já.',wx_wind:'vento de {v} km/h',wx_tip_cold:'❄️ {t}°C — leva casaco!',wx_tip_hot:'🔥 {t}°C — protetor solar!',wx_tip_ok:'😎 {t}°C — clima gostoso',wx_best:'melhor época: {e}',wx_clear:'céu limpo',wx_clouds:'nuvens',wx_fog:'névoa',wx_drizzle:'garoa',wx_rain:'chuva',wx_snow:'neve',wx_showers:'pancadas',wx_storm:'trovoada',quiz_title:'Quiz do perfil viajante',quiz_sub:'5 perguntas e a AURORA lê seu DNA de viagem',quiz_next:'Próxima →',quiz_res:'Seu perfil:',quiz_apply:'Aplicar recomendações →',quiz_again:'↺ Refazer',split_title:'Rachador de custos',split_sub:'viaja em grupo? divide sem briga',split_total:'Total da viagem (R$)',split_ppl:'Pessoas',split_each:'por pessoa',split_tip:'com 10% de gorjeta: {v}',radar_title:'Radar de ofertas',radar_sub:'ofertas relâmpago ao vivo (simuladas)',radar_left:'expira em {t}',radar_grab:'Aproveitar!',prem_cta_short:'Seja Premium',prem_title:'Rumo Premium',prem_sub:'Viagens ilimitadas salvas, exportação em PDF/impressão e prioridade nas novidades do Lab.',prem_b1:'Salve viagens ilimitadas (no plano grátis são só 3).',prem_b2:'Exporte e imprima seu roteiro em PDF a qualquer hora.',prem_b3:'Acesso antecipado às novas ferramentas do Rumo Lab.',prem_status_on:'✅ Você já é Premium desde {d}',prem_status_off:'Ainda no plano grátis',prem_redeem_t:'Resgatar código',prem_redeem_ph:'RUMO-XXXX-XXXX-XXXX',prem_redeem_btn:'Resgatar',prem_redeem_ok:'🎉 Premium ativado! Aproveite.',prem_redeem_invalid:'Código inválido.',prem_redeem_used:'Esse código já foi usado.',prem_redeem_login:'Entre na sua conta pra resgatar um código.',prem_fav_limit:'Plano grátis: até 3 viagens salvas. Vire Premium pra salvar sem limite ⭐',prem_print:'🖨 Exportar / imprimir',prem_admin_t:'⭐ Premium',prem_admin_gen:'Gerar código',prem_admin_codes:'Códigos gerados',prem_admin_col:'Premium',prem_admin_grant:'Conceder',prem_admin_revoke:'Revogar',prem_admin_used:'usado por',prem_admin_unused:'não usado',prem_code_copied:'Código copiado 📋'},
-en:{doc_title:'Rumo — travel on the budget you have',nav_home:'Home',nav_explore:'Explore',nav_lab:'Lab',nav_results:'Results',nav_how:'How it works',login:'Log in',signup:'Sign up',logout:'Log out',hello:'hi, ',kicker:'Budget-based trip planning',h1a:'Tell us your budget.',h1b:"We'll tell you where you can go.",lead1:'No more juggling comparison tabs. Pick where you leave from, where you want to go and how much you can spend — or let ',leadStrong:'AURORA',lead2:' (our AI) build it all: destinations, carriers and hotels that fit your pocket.',ex_label:'Try it →',tk_head_l:'RUMO AIR · SEARCH PASS',tk_none:'your city',tk_dest_free:'wherever fits',tk_title:'Where to',f_budget:'Total budget (BRL)',f_days:'Days of travel',f_region:'Preferred region',f_origem:'Origin (where you depart)',f_destino:'Destination (where to go)',dest_any:'Surprise me ✨',grp_n:'North',grp_ne:'Northeast',grp_co:'Midwest',grp_se:'Southeast',grp_s:'South',reg_any:'Anywhere',reg_Brasil:'Brazil',reg_EUA:'USA',reg_Portugal:'Portugal',reg_Canada:'Canada',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguay',reg_Uruguai:'Uruguay',reg_Mexico:'Mexico',btn_search:'Search destinations →',res_title:'Possible destinations',res_idle:'waiting for a search — cheapest to priciest',dest1:'destination fits in',destN:'destinations fit in',rs_for:'for',rs_order:'cheapest to priciest',day1:'day',dayN:'days',night1:'night',nightN:'nights',stamp1:'route cleared',stampN:'routes cleared',load1:'Crunching costs across',load2:'destinations…',empty_t:'No results yet',empty_p:'Fill in the ticket above — or call AURORA ✨ in the corner.',nfit_t:'No destination fit',nfit_p:'Not this time with that budget. Raise the amount or cut a few days — or peek at the close calls:',almost_t:'✈ so close',bd_flight:'✈ Flights (round trip)',bd_bus:'🚌 By bus (round trip)',bd_car:'🚗 By car (round trip)',bd_daily:'🍜 Daily costs',total_label:'Estimated total',sobra:'leftover',falta:'short by',tight:'tight',note_est:'estimates for demo purposes',from_note:'departing from {c}',btn_hotels:'🏨 Hotels ({n})',btn_comps:'🧭 Carriers ({n})',how_kicker:'// takeoff route',how_t:'How it works',s1t:'Plot your route',s1p:'Enter your city, your destination (or let us suggest), the total budget and how many days you have.',s2t:'AURORA ranks them',s2p:'The AI crosses transport + carriers + daily costs + lodging and sorts everything from cheapest to priciest.',s3t:'Pick everything',s3p:'Carrier, hotel, nightly ceiling — the total updates instantly.',st_dest:'destinations',st_hot:'estimated hotels',st_comp:'travel companies',st_ai:'AI copilot',st_lab:'Lab tools',st_db:'external DB + PBKDF2',foot_tag:'travel on the budget you have',foot_note:'Rumo — a personal travel-planning project. Costs, transport, carriers, hotels and weather are estimates or demo data, not offers.',foot_r:'MADE WITH ☕ AND WANDERLUST',ml_t:'Welcome back',ml_sub:'Log in to save your favorite destinations.',f_email:'Email',f_pass:'Password',f_name:'Name',btn_enter:'Log in',btn_create:'Create account',ml_sw:'No account yet?',ml_go:'Sign up',ms_sw:'Already have an account?',ms_go:'Log in',ms_t:'Create your account',ms_sub:'Takes less than a minute. Your password is checked only by the server, hashed with a salt — never stored in plain text.',f_city:'Your city',city_ph:'Pick your city',g_br:'Brazil',g_int:'International',err_name:'Enter your name 🙂',err_email:'Invalid email.',err_pass:'Password needs at least 6 characters.',err_exists:'This email already has an account. Log in!',err_city:'Pick your city.',err_creds:'Wrong email or password.',err_offline:'Server unavailable right now. Try again shortly.',err_rate:'Too many attempts. Wait a minute and try again.',toast_created:"Account created. Let's travel, {n}! 🎉",toast_welcome:'Welcome back, {n}! ✈',toast_bye:'See you next trip 👋',toast_needlogin:'Log in to save destinations 😉',toast_saved:'{c} saved to your trips ❤',toast_removed:'Removed from saved.',toast_budget:'I adjusted the budget to fit. Search again! 🤞',toast_hotel:'🏨 {h} picked in {c}!',toast_comp:'🧭 Traveling with {c}!',toast_sync:'🖥 Database synced with the server!',fav_t:'✈ Saved trips',fav_empty:'Nothing saved yet. Tap the 🤍 on a destination.',fav_redo:'Redo',hm_t:'Where to stay in {c}',hm_meta:'{n} {nw} · total budget {b}',teto_l:'Nightly ceiling*',teto_neg:'BRL 0 — tight',teto_note:'*after deducting transport ({f}) and daily costs ({d}/day).',f_all:'All',tier1:'Budget',tier2:'Comfort',tier3:'Premium',f_fit:'only what fits my budget',per_night:'/night',ht_total:'{n} nights: {v}',fits_ok:'fits ✓ {v} left',fits_over:'over by {v}',choose:'Pick this one',chosen:'Picked ✓',hm_none:'No options here with that filter.',hm_none2:'Try "All" or uncheck "only what fits".',hm_suf:'option(s) · {n} in total',hm_foot:'ESTIMATED PRICE PER NIGHT · DOUBLE ROOM',comp_title:'Travel companies',comp_sub:'airlines and bus carriers for your route — compare and pick',comp_aerea:'Airline',comp_onibus:'Bus carrier',comp_t:'How to get to {c}',comp_est:'round trip estimate',comp_best:'💸 best price',comp_usar:'Use this',comp_usada:'In use ✓',comp_none:'No companies for this route.',comp_foot:'ESTIMATED PRICES PER PERSON · ROUND TRIP',comp_suf:'company(ies) on route',db_open:'🗄 Database',db_note:'Passwords hashed with PBKDF2 + salt (never stored in plain text). Panel protected by an admin key — only whoever runs server.js has access.',db_title:'RumoDB · external database',db_sub:'users and logins stored outside the site (server.js → rumodb.json)',db_users:'Users',db_name:'name',db_email:'email',db_city:'city',db_created:'created',db_last:'last login',db_hash:'password hash',db_trips:'trips',db_logins:'Recent logins',db_when:'when',db_empty:'no records yet — create an account!',db_clear:'Wipe all',db_clear_confirm:'Delete EVERYTHING? Accounts, sessions and trips vanish from the external DB and device.',db_cleared:'Database wiped. All clean 🧹',db_sync:'🔄 Sync',db_st_cloud:'🖥 connected to external DB (server.js)',db_st_local:'💾 server offline — local mode on',ai_title:'AURORA',ai_sub:'AI travel copilot',ai_send:'Send',ai_ph:'e.g.: I have 3k, 6 days, beach for 2 people',ai_hello:"Hi, I'm <b>AURORA</b> ✨ your travel copilot. I understand budget, days, people, travel month and your vibe — and I answer site questions too. Try: \"I have 4k for 2 people in July, want the beach\".",ai_chip1:'💸 BRL 3,000 · 5 days · beach',ai_chip2:'🍷 cold & wine for 2 · 6k',ai_chip3:'👨‍👩‍ family · 7 days · 8k',ai_understood:'Got it: <b>{b}</b> · <b>{d} days</b>{p} · vibe: <b>{tags}</b>.',ai_people:' · {p} people',ai_ask_budget:'Tell me <b>how much you want to spend</b> and I will refine the search 😉 (e.g.: "I have 4k").',ai_picks:'My picks for you:',ai_fit:'fits your pocket · {v} left',ai_over:'over by {v}',ai_roteiro:'🗓️ Flash itinerary in <b>{c}</b>:',ai_day:'Day {n}',ai_cta:'🎯 Apply search',ai_cta_done:'Search applied! 👇',ai_none:'Hmm, that budget and vibe is tough 😅 Try fewer days or raise the budget.',ai_group:'for {p} people the group would spend ~{v} total.',ai_month_ok:'{m} is a good season for {c}!',ai_month_bad:'{m} is not the best season for {c} (best: {e}).',ai_follow_cheaper:'💸 cheaper',ai_follow_more:'✨ more options',ai_follow_hotels:'🏨 top-1 hotels',ai_follow_comps:'🧭 carriers',ai_faq_bank:'The DB is <b>server.js</b>: PBKDF2 + salt hashed passwords, all outside the site. The 🗄 panel in the footer is protected by an admin key.',ai_faq_comp:'We track <b>24 carriers</b> (GOL, LATAM, Azul, TAP, Itapemirim...). Every destination has a 🧭 button comparing round-trip prices.',ai_faq_hotel:'Each destination has 3–4 hotels in 3 tiers. The 🏨 button shows the <b>nightly ceiling</b> that fits your budget.',ai_faq_how:'Simple: <b>budget + days + origin</b>; I cross transport, carriers and hotels and rank cheapest to priciest. The Lab adds live weather, a quiz and more!',ai_faq_lab:'The <b>Rumo Lab</b> 🧪 has live satellite weather, traveler profile quiz, cost splitter and deal radar. Click "Lab" in the menu!',ex_kicker:'page 2 · tourist mode',ex_title:'Explore the world',ex_sub:'Destination gallery, travel companies, currency converter, packing checklist and fun facts.',gal_title:'Destination gallery',gal_sub:'"from" prices for 5 days leaving from your origin',gal_from:'from {v}',gal_plan:'Plan this one →',conv_title:'Currency converter',conv_lbl:'Amount in BRL',conv_to:'Currency',conv_note:'approximate rates, just to get a feel 😉',chk_title:'Packing checklist',chk_reset:'Reset',chk_count:'{a} of {b} items',fun_title:'Travel fun facts',fun_sub:'to drop on the plane and sound interesting',lab_kicker:'premium-level innovation',lab_title:'Rumo Lab',lab_sub:'tools no other travel site gives you: live weather, profile quiz, cost splitter and deal radar.',wx_title:'Live weather at destination',wx_sub:'real data via Open-Meteo — no API key',wx_dest:'Destination',wx_btn:'Check now',wx_loading:'asking the satellites… 🛰️',wx_err:"couldn't fetch weather right now 😅 try again soon.",wx_wind:'wind {v} km/h',wx_tip_cold:'❄️ {t}°C — bring a jacket!',wx_tip_hot:'🔥 {t}°C — sunscreen!',wx_tip_ok:'😎 {t}°C — lovely weather',wx_best:'best season: {e}',wx_clear:'clear sky',wx_clouds:'cloudy',wx_fog:'fog',wx_drizzle:'drizzle',wx_rain:'rain',wx_snow:'snow',wx_showers:'showers',wx_storm:'thunderstorm',quiz_title:'Traveler profile quiz',quiz_sub:'5 questions and AURORA reads your travel DNA',quiz_next:'Next →',quiz_res:'Your profile:',quiz_apply:'Apply recommendations →',quiz_again:'↺ Retake',split_title:'Cost splitter',split_sub:'group trip? split without fights',split_total:'Trip total (BRL)',split_ppl:'People',split_each:'per person',split_tip:'with 10% tip: {v}',radar_title:'Deal radar',radar_sub:'live flash deals (simulated)',radar_left:'expires in {t}',radar_grab:'Grab it!',prem_cta_short:'Go Premium',prem_title:'Rumo Premium',prem_sub:'Unlimited saved trips, PDF export/printing and early access to Lab tools.',prem_b1:'Save unlimited trips (free plan is capped at 3).',prem_b2:'Export and print your itinerary as PDF anytime.',prem_b3:'Early access to new Rumo Lab tools.',prem_status_on:'✅ You have been Premium since {d}',prem_status_off:'Still on the free plan',prem_redeem_t:'Redeem a code',prem_redeem_ph:'RUMO-XXXX-XXXX-XXXX',prem_redeem_btn:'Redeem',prem_redeem_ok:'🎉 Premium activated! Enjoy.',prem_redeem_invalid:'Invalid code.',prem_redeem_used:'That code was already used.',prem_redeem_login:'Log in to redeem a code.',prem_fav_limit:'Free plan: up to 3 saved trips. Go Premium to save unlimited ⭐',prem_print:'🖨 Export / print',prem_admin_t:'⭐ Premium',prem_admin_gen:'Generate code',prem_admin_codes:'Generated codes',prem_admin_col:'Premium',prem_admin_grant:'Grant',prem_admin_revoke:'Revoke',prem_admin_used:'used by',prem_admin_unused:'unused',prem_code_copied:'Code copied 📋'},
-es:{doc_title:'Rumo — viaja con el presupuesto que tienes',nav_home:'Inicio',nav_explore:'Explorar',nav_lab:'Lab',nav_results:'Resultados',nav_how:'Cómo funciona',login:'Entrar',signup:'Crear cuenta',logout:'Salir',hello:'hola, ',kicker:'Planificación de viajes por presupuesto',h1a:'Dinos cuánto tienes.',h1b:'Te decimos a dónde puedes ir.',lead1:'Nada de comparar mil pestañas. Elige de dónde sales, a dónde quieres ir y cuánto puedes gastar — o deja que ',leadStrong:'AURORA',lead2:' (nuestra IA) arme todo: destinos, compañías y hoteles que caben en tu bolsillo.',ex_label:'Pruébalo →',tk_head_l:'RUMO AIR · PASE DE BÚSQUEDA',tk_none:'tu ciudad',tk_dest_free:'a donde alcance',tk_title:'¿A dónde vamos',f_budget:'Presupuesto total (R$)',f_days:'Días de viaje',f_region:'Región preferida',f_origem:'Origen (de dónde sales)',f_destino:'Destino (a dónde ir)',dest_any:'Sorpréndeme ✨',grp_n:'Norte',grp_ne:'Nordeste',grp_co:'Centro-Oeste',grp_se:'Sudeste',grp_s:'Sur',reg_any:'Cualquiera',reg_Brasil:'Brasil',reg_EUA:'EE. UU.',reg_Portugal:'Portugal',reg_Canada:'Canadá',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguay',reg_Uruguai:'Uruguai',reg_Mexico:'México',btn_search:'Buscar destinos →',res_title:'Destinos posibles',res_idle:'esperando la búsqueda — del más barato al más caro',dest1:'destino cabe en',destN:'destinos caben en',rs_for:'por',rs_order:'del más barato al más caro',day1:'día',dayN:'días',night1:'noche',nightN:'noches',stamp1:'ruta liberada',stampN:'rutas liberadas',load1:'Cruzando costos de',load2:'destinos…',empty_t:'Aún sin resultados',empty_p:'Completa el billete — o llama a AURORA ✨ en la esquina.',nfit_t:'Ningún destino cupo',nfit_p:'Con ese presupuesto no alcanzó esta vez. Sube el monto o recorta días, o mira los que casi cupieron:',almost_t:'✈ faltó poco',bd_flight:'✈ Vuelos (ida y vuelta)',bd_bus:'🚌 En autobús (ida y vuelta)',bd_car:'🚗 En auto (ida y vuelta)',bd_daily:'🍜 Día a día',total_label:'Total estimado',sobra:'sobran',falta:'faltan',tight:'ajustado',note_est:'estimaciones para demostración',from_note:'saliendo de {c}',btn_hotels:'🏨 Hoteles ({n})',btn_comps:'🧭 Compañías ({n})',how_kicker:'// ruta de despegue',how_t:'Cómo funciona',s1t:'Arma tu ruta',s1p:'Di tu ciudad, el destino (o déjanos sugerir), el total y cuántos días tienes.',s2t:'AURORA rankea',s2p:'La IA cruza transporte + compañías + día a día + alojamiento y ordena todo del más barato al más caro.',s3t:'Elige todo',s3p:'Compañía, hotel, tope por noche — el total se actualiza al instante.',st_dest:'destinos',st_hot:'hoteles estimados',st_comp:'compañías de viaje',st_ai:'IA copiloto',st_lab:'herramientas del Lab',st_db:'BD externa + PBKDF2',foot_tag:'viaja con el presupuesto que tienes',foot_note:'Rumo: proyecto personal de planificación de viajes. Costos, transporte, compañías, hoteles y clima son estimaciones o datos de demostración, no ofertas.',foot_r:'HECHO CON ☕ Y GANAS DE VIAJAR',ml_t:'Bienvenido de nuevo',ml_sub:'Inicia sesión para guardar tus destinos favoritos.',f_email:'Correo',f_pass:'Contraseña',f_name:'Nombre',btn_enter:'Entrar',btn_create:'Crear cuenta',ml_sw:'¿No tienes cuenta?',ml_go:'Créala ahora',ms_sw:'¿Ya tienes cuenta?',ms_go:'Entrar',ms_t:'Crea tu cuenta',ms_sub:'Toma menos de 1 minuto. Tu contraseña se valida solo en el servidor, con hash + salt — nunca se guarda en texto plano.',f_city:'Tu ciudad',city_ph:'Elige tu ciudad',g_br:'Brasil',g_int:'Internacional',err_name:'Pon tu nombre 🙂',err_email:'Correo inválido.',err_pass:'La contraseña necesita al menos 6 caracteres.',err_exists:'Ese correo ya tiene cuenta. ¡Entra!',err_city:'Elige tu ciudad.',err_creds:'Correo o contraseña incorrectos.',err_offline:'Servidor no disponible ahora. Intenta en un momento.',err_rate:'Demasiados intentos. Espera un minuto e intenta de nuevo.',toast_created:'Cuenta creada. ¡A viajar, {n}! 🎉',toast_welcome:'¡Bienvenido de nuevo, {n}! ✈',toast_bye:'Hasta el próximo viaje 👋',toast_needlogin:'Inicia sesión para guardar destinos 😉',toast_saved:'{c} guardado en tus viajes ❤',toast_removed:'Quitado de guardados.',toast_budget:'Ajusté el presupuesto para que quepa. ¡Busca de nuevo! 🤞',toast_hotel:'🏨 ¡{h} elegido en {c}!',toast_comp:'🧭 ¡Viajando con {c}!',toast_sync:'🖥 ¡Base sincronizada con el server!',fav_t:'✈ Viajes guardados',fav_empty:'Nada guardado aún. Toca el 🤍 de un destino.',fav_redo:'Rehacer',hm_t:'Dónde alojarse en {c}',hm_meta:'{n} {nw} · presupuesto total {b}',teto_l:'Tope por noche*',teto_neg:'R$ 0 — ajustado',teto_note:'*después de descontar el transporte ({f}) y el día a día ({d}/día).',f_all:'Todos',tier1:'Económico',tier2:'Confort',tier3:'Premium',f_fit:'solo lo que cabe en mi bolsillo',per_night:'/noche',ht_total:'{n} noches: {v}',fits_ok:'cabe ✓ sobran {v}',fits_over:'excede {v}',choose:'Elegir este',chosen:'Elegido ✓',hm_none:'Ninguna opción aquí con ese filtro.',hm_none2:'Prueba "Todos" o desmarca "solo lo que cabe".',hm_suf:'opción(es) · {n} en total',hm_foot:'VALORES ESTIMADOS POR NOCHE · HABITACIÓN DOBLE',comp_title:'Compañías de viaje',comp_sub:'aéreas y rodoviarias para tu ruta — compara y elige',comp_aerea:'Aérea',comp_onibus:'Rodoviaria',comp_t:'Cómo llegar a {c}',comp_est:'estimación ida y vuelta',comp_best:'💸 mejor precio',comp_usar:'Usar esta',comp_usada:'En uso ✓',comp_none:'Sin compañías para esta ruta.',comp_foot:'PRECIOS ESTIMADOS POR PERSONA · IDA Y VUELTA',comp_suf:'compañía(s) en la ruta',db_open:'🗄 Base de datos',db_note:'Contraseñas con hash PBKDF2 + salt (nunca en texto plano). Panel protegido por clave admin — solo quien ejecuta server.js tiene acceso.',db_title:'RumoDB · base externa',db_sub:'usuarios y logins guardados fuera del sitio (server.js → rumodb.json)',db_users:'Usuarios',db_name:'nombre',db_email:'correo',db_city:'ciudad',db_created:'creado',db_last:'última entrada',db_hash:'hash de contraseña',db_trips:'viajes',db_logins:'Últimos logins',db_when:'cuándo',db_empty:'sin registros aún — ¡crea una cuenta!',db_clear:'Borrar todo',db_clear_confirm:'¿Borrar TODO? Cuentas, sesiones y viajes desaparecen de la base externa y del equipo.',db_cleared:'Base borrada. Todo limpio 🧹',db_sync:'🔄 Sincronizar',db_st_cloud:'🖥 conectado a la base externa (server.js)',db_st_local:'💾 server offline — modo local',ai_title:'AURORA',ai_sub:'copiloto de viajes con IA',ai_send:'Enviar',ai_ph:'ej.: tengo 3 mil, 6 días, playa para 2 personas',ai_hello:'Hola, soy <b>AURORA</b> ✨ tu copiloto de viajes. Entiendo presupuesto, días, personas, mes del viaje y tu vibra — y respondo dudas del sitio. Prueba: "tengo 4 mil para 2 personas en julio, quiero playa".',ai_chip1:'💸 R$ 3.000 · 5 días · playa',ai_chip2:'🍷 frío y vino para 2 · 6 mil',ai_chip3:'👨‍‍ familia · 7 días · 8 mil',ai_understood:'Entendido: <b>{b}</b> · <b>{d} días</b>{p} · vibra de <b>{tags}</b>.',ai_people:' · {p} personas',ai_ask_budget:'Dime <b>cuánto quieres gastar</b> y afino la búsqueda 😉 (ej.: "tengo 4 mil").',ai_picks:'Mis apuestas para ti:',ai_fit:'cabe en el bolsillo · sobran {v}',ai_over:'excede {v}',ai_roteiro:'🗓️ Itinerario exprés en <b>{c}</b>:',ai_day:'Día {n}',ai_cta:'🎯 Aplicar búsqueda',ai_cta_done:'¡Búsqueda aplicada! 👇',ai_none:'Hmm, con esa plata y esa vibra está difícil 😅 Prueba menos días o sube el presupuesto.',ai_group:'para {p} personas el grupo gastaría ~{v} en total.',ai_month_ok:'{m} es buena época para {c}!',ai_month_bad:'{m} no es la mejor época para {c} (mejor: {e}).',ai_follow_cheaper:'💸 más barato',ai_follow_more:'✨ más opciones',ai_follow_hotels:'🏨 hoteles del top 1',ai_follow_comps:'🧭 compañías',ai_faq_bank:'La base es <b>server.js</b>: contraseñas con hash PBKDF2 + salt, todo fuera del sitio. El panel 🗄 del pie está protegido por una clave admin.',ai_faq_comp:'Tenemos <b>24 compañías</b> (GOL, LATAM, Azul, TAP, Itapemirim...). Cada destino tiene el botón 🧭 que compara precios ida y vuelta.',ai_faq_hotel:'Cada destino tiene 3–4 hoteles en 3 categorías. El botón 🏨 muestra el <b>tope por noche</b> que cabe en tu presupuesto.',ai_faq_how:'Simple: <b>presupuesto + días + origen</b>; cruzo transporte, compañías y hoteles y rankeo del más barato al más caro. ¡En el Lab hay clima en vivo, quiz y más!',ai_faq_lab:'El <b>Rumo Lab</b> 🧪 tiene clima en vivo vía satélite, quiz de perfil viajero, divisor de costos y radar de ofertas. ¡Haz clic en "Lab" en el menú!',ex_kicker:'página 2 · modo turista',ex_title:'Explora el mundo',ex_sub:'Galería de destinos, compañías de viaje, conversor de monedas, checklist de maleta y curiosidades.',gal_title:'Galería de destinos',gal_sub:'precios "desde" para 5 días saliendo de tu origen',gal_from:'desde {v}',gal_plan:'Planear este →',conv_title:'Conversor de monedas',conv_lbl:'Valor en R$',conv_to:'Moneda',conv_note:'cotizaciones aproximadas, solo para tener idea 😉',chk_title:'Checklist de maleta',chk_reset:'Reiniciar',chk_count:'{a} de {b} ítems',fun_title:'Curiosidades de viaje',fun_sub:'para contar en el avión y parecer interesante',lab_kicker:'innovación nivel premium',lab_title:'Rumo Lab',lab_sub:'herramientas que ningún otro sitio de viajes te da: clima en vivo, quiz de perfil, divisor de costos y radar de ofertas.',wx_title:'Clima en vivo en el destino',wx_sub:'datos reales vía Open-Meteo — sin clave de API',wx_dest:'Destino',wx_btn:'Consultar ahora',wx_loading:'consultando satélites… 🛰️',wx_err:'no pude consultar el clima ahora 😅 intenta enseguida.',wx_wind:'viento de {v} km/h',wx_tip_cold:'❄️ {t}°C — ¡lleva abrigo!',wx_tip_hot:'🔥 {t}°C — ¡protector solar!',wx_tip_ok:'😎 {t}°C — clima agradable',wx_best:'mejor época: {e}',wx_clear:'cielo despejado',wx_clouds:'nublado',wx_fog:'niebla',wx_drizzle:'llovizna',wx_rain:'lluvia',wx_snow:'nieve',wx_showers:'chubascos',wx_storm:'tormenta',quiz_title:'Quiz del perfil viajero',quiz_sub:'5 preguntas y AURORA lee tu ADN de viaje',quiz_next:'Siguiente →',quiz_res:'Tu perfil:',quiz_apply:'Aplicar recomendaciones →',quiz_again:'↺ Repetir',split_title:'Divisor de costos',split_sub:'¿viaje en grupo? divide sin peleas',split_total:'Total del viaje (R$)',split_ppl:'Personas',split_each:'por persona',split_tip:'con 10% de propina: {v}',radar_title:'Radar de ofertas',radar_sub:'ofertas relámpago en vivo (simuladas)',radar_left:'expira en {t}',radar_grab:'¡Aprovechar!',prem_cta_short:'Ser Premium',prem_title:'Rumo Premium',prem_sub:'Viajes guardados ilimitados, exportación en PDF/impresión y acceso anticipado al Lab.',prem_b1:'Guarda viajes ilimitados (el plan gratis tiene solo 3).',prem_b2:'Exporta e imprime tu itinerario en PDF cuando quieras.',prem_b3:'Acceso anticipado a las nuevas herramientas del Rumo Lab.',prem_status_on:'✅ Eres Premium desde {d}',prem_status_off:'Aún en el plan gratis',prem_redeem_t:'Canjear código',prem_redeem_ph:'RUMO-XXXX-XXXX-XXXX',prem_redeem_btn:'Canjear',prem_redeem_ok:'🎉 ¡Premium activado! Disfruta.',prem_redeem_invalid:'Código inválido.',prem_redeem_used:'Ese código ya fue usado.',prem_redeem_login:'Inicia sesión para canjear un código.',prem_fav_limit:'Plan gratis: hasta 3 viajes guardados. Hazte Premium para guardar sin límite ⭐',prem_print:'🖨 Exportar / imprimir',prem_admin_t:'⭐ Premium',prem_admin_gen:'Generar código',prem_admin_codes:'Códigos generados',prem_admin_col:'Premium',prem_admin_grant:'Conceder',prem_admin_revoke:'Revocar',prem_admin_used:'usado por',prem_admin_unused:'no usado',prem_code_copied:'Código copiado 📋'}};
-let LANG=localStorage.getItem('rumo_lang')||'pt';
+pt:{doc_title:'Traja — viaje com o orçamento que você tem',nav_home:'Início',nav_explore:'Explorar',nav_lab:'Lab',nav_results:'Resultados',nav_how:'Como funciona',login:'Entrar',signup:'Criar conta',logout:'Sair',hello:'olá, ',kicker:'Planejamento de viagem por orçamento',h1a:'Diga quanto você tem.',h1b:'Nós dizemos pra onde dá.',lead1:'Sem enrolação de comparar site por site. Escolhe de onde você sai, pra onde quer ir e quanto pode gastar — ou deixa a ',leadStrong:'AURORA',lead2:' (nossa IA) montar tudo: destinos, companhias e hotéis que cabem no bolso.',ex_label:'Testa aí →',tk_head_l:'TRAJA AIR · PASSE DE BUSCA',tk_none:'sua cidade',tk_dest_free:'pra onde der',tk_title:'Para onde vamos',f_budget:'Orçamento total (R$)',f_days:'Dias de viagem',f_region:'Região preferida',f_origem:'Origem (de onde você sai)',f_destino:'Destino (pra onde quer ir)',dest_any:'Me surpreenda ✨',grp_n:'Norte',grp_ne:'Nordeste',grp_co:'Centro-Oeste',grp_se:'Sudeste',grp_s:'Sul',reg_any:'Qualquer uma',reg_Brasil:'Brasil',reg_EUA:'EUA',reg_Portugal:'Portugal',reg_Canada:'Canadá',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguai',reg_Uruguai:'Uruguai',reg_Mexico:'México',btn_search:'Buscar destinos →',res_title:'Destinos possíveis',res_idle:'aguardando busca — do mais barato ao mais caro',dest1:'destino cabe em',destN:'destinos cabem em',rs_for:'por',rs_order:'do mais barato ao mais caro',day1:'dia',dayN:'dias',night1:'noite',nightN:'noites',stamp1:'rota liberada',stampN:'rotas liberadas',load1:'Cruzando custos de',load2:'destinos…',empty_t:'Ainda sem resultados',empty_p:'Preencha o bilhete acima — ou chame a AURORA ✨ ali no canto.',nfit_t:'Nenhum destino coube',nfit_p:'Com esse orçamento não deu dessa vez. Aumenta o valor, corta uns dias — ou espia quem quase coube:',almost_t:'✈ faltou pouco',bd_flight:'✈ Passagens (ida e volta)',bd_bus:'🚌 De ônibus (ida e volta)',bd_car:'🚗 De carro (ida e volta)',bd_daily:'🍜 Dia a dia',total_label:'Total estimado',sobra:'sobra',falta:'faltam',tight:'apertado',note_est:'estimativas para demonstração',from_note:'saindo de {c}',btn_hotels:'🏨 Hotéis ({n})',btn_comps:'🧭 Companhias ({n})',how_kicker:'// rota de decolagem',how_t:'Como funciona',s1t:'Monte sua rota',s1p:'Diga sua cidade, o destino (ou deixe a gente sugerir), o valor total e quantos dias você tem.',s2t:'A AURORA ranqueia',s2p:'A IA cruza transporte + companhias + dia a dia + hospedagem e ordena tudo do mais barato ao mais caro.',s3t:'Escolha tudo',s3p:'Companhia de viagem, hotel, teto por noite — o total se atualiza na hora.',st_dest:'destinos',st_hot:'hotéis estimados',st_comp:'companhias de viagem',st_ai:'IA copiloto',st_lab:'ferramentas no Lab',st_db:'banco externo + PBKDF2',foot_tag:'viaje com o orçamento que você tem',foot_note:'Traja — projeto pessoal de planejamento de viagem. Valores de custo/dia, transporte, companhias, hotéis e clima são estimativas ou dados de demonstração e não constituem oferta.',foot_r:'FEITO COM ☕ E VONTADE DE VIAJAR',ml_t:'Bem-vindo de volta',ml_sub:'Entre com sua conta pra salvar seus destinos favoritos.',f_email:'E-mail',f_pass:'Senha',f_name:'Nome',btn_enter:'Entrar',btn_create:'Criar conta',ml_sw:'Não tem conta?',ml_go:'Criar agora',ms_sw:'Já tem conta?',ms_go:'Entrar',ms_t:'Criar sua conta',ms_sub:'Leva menos de 1 minuto. Sua senha é validada só pelo servidor, com hash + salt — nunca fica salva em texto puro.',f_city:'Sua cidade',city_ph:'Escolha sua cidade',g_br:'Brasil',g_int:'Internacional',err_name:'Coloca seu nome 🙂',err_email:'E-mail inválido.',err_pass:'Senha precisa de pelo menos 6 caracteres.',err_exists:'Esse e-mail já tem conta. Entra aí!',err_city:'Escolha sua cidade.',err_creds:'E-mail ou senha incorretos.',err_offline:'Servidor indisponível agora. Tenta de novo em instantes.',err_rate:'Muitas tentativas. Espera um minuto e tenta de novo.',toast_created:'Conta criada. Bora viajar, {n}! 🎉',toast_welcome:'Bem-vindo de volta, {n}! ✈',toast_bye:'Até a próxima viagem 👋',toast_needlogin:'Entre na conta pra salvar destinos 😉',toast_saved:'{c} salvo nas suas viagens ❤',toast_removed:'Removido dos salvos.',toast_budget:'Ajustei o orçamento pra caber. Busca de novo! 🤞',toast_hotel:'🏨 {h} escolhido em {c}!',toast_comp:'🧭 Viajando com {c}!',toast_sync:'🖥 Banco sincronizado com o server!',fav_t:'✈ Viagens salvas',fav_empty:'Nada salvo ainda. Clique no 🤍 de um destino.',fav_redo:'Refazer',hm_t:'Onde ficar em {c}',hm_meta:'{n} {nw} · orçamento total {b}',teto_l:'Teto por noite*',teto_neg:'R$ 0 — apertado',teto_note:'*depois de descontar transporte ({f}) e dia a dia ({d}/dia).',f_all:'Todos',tier1:'Econômico',tier2:'Conforto',tier3:'Premium',f_fit:'só o que cabe no bolso',per_night:'/noite',ht_total:'{n} noites: {v}',fits_ok:'cabe ✓ sobra {v}',fits_over:'estoura {v}',choose:'Escolher este',chosen:'Escolhido ✓',hm_none:'Nenhuma opção aqui com esse filtro.',hm_none2:'Tenta "Todos" ou desmarca "só o que cabe".',hm_suf:'opção(ões) · {n} no total',hm_foot:'VALORES ESTIMADOS POR NOITE · QUARTO DUPLO',comp_title:'Companhias de viagem',comp_sub:'aéreas e rodoviárias pra sua rota — compara e escolhe',comp_aerea:'Aérea',comp_onibus:'Rodoviária',comp_t:'Como chegar em {c}',comp_est:'estimativa ida e volta',comp_best:'💸 melhor preço',comp_usar:'Usar esta',comp_usada:'Em uso ✓',comp_none:'Sem companhias pra essa rota.',comp_foot:'PREÇOS ESTIMADOS POR PESSOA · IDA E VOLTA',comp_suf:'companhia(s) na rota',db_open:'🗄 Banco de dados',db_note:'Senhas com hash PBKDF2 + salt (nunca em texto puro). Painel protegido por chave admin — só quem roda o server.js tem acesso.',db_title:'TrajaDB · banco externo',db_sub:'usuários e logins salvos fora do site (server.js → rumodb.json)',db_users:'Usuários',db_name:'nome',db_email:'e-mail',db_city:'cidade',db_created:'criado em',db_last:'última entrada',db_hash:'hash da senha',db_trips:'viagens',db_logins:'Últimos logins',db_when:'quando',db_empty:'nenhum registro ainda — crie uma conta!',db_clear:'Apagar tudo',db_clear_confirm:'Apagar TUDO? Contas, sessões e viagens somem do banco externo e do aparelho.',db_cleared:'Banco apagado. Tudo zerado 🧹',db_sync:'🔄 Sincronizar',db_st_cloud:'🖥 conectado ao banco externo (server.js)',db_st_local:'💾 server offline — modo local ativado',ai_title:'AURORA',ai_sub:'copiloto de viagens com IA',ai_send:'Enviar',ai_ph:'ex.: tenho 3 mil, 6 dias, quero praia pra 2 pessoas',ai_hello:'Oi, eu sou a <b>AURORA</b> ✨ sua copiloto de viagens. Entendo orçamento, dias, pessoas, mês da viagem e sua vibe — e ainda respondo dúvidas do site. Experimenta: "tenho 4 mil pra 2 pessoas em julho, quero praia".',ai_chip1:'💸 R$ 3.000 · 5 dias · praia',ai_chip2:'🍷 frio e vinho pra 2 · R$ 6.000',ai_chip3:'👨‍ família · 7 dias · R$ 8.000',ai_understood:'Entendi: <b>{b}</b> · <b>{d} dias</b>{p} · vibe de <b>{tags}</b>.',ai_people:' · {p} pessoas',ai_ask_budget:'Me diz <b>quanto você quer gastar</b> que eu refino a busca 😉 (ex.: "tenho 4 mil").',ai_picks:'Minhas apostas pra você:',ai_fit:'cabe no bolso · sobra {v}',ai_over:'estoura {v}',ai_roteiro:'🗓️ Roteiro relâmpago em <b>{c}</b>:',ai_day:'Dia {n}',ai_cta:'🎯 Aplicar busca',ai_cta_done:'Busca aplicada! 👇',ai_none:'Hmm, com essa grana e essa vibe tá difícil 😅 Tenta menos dias ou sobe o orçamento.',ai_group:'pra {p} pessoas o grupo gastaria ~{v} no total.',ai_month_ok:'{m} é boa época pra {c}!',ai_month_bad:'em {m} não é a melhor época de {c} (melhor: {e}).',ai_follow_cheaper:'💸 mais barato',ai_follow_more:'✨ mais opções',ai_follow_hotels:'🏨 hotéis do top 1',ai_follow_comps:'🧭 companhias',ai_faq_bank:'O banco é o <b>server.js</b>: senhas com hash PBKDF2 + salt, tudo fora do site. O painel 🗄 no rodapé é protegido por chave admin.',ai_faq_comp:'Temos <b>24 companhias</b> (GOL, LATAM, Azul, TAP, Itapemirim, Guanabara...). Cada destino tem o botão 🧭 que compara preços ida e volta.',ai_faq_hotel:'Cada destino tem 3–4 hotéis em 3 categorias. O botão 🏨 mostra o <b>teto por noite</b> que cabe no seu orçamento.',ai_faq_how:'Simples: você diz <b>orçamento + dias + origem</b>; eu cruzo transporte, companhias e hotéis e ranqueio do mais barato ao mais caro. No Lab ainda tem clima ao vivo, quiz e mais!',ai_faq_lab:'O <b>Traja Lab</b> 🧪 tem clima ao vivo via satélite, quiz de perfil viajante, rachador de custos e radar de ofertas. Clica em "Lab" no menu!',ex_kicker:'página 2 · modo turista',ex_title:'Explore o mundo',ex_sub:'Galeria de destinos, companhias de viagem, conversor de moedas, checklist de mala e curiosidades.',gal_title:'Galeria de destinos',gal_sub:'preços "a partir de" para 5 dias saindo da sua origem',gal_from:'a partir de {v}',gal_plan:'Planejar esta →',conv_title:'Conversor de moedas',conv_lbl:'Valor em R$',conv_to:'Moeda',conv_note:'cotações aproximadas, só pra ter noção 😉',chk_title:'Checklist de mala',chk_reset:'Zerar',chk_count:'{a} de {b} itens',fun_title:'Curiosidades de viagem',fun_sub:'pra contar no avião e parecer interessante',lab_kicker:'inovação nível premium',lab_title:'Traja Lab',lab_sub:'ferramentas que nenhum outro site de viagem te dá: clima ao vivo, quiz de perfil, rachador de custos e radar de ofertas.',wx_title:'Clima ao vivo no destino',wx_sub:'dados reais via Open-Meteo — sem chave de API',wx_dest:'Destino',wx_btn:'Consultar agora',wx_loading:'consultando satélites… 🛰️',wx_err:'não consegui consultar o clima agora 😅 tenta já já.',wx_wind:'vento de {v} km/h',wx_tip_cold:'❄️ {t}°C — leva casaco!',wx_tip_hot:'🔥 {t}°C — protetor solar!',wx_tip_ok:'😎 {t}°C — clima gostoso',wx_best:'melhor época: {e}',wx_clear:'céu limpo',wx_clouds:'nuvens',wx_fog:'névoa',wx_drizzle:'garoa',wx_rain:'chuva',wx_snow:'neve',wx_showers:'pancadas',wx_storm:'trovoada',quiz_title:'Quiz do perfil viajante',quiz_sub:'5 perguntas e a AURORA lê seu DNA de viagem',quiz_next:'Próxima →',quiz_res:'Seu perfil:',quiz_apply:'Aplicar recomendações →',quiz_again:'↺ Refazer',split_title:'Rachador de custos',split_sub:'viaja em grupo? divide sem briga',split_total:'Total da viagem (R$)',split_ppl:'Pessoas',split_each:'por pessoa',split_tip:'com 10% de gorjeta: {v}',radar_title:'Radar de ofertas',radar_sub:'ofertas relâmpago ao vivo (simuladas)',radar_left:'expira em {t}',radar_grab:'Aproveitar!',prem_cta_short:'Seja Premium',prem_title:'Traja Premium',prem_sub:'Viagens ilimitadas salvas, exportação em PDF/impressão e prioridade nas novidades do Lab.',prem_b1:'Salve viagens ilimitadas (no plano grátis são só 3).',prem_b2:'Exporte e imprima seu roteiro em PDF a qualquer hora.',prem_b3:'Acesso antecipado às novas ferramentas do Traja Lab.',prem_status_on:'✅ Você já é Premium desde {d}',prem_status_off:'Ainda no plano grátis',prem_redeem_t:'Resgatar código',prem_redeem_ph:'TRAJA-XXXX-XXXX-XXXX',prem_redeem_btn:'Resgatar',prem_redeem_ok:'🎉 Premium ativado! Aproveite.',prem_redeem_invalid:'Código inválido.',prem_redeem_used:'Esse código já foi usado.',prem_redeem_login:'Entre na sua conta pra resgatar um código.',prem_fav_limit:'Plano grátis: até 3 viagens salvas. Vire Premium pra salvar sem limite ⭐',prem_print:'🖨 Exportar / imprimir',prem_admin_t:'⭐ Premium',prem_admin_gen:'Gerar código',prem_admin_codes:'Códigos gerados',prem_admin_col:'Premium',prem_admin_grant:'Conceder',prem_admin_revoke:'Revogar',prem_admin_used:'usado por',prem_admin_unused:'não usado',planos_kicker:'PLANOS',planos_t:'Escolha seu plano',planos_sub:'Comece de graça e desbloqueie mais quando quiser viajar sem limites.',planos_free_tag:'Grátis',planos_free_1:'Até 3 viagens salvas',planos_free_2:'Buscas ilimitadas de destino',planos_free_3:'Odontograma... digo, roteiro completo na hora',planos_free_btn:'Começar grátis',planos_pop:'⭐ RECOMENDADO',planos_prem_price:'Resgate por código',prem_code_copied:'Código copiado 📋',btn_install:'⬇️ Instalar app',install_ios:'No iPhone/iPad: toque no ícone de compartilhar (□↑) na barra do Safari e escolha "Adicionar à Tela de Início".',install_fallback:'Seu navegador ainda não liberou a instalação. Tente pelo menu (⋮) → "Instalar app" ou "Adicionar à tela inicial".'},
+en:{doc_title:'Traja — travel on the budget you have',nav_home:'Home',nav_explore:'Explore',nav_lab:'Lab',nav_results:'Results',nav_how:'How it works',login:'Log in',signup:'Sign up',logout:'Log out',hello:'hi, ',kicker:'Budget-based trip planning',h1a:'Tell us your budget.',h1b:"We'll tell you where you can go.",lead1:'No more juggling comparison tabs. Pick where you leave from, where you want to go and how much you can spend — or let ',leadStrong:'AURORA',lead2:' (our AI) build it all: destinations, carriers and hotels that fit your pocket.',ex_label:'Try it →',tk_head_l:'TRAJA AIR · SEARCH PASS',tk_none:'your city',tk_dest_free:'wherever fits',tk_title:'Where to',f_budget:'Total budget (BRL)',f_days:'Days of travel',f_region:'Preferred region',f_origem:'Origin (where you depart)',f_destino:'Destination (where to go)',dest_any:'Surprise me ✨',grp_n:'North',grp_ne:'Northeast',grp_co:'Midwest',grp_se:'Southeast',grp_s:'South',reg_any:'Anywhere',reg_Brasil:'Brazil',reg_EUA:'USA',reg_Portugal:'Portugal',reg_Canada:'Canada',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguay',reg_Uruguai:'Uruguay',reg_Mexico:'Mexico',btn_search:'Search destinations →',res_title:'Possible destinations',res_idle:'waiting for a search — cheapest to priciest',dest1:'destination fits in',destN:'destinations fit in',rs_for:'for',rs_order:'cheapest to priciest',day1:'day',dayN:'days',night1:'night',nightN:'nights',stamp1:'route cleared',stampN:'routes cleared',load1:'Crunching costs across',load2:'destinations…',empty_t:'No results yet',empty_p:'Fill in the ticket above — or call AURORA ✨ in the corner.',nfit_t:'No destination fit',nfit_p:'Not this time with that budget. Raise the amount or cut a few days — or peek at the close calls:',almost_t:'✈ so close',bd_flight:'✈ Flights (round trip)',bd_bus:'🚌 By bus (round trip)',bd_car:'🚗 By car (round trip)',bd_daily:'🍜 Daily costs',total_label:'Estimated total',sobra:'leftover',falta:'short by',tight:'tight',note_est:'estimates for demo purposes',from_note:'departing from {c}',btn_hotels:'🏨 Hotels ({n})',btn_comps:'🧭 Carriers ({n})',how_kicker:'// takeoff route',how_t:'How it works',s1t:'Plot your route',s1p:'Enter your city, your destination (or let us suggest), the total budget and how many days you have.',s2t:'AURORA ranks them',s2p:'The AI crosses transport + carriers + daily costs + lodging and sorts everything from cheapest to priciest.',s3t:'Pick everything',s3p:'Carrier, hotel, nightly ceiling — the total updates instantly.',st_dest:'destinations',st_hot:'estimated hotels',st_comp:'travel companies',st_ai:'AI copilot',st_lab:'Lab tools',st_db:'external DB + PBKDF2',foot_tag:'travel on the budget you have',foot_note:'Traja — a personal travel-planning project. Costs, transport, carriers, hotels and weather are estimates or demo data, not offers.',foot_r:'MADE WITH ☕ AND WANDERLUST',ml_t:'Welcome back',ml_sub:'Log in to save your favorite destinations.',f_email:'Email',f_pass:'Password',f_name:'Name',btn_enter:'Log in',btn_create:'Create account',ml_sw:'No account yet?',ml_go:'Sign up',ms_sw:'Already have an account?',ms_go:'Log in',ms_t:'Create your account',ms_sub:'Takes less than a minute. Your password is checked only by the server, hashed with a salt — never stored in plain text.',f_city:'Your city',city_ph:'Pick your city',g_br:'Brazil',g_int:'International',err_name:'Enter your name 🙂',err_email:'Invalid email.',err_pass:'Password needs at least 6 characters.',err_exists:'This email already has an account. Log in!',err_city:'Pick your city.',err_creds:'Wrong email or password.',err_offline:'Server unavailable right now. Try again shortly.',err_rate:'Too many attempts. Wait a minute and try again.',toast_created:"Account created. Let's travel, {n}! 🎉",toast_welcome:'Welcome back, {n}! ✈',toast_bye:'See you next trip 👋',toast_needlogin:'Log in to save destinations 😉',toast_saved:'{c} saved to your trips ❤',toast_removed:'Removed from saved.',toast_budget:'I adjusted the budget to fit. Search again! 🤞',toast_hotel:'🏨 {h} picked in {c}!',toast_comp:'🧭 Traveling with {c}!',toast_sync:'🖥 Database synced with the server!',fav_t:'✈ Saved trips',fav_empty:'Nothing saved yet. Tap the 🤍 on a destination.',fav_redo:'Redo',hm_t:'Where to stay in {c}',hm_meta:'{n} {nw} · total budget {b}',teto_l:'Nightly ceiling*',teto_neg:'BRL 0 — tight',teto_note:'*after deducting transport ({f}) and daily costs ({d}/day).',f_all:'All',tier1:'Budget',tier2:'Comfort',tier3:'Premium',f_fit:'only what fits my budget',per_night:'/night',ht_total:'{n} nights: {v}',fits_ok:'fits ✓ {v} left',fits_over:'over by {v}',choose:'Pick this one',chosen:'Picked ✓',hm_none:'No options here with that filter.',hm_none2:'Try "All" or uncheck "only what fits".',hm_suf:'option(s) · {n} in total',hm_foot:'ESTIMATED PRICE PER NIGHT · DOUBLE ROOM',comp_title:'Travel companies',comp_sub:'airlines and bus carriers for your route — compare and pick',comp_aerea:'Airline',comp_onibus:'Bus carrier',comp_t:'How to get to {c}',comp_est:'round trip estimate',comp_best:'💸 best price',comp_usar:'Use this',comp_usada:'In use ✓',comp_none:'No companies for this route.',comp_foot:'ESTIMATED PRICES PER PERSON · ROUND TRIP',comp_suf:'company(ies) on route',db_open:'🗄 Database',db_note:'Passwords hashed with PBKDF2 + salt (never stored in plain text). Panel protected by an admin key — only whoever runs server.js has access.',db_title:'TrajaDB · external database',db_sub:'users and logins stored outside the site (server.js → rumodb.json)',db_users:'Users',db_name:'name',db_email:'email',db_city:'city',db_created:'created',db_last:'last login',db_hash:'password hash',db_trips:'trips',db_logins:'Recent logins',db_when:'when',db_empty:'no records yet — create an account!',db_clear:'Wipe all',db_clear_confirm:'Delete EVERYTHING? Accounts, sessions and trips vanish from the external DB and device.',db_cleared:'Database wiped. All clean 🧹',db_sync:'🔄 Sync',db_st_cloud:'🖥 connected to external DB (server.js)',db_st_local:'💾 server offline — local mode on',ai_title:'AURORA',ai_sub:'AI travel copilot',ai_send:'Send',ai_ph:'e.g.: I have 3k, 6 days, beach for 2 people',ai_hello:"Hi, I'm <b>AURORA</b> ✨ your travel copilot. I understand budget, days, people, travel month and your vibe — and I answer site questions too. Try: \"I have 4k for 2 people in July, want the beach\".",ai_chip1:'💸 BRL 3,000 · 5 days · beach',ai_chip2:'🍷 cold & wine for 2 · 6k',ai_chip3:'👨‍👩‍ family · 7 days · 8k',ai_understood:'Got it: <b>{b}</b> · <b>{d} days</b>{p} · vibe: <b>{tags}</b>.',ai_people:' · {p} people',ai_ask_budget:'Tell me <b>how much you want to spend</b> and I will refine the search 😉 (e.g.: "I have 4k").',ai_picks:'My picks for you:',ai_fit:'fits your pocket · {v} left',ai_over:'over by {v}',ai_roteiro:'🗓️ Flash itinerary in <b>{c}</b>:',ai_day:'Day {n}',ai_cta:'🎯 Apply search',ai_cta_done:'Search applied! 👇',ai_none:'Hmm, that budget and vibe is tough 😅 Try fewer days or raise the budget.',ai_group:'for {p} people the group would spend ~{v} total.',ai_month_ok:'{m} is a good season for {c}!',ai_month_bad:'{m} is not the best season for {c} (best: {e}).',ai_follow_cheaper:'💸 cheaper',ai_follow_more:'✨ more options',ai_follow_hotels:'🏨 top-1 hotels',ai_follow_comps:'🧭 carriers',ai_faq_bank:'The DB is <b>server.js</b>: PBKDF2 + salt hashed passwords, all outside the site. The 🗄 panel in the footer is protected by an admin key.',ai_faq_comp:'We track <b>24 carriers</b> (GOL, LATAM, Azul, TAP, Itapemirim...). Every destination has a 🧭 button comparing round-trip prices.',ai_faq_hotel:'Each destination has 3–4 hotels in 3 tiers. The 🏨 button shows the <b>nightly ceiling</b> that fits your budget.',ai_faq_how:'Simple: <b>budget + days + origin</b>; I cross transport, carriers and hotels and rank cheapest to priciest. The Lab adds live weather, a quiz and more!',ai_faq_lab:'The <b>Traja Lab</b> 🧪 has live satellite weather, traveler profile quiz, cost splitter and deal radar. Click "Lab" in the menu!',ex_kicker:'page 2 · tourist mode',ex_title:'Explore the world',ex_sub:'Destination gallery, travel companies, currency converter, packing checklist and fun facts.',gal_title:'Destination gallery',gal_sub:'"from" prices for 5 days leaving from your origin',gal_from:'from {v}',gal_plan:'Plan this one →',conv_title:'Currency converter',conv_lbl:'Amount in BRL',conv_to:'Currency',conv_note:'approximate rates, just to get a feel 😉',chk_title:'Packing checklist',chk_reset:'Reset',chk_count:'{a} of {b} items',fun_title:'Travel fun facts',fun_sub:'to drop on the plane and sound interesting',lab_kicker:'premium-level innovation',lab_title:'Traja Lab',lab_sub:'tools no other travel site gives you: live weather, profile quiz, cost splitter and deal radar.',wx_title:'Live weather at destination',wx_sub:'real data via Open-Meteo — no API key',wx_dest:'Destination',wx_btn:'Check now',wx_loading:'asking the satellites… 🛰️',wx_err:"couldn't fetch weather right now 😅 try again soon.",wx_wind:'wind {v} km/h',wx_tip_cold:'❄️ {t}°C — bring a jacket!',wx_tip_hot:'🔥 {t}°C — sunscreen!',wx_tip_ok:'😎 {t}°C — lovely weather',wx_best:'best season: {e}',wx_clear:'clear sky',wx_clouds:'cloudy',wx_fog:'fog',wx_drizzle:'drizzle',wx_rain:'rain',wx_snow:'snow',wx_showers:'showers',wx_storm:'thunderstorm',quiz_title:'Traveler profile quiz',quiz_sub:'5 questions and AURORA reads your travel DNA',quiz_next:'Next →',quiz_res:'Your profile:',quiz_apply:'Apply recommendations →',quiz_again:'↺ Retake',split_title:'Cost splitter',split_sub:'group trip? split without fights',split_total:'Trip total (BRL)',split_ppl:'People',split_each:'per person',split_tip:'with 10% tip: {v}',radar_title:'Deal radar',radar_sub:'live flash deals (simulated)',radar_left:'expires in {t}',radar_grab:'Grab it!',prem_cta_short:'Go Premium',prem_title:'Traja Premium',prem_sub:'Unlimited saved trips, PDF export/printing and early access to Lab tools.',prem_b1:'Save unlimited trips (free plan is capped at 3).',prem_b2:'Export and print your itinerary as PDF anytime.',prem_b3:'Early access to new Traja Lab tools.',prem_status_on:'✅ You have been Premium since {d}',prem_status_off:'Still on the free plan',prem_redeem_t:'Redeem a code',prem_redeem_ph:'TRAJA-XXXX-XXXX-XXXX',prem_redeem_btn:'Redeem',prem_redeem_ok:'🎉 Premium activated! Enjoy.',prem_redeem_invalid:'Invalid code.',prem_redeem_used:'That code was already used.',prem_redeem_login:'Log in to redeem a code.',prem_fav_limit:'Free plan: up to 3 saved trips. Go Premium to save unlimited ⭐',prem_print:'🖨 Export / print',prem_admin_t:'⭐ Premium',prem_admin_gen:'Generate code',prem_admin_codes:'Generated codes',prem_admin_col:'Premium',prem_admin_grant:'Grant',prem_admin_revoke:'Revoke',prem_admin_used:'used by',prem_admin_unused:'unused',planos_kicker:'PLANS',planos_t:'Choose your plan',planos_sub:'Start for free and unlock more when you want to travel without limits.',planos_free_tag:'Free',planos_free_1:'Up to 3 saved trips',planos_free_2:'Unlimited destination searches',planos_free_3:'Full itinerary generated instantly',planos_free_btn:'Start free',planos_pop:'⭐ RECOMMENDED',planos_prem_price:'Redeem with a code',prem_code_copied:'Code copied 📋',btn_install:'⬇️ Install app',install_ios:'On iPhone/iPad: tap the share icon (□↑) in the Safari bar and choose "Add to Home Screen".',install_fallback:'Your browser hasn\'t offered installation yet. Try the menu (⋮) → "Install app" or "Add to home screen".'},
+es:{doc_title:'Traja — viaja con el presupuesto que tienes',nav_home:'Inicio',nav_explore:'Explorar',nav_lab:'Lab',nav_results:'Resultados',nav_how:'Cómo funciona',login:'Entrar',signup:'Crear cuenta',logout:'Salir',hello:'hola, ',kicker:'Planificación de viajes por presupuesto',h1a:'Dinos cuánto tienes.',h1b:'Te decimos a dónde puedes ir.',lead1:'Nada de comparar mil pestañas. Elige de dónde sales, a dónde quieres ir y cuánto puedes gastar — o deja que ',leadStrong:'AURORA',lead2:' (nuestra IA) arme todo: destinos, compañías y hoteles que caben en tu bolsillo.',ex_label:'Pruébalo →',tk_head_l:'TRAJA AIR · PASE DE BÚSQUEDA',tk_none:'tu ciudad',tk_dest_free:'a donde alcance',tk_title:'¿A dónde vamos',f_budget:'Presupuesto total (R$)',f_days:'Días de viaje',f_region:'Región preferida',f_origem:'Origen (de dónde sales)',f_destino:'Destino (a dónde ir)',dest_any:'Sorpréndeme ✨',grp_n:'Norte',grp_ne:'Nordeste',grp_co:'Centro-Oeste',grp_se:'Sudeste',grp_s:'Sur',reg_any:'Cualquiera',reg_Brasil:'Brasil',reg_EUA:'EE. UU.',reg_Portugal:'Portugal',reg_Canada:'Canadá',reg_Chile:'Chile',reg_Argentina:'Argentina',reg_Paraguai:'Paraguay',reg_Uruguai:'Uruguai',reg_Mexico:'México',btn_search:'Buscar destinos →',res_title:'Destinos posibles',res_idle:'esperando la búsqueda — del más barato al más caro',dest1:'destino cabe en',destN:'destinos caben en',rs_for:'por',rs_order:'del más barato al más caro',day1:'día',dayN:'días',night1:'noche',nightN:'noches',stamp1:'ruta liberada',stampN:'rutas liberadas',load1:'Cruzando costos de',load2:'destinos…',empty_t:'Aún sin resultados',empty_p:'Completa el billete — o llama a AURORA ✨ en la esquina.',nfit_t:'Ningún destino cupo',nfit_p:'Con ese presupuesto no alcanzó esta vez. Sube el monto o recorta días, o mira los que casi cupieron:',almost_t:'✈ faltó poco',bd_flight:'✈ Vuelos (ida y vuelta)',bd_bus:'🚌 En autobús (ida y vuelta)',bd_car:'🚗 En auto (ida y vuelta)',bd_daily:'🍜 Día a día',total_label:'Total estimado',sobra:'sobran',falta:'faltan',tight:'ajustado',note_est:'estimaciones para demostración',from_note:'saliendo de {c}',btn_hotels:'🏨 Hoteles ({n})',btn_comps:'🧭 Compañías ({n})',how_kicker:'// ruta de despegue',how_t:'Cómo funciona',s1t:'Arma tu ruta',s1p:'Di tu ciudad, el destino (o déjanos sugerir), el total y cuántos días tienes.',s2t:'AURORA rankea',s2p:'La IA cruza transporte + compañías + día a día + alojamiento y ordena todo del más barato al más caro.',s3t:'Elige todo',s3p:'Compañía, hotel, tope por noche — el total se actualiza al instante.',st_dest:'destinos',st_hot:'hoteles estimados',st_comp:'compañías de viaje',st_ai:'IA copiloto',st_lab:'herramientas del Lab',st_db:'BD externa + PBKDF2',foot_tag:'viaja con el presupuesto que tienes',foot_note:'Traja: proyecto personal de planificación de viajes. Costos, transporte, compañías, hoteles y clima son estimaciones o datos de demostración, no ofertas.',foot_r:'HECHO CON ☕ Y GANAS DE VIAJAR',ml_t:'Bienvenido de nuevo',ml_sub:'Inicia sesión para guardar tus destinos favoritos.',f_email:'Correo',f_pass:'Contraseña',f_name:'Nombre',btn_enter:'Entrar',btn_create:'Crear cuenta',ml_sw:'¿No tienes cuenta?',ml_go:'Créala ahora',ms_sw:'¿Ya tienes cuenta?',ms_go:'Entrar',ms_t:'Crea tu cuenta',ms_sub:'Toma menos de 1 minuto. Tu contraseña se valida solo en el servidor, con hash + salt — nunca se guarda en texto plano.',f_city:'Tu ciudad',city_ph:'Elige tu ciudad',g_br:'Brasil',g_int:'Internacional',err_name:'Pon tu nombre 🙂',err_email:'Correo inválido.',err_pass:'La contraseña necesita al menos 6 caracteres.',err_exists:'Ese correo ya tiene cuenta. ¡Entra!',err_city:'Elige tu ciudad.',err_creds:'Correo o contraseña incorrectos.',err_offline:'Servidor no disponible ahora. Intenta en un momento.',err_rate:'Demasiados intentos. Espera un minuto e intenta de nuevo.',toast_created:'Cuenta creada. ¡A viajar, {n}! 🎉',toast_welcome:'¡Bienvenido de nuevo, {n}! ✈',toast_bye:'Hasta el próximo viaje 👋',toast_needlogin:'Inicia sesión para guardar destinos 😉',toast_saved:'{c} guardado en tus viajes ❤',toast_removed:'Quitado de guardados.',toast_budget:'Ajusté el presupuesto para que quepa. ¡Busca de nuevo! 🤞',toast_hotel:'🏨 ¡{h} elegido en {c}!',toast_comp:'🧭 ¡Viajando con {c}!',toast_sync:'🖥 ¡Base sincronizada con el server!',fav_t:'✈ Viajes guardados',fav_empty:'Nada guardado aún. Toca el 🤍 de un destino.',fav_redo:'Rehacer',hm_t:'Dónde alojarse en {c}',hm_meta:'{n} {nw} · presupuesto total {b}',teto_l:'Tope por noche*',teto_neg:'R$ 0 — ajustado',teto_note:'*después de descontar el transporte ({f}) y el día a día ({d}/día).',f_all:'Todos',tier1:'Económico',tier2:'Confort',tier3:'Premium',f_fit:'solo lo que cabe en mi bolsillo',per_night:'/noche',ht_total:'{n} noches: {v}',fits_ok:'cabe ✓ sobran {v}',fits_over:'excede {v}',choose:'Elegir este',chosen:'Elegido ✓',hm_none:'Ninguna opción aquí con ese filtro.',hm_none2:'Prueba "Todos" o desmarca "solo lo que cabe".',hm_suf:'opción(es) · {n} en total',hm_foot:'VALORES ESTIMADOS POR NOCHE · HABITACIÓN DOBLE',comp_title:'Compañías de viaje',comp_sub:'aéreas y rodoviarias para tu ruta — compara y elige',comp_aerea:'Aérea',comp_onibus:'Rodoviaria',comp_t:'Cómo llegar a {c}',comp_est:'estimación ida y vuelta',comp_best:'💸 mejor precio',comp_usar:'Usar esta',comp_usada:'En uso ✓',comp_none:'Sin compañías para esta ruta.',comp_foot:'PRECIOS ESTIMADOS POR PERSONA · IDA Y VUELTA',comp_suf:'compañía(s) en la ruta',db_open:'🗄 Base de datos',db_note:'Contraseñas con hash PBKDF2 + salt (nunca en texto plano). Panel protegido por clave admin — solo quien ejecuta server.js tiene acceso.',db_title:'TrajaDB · base externa',db_sub:'usuarios y logins guardados fuera del sitio (server.js → rumodb.json)',db_users:'Usuarios',db_name:'nombre',db_email:'correo',db_city:'ciudad',db_created:'creado',db_last:'última entrada',db_hash:'hash de contraseña',db_trips:'viajes',db_logins:'Últimos logins',db_when:'cuándo',db_empty:'sin registros aún — ¡crea una cuenta!',db_clear:'Borrar todo',db_clear_confirm:'¿Borrar TODO? Cuentas, sesiones y viajes desaparecen de la base externa y del equipo.',db_cleared:'Base borrada. Todo limpio 🧹',db_sync:'🔄 Sincronizar',db_st_cloud:'🖥 conectado a la base externa (server.js)',db_st_local:'💾 server offline — modo local',ai_title:'AURORA',ai_sub:'copiloto de viajes con IA',ai_send:'Enviar',ai_ph:'ej.: tengo 3 mil, 6 días, playa para 2 personas',ai_hello:'Hola, soy <b>AURORA</b> ✨ tu copiloto de viajes. Entiendo presupuesto, días, personas, mes del viaje y tu vibra — y respondo dudas del sitio. Prueba: "tengo 4 mil para 2 personas en julio, quiero playa".',ai_chip1:'💸 R$ 3.000 · 5 días · playa',ai_chip2:'🍷 frío y vino para 2 · 6 mil',ai_chip3:'👨‍‍ familia · 7 días · 8 mil',ai_understood:'Entendido: <b>{b}</b> · <b>{d} días</b>{p} · vibra de <b>{tags}</b>.',ai_people:' · {p} personas',ai_ask_budget:'Dime <b>cuánto quieres gastar</b> y afino la búsqueda 😉 (ej.: "tengo 4 mil").',ai_picks:'Mis apuestas para ti:',ai_fit:'cabe en el bolsillo · sobran {v}',ai_over:'excede {v}',ai_roteiro:'🗓️ Itinerario exprés en <b>{c}</b>:',ai_day:'Día {n}',ai_cta:'🎯 Aplicar búsqueda',ai_cta_done:'¡Búsqueda aplicada! 👇',ai_none:'Hmm, con esa plata y esa vibra está difícil 😅 Prueba menos días o sube el presupuesto.',ai_group:'para {p} personas el grupo gastaría ~{v} en total.',ai_month_ok:'{m} es buena época para {c}!',ai_month_bad:'{m} no es la mejor época para {c} (mejor: {e}).',ai_follow_cheaper:'💸 más barato',ai_follow_more:'✨ más opciones',ai_follow_hotels:'🏨 hoteles del top 1',ai_follow_comps:'🧭 compañías',ai_faq_bank:'La base es <b>server.js</b>: contraseñas con hash PBKDF2 + salt, todo fuera del sitio. El panel 🗄 del pie está protegido por una clave admin.',ai_faq_comp:'Tenemos <b>24 compañías</b> (GOL, LATAM, Azul, TAP, Itapemirim...). Cada destino tiene el botón 🧭 que compara precios ida y vuelta.',ai_faq_hotel:'Cada destino tiene 3–4 hoteles en 3 categorías. El botón 🏨 muestra el <b>tope por noche</b> que cabe en tu presupuesto.',ai_faq_how:'Simple: <b>presupuesto + días + origen</b>; cruzo transporte, compañías y hoteles y rankeo del más barato al más caro. ¡En el Lab hay clima en vivo, quiz y más!',ai_faq_lab:'El <b>Traja Lab</b> 🧪 tiene clima en vivo vía satélite, quiz de perfil viajero, divisor de costos y radar de ofertas. ¡Haz clic en "Lab" en el menú!',ex_kicker:'página 2 · modo turista',ex_title:'Explora el mundo',ex_sub:'Galería de destinos, compañías de viaje, conversor de monedas, checklist de maleta y curiosidades.',gal_title:'Galería de destinos',gal_sub:'precios "desde" para 5 días saliendo de tu origen',gal_from:'desde {v}',gal_plan:'Planear este →',conv_title:'Conversor de monedas',conv_lbl:'Valor en R$',conv_to:'Moneda',conv_note:'cotizaciones aproximadas, solo para tener idea 😉',chk_title:'Checklist de maleta',chk_reset:'Reiniciar',chk_count:'{a} de {b} ítems',fun_title:'Curiosidades de viaje',fun_sub:'para contar en el avión y parecer interesante',lab_kicker:'innovación nivel premium',lab_title:'Traja Lab',lab_sub:'herramientas que ningún otro sitio de viajes te da: clima en vivo, quiz de perfil, divisor de costos y radar de ofertas.',wx_title:'Clima en vivo en el destino',wx_sub:'datos reales vía Open-Meteo — sin clave de API',wx_dest:'Destino',wx_btn:'Consultar ahora',wx_loading:'consultando satélites… 🛰️',wx_err:'no pude consultar el clima ahora 😅 intenta enseguida.',wx_wind:'viento de {v} km/h',wx_tip_cold:'❄️ {t}°C — ¡lleva abrigo!',wx_tip_hot:'🔥 {t}°C — ¡protector solar!',wx_tip_ok:'😎 {t}°C — clima agradable',wx_best:'mejor época: {e}',wx_clear:'cielo despejado',wx_clouds:'nublado',wx_fog:'niebla',wx_drizzle:'llovizna',wx_rain:'lluvia',wx_snow:'nieve',wx_showers:'chubascos',wx_storm:'tormenta',quiz_title:'Quiz del perfil viajero',quiz_sub:'5 preguntas y AURORA lee tu ADN de viaje',quiz_next:'Siguiente →',quiz_res:'Tu perfil:',quiz_apply:'Aplicar recomendaciones →',quiz_again:'↺ Repetir',split_title:'Divisor de costos',split_sub:'¿viaje en grupo? divide sin peleas',split_total:'Total del viaje (R$)',split_ppl:'Personas',split_each:'por persona',split_tip:'con 10% de propina: {v}',radar_title:'Radar de ofertas',radar_sub:'ofertas relámpago en vivo (simuladas)',radar_left:'expira en {t}',radar_grab:'¡Aprovechar!',prem_cta_short:'Ser Premium',prem_title:'Traja Premium',prem_sub:'Viajes guardados ilimitados, exportación en PDF/impresión y acceso anticipado al Lab.',prem_b1:'Guarda viajes ilimitados (el plan gratis tiene solo 3).',prem_b2:'Exporta e imprime tu itinerario en PDF cuando quieras.',prem_b3:'Acceso anticipado a las nuevas herramientas del Traja Lab.',prem_status_on:'✅ Eres Premium desde {d}',prem_status_off:'Aún en el plan gratis',prem_redeem_t:'Canjear código',prem_redeem_ph:'TRAJA-XXXX-XXXX-XXXX',prem_redeem_btn:'Canjear',prem_redeem_ok:'🎉 ¡Premium activado! Disfruta.',prem_redeem_invalid:'Código inválido.',prem_redeem_used:'Ese código ya fue usado.',prem_redeem_login:'Inicia sesión para canjear un código.',prem_fav_limit:'Plan gratis: hasta 3 viajes guardados. Hazte Premium para guardar sin límite ⭐',prem_print:'🖨 Exportar / imprimir',prem_admin_t:'⭐ Premium',prem_admin_gen:'Generar código',prem_admin_codes:'Códigos generados',prem_admin_col:'Premium',prem_admin_grant:'Conceder',prem_admin_revoke:'Revocar',prem_admin_used:'usado por',prem_admin_unused:'no usado',planos_kicker:'PLANES',planos_t:'Elige tu plan',planos_sub:'Empieza gratis y desbloquea más cuando quieras viajar sin límites.',planos_free_tag:'Gratis',planos_free_1:'Hasta 3 viajes guardados',planos_free_2:'Búsquedas de destino ilimitadas',planos_free_3:'Itinerario completo al instante',planos_free_btn:'Empezar gratis',planos_pop:'⭐ RECOMENDADO',planos_prem_price:'Canjear con código',prem_code_copied:'Código copiado 📋',btn_install:'⬇️ Instalar app',install_ios:'En iPhone/iPad: toca el ícono de compartir (□↑) en la barra de Safari y elige "Agregar a pantalla de inicio".',install_fallback:'Tu navegador aún no habilitó la instalación. Prueba el menú (⋮) → "Instalar app" o "Agregar a pantalla de inicio".'}};
+let LANG=localStorage.getItem('traja_lang')||'pt';
 function t(k,v){let s=(I18N[LANG]&&I18N[LANG][k])!==undefined?I18N[LANG][k]:(I18N.pt[k]!==undefined?I18N.pt[k]:k);if(v)for(const key in v)s=s.replaceAll('{'+key+'}',v[key]);return s}
 function applyI18n(){
   document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});
@@ -815,6 +891,19 @@ function applyI18n(){
 const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
 const brl=v=>Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* ===== Tema claro/escuro ===== */
+function applyTheme(th){
+  if(th==='light')document.documentElement.setAttribute('data-theme','light');
+  else document.documentElement.removeAttribute('data-theme');
+  const b=$('#btnTheme');if(b)b.textContent=th==='light'?'☀️':'🌙';
+  localStorage.setItem('traja_theme',th);
+}
+applyTheme(localStorage.getItem('traja_theme')||'dark');
+const btnThemeEl=$('#btnTheme');
+if(btnThemeEl)btnThemeEl.addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';
+  applyTheme(cur==='light'?'dark':'light');
+});
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;$('#toastWrap').appendChild(el);setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),350)},2600)}
 function countUp(el,to){if(reduced){el.textContent=brl(to);return}const dur=700,t0=performance.now();(function f(tm){const k=Math.min(1,(tm-t0)/dur);const e=1-Math.pow(1-k,3);el.textContent=brl(Math.round(to*e));if(k<1)requestAnimationFrame(f)})(t0)}
@@ -909,7 +998,7 @@ function compsFor(d,tr){
 const defaultHotel=d=>d.hot.find(h=>h.t===2)||d.hot[Math.floor(d.hot.length/2)];
 const tripTotal=(d,days,hotel,tcost)=>tcost+(d.food+hotel.p)*days;
 const destById=id=>DESTS.find(x=>x.id===id);
-/* ===== RUMODB (autenticação via servidor) =====
+/* ===== TRAJADB (autenticação via servidor) =====
    O navegador nunca guarda a lista inteira de usuários nem hashes de senha.
    Login/cadastro são validados no server.js (hash PBKDF2 + salt) e o site
    só recebe um token de sessão + os dados públicos do usuário logado. */
@@ -928,22 +1017,22 @@ async function dbInit(){
   const ok=await detectAPI();
   DB.mode=ok?'server':'offline';
   if(!ok)return;
-  const token=localStorage.getItem('rumo_token');
+  const token=localStorage.getItem('traja_token');
   if(!token)return;
   try{
     const j=await apiCall('/me',{headers:{Authorization:'Bearer '+token}});
     state.token=token;state.session=j.user.email;USERS[j.user.email]=j.user;
   }catch(e){
-    localStorage.removeItem('rumo_token');localStorage.removeItem('rumo_session');state.token=null;state.session=null;
+    localStorage.removeItem('traja_token');localStorage.removeItem('traja_session');state.token=null;state.session=null;
   }
 }
 const findUser=email=>USERS[email];
-function getFavsFor(email){try{return JSON.parse(localStorage.getItem('rumo_favs_'+email)||'[]')}catch(e){return[]}}
-const state={budget:0,days:0,region:'any',origem:'',destino:'',chosen:{},chosenComp:{},session:localStorage.getItem('rumo_session')||null,token:localStorage.getItem('rumo_token')||null,lastQuery:null};
-try{state.chosen=JSON.parse(localStorage.getItem('rumo_chosen')||'{}')}catch(e){state.chosen={}}
-try{state.chosenComp=JSON.parse(localStorage.getItem('rumo_comp')||'{}')}catch(e){state.chosenComp={}}
+function getFavsFor(email){try{return JSON.parse(localStorage.getItem('traja_favs_'+email)||'[]')}catch(e){return[]}}
+const state={budget:0,days:0,region:'any',origem:'',destino:'',chosen:{},chosenComp:{},session:localStorage.getItem('traja_session')||null,token:localStorage.getItem('traja_token')||null,lastQuery:null};
+try{state.chosen=JSON.parse(localStorage.getItem('traja_chosen')||'{}')}catch(e){state.chosen={}}
+try{state.chosenComp=JSON.parse(localStorage.getItem('traja_comp')||'{}')}catch(e){state.chosenComp={}}
 const getFavs=()=>state.session?getFavsFor(state.session):[];
-const setFavs=a=>localStorage.setItem('rumo_favs_'+state.session,JSON.stringify(a));
+const setFavs=a=>localStorage.setItem('traja_favs_'+state.session,JSON.stringify(a));
 function tripParts(d){
   const tr=transportFor(d,state.origem);
   const cid=state.chosenComp[d.id];
@@ -975,7 +1064,7 @@ function updateTicketRoute(){
 }
 qOrigem.addEventListener('change',()=>{state.origem=qOrigem.value;updateTicketRoute()});
 qDestino.addEventListener('change',()=>{state.destino=qDestino.value;updateTicketRoute()});
-function setLang(l){LANG=l;localStorage.setItem('rumo_lang',l);$('#langSel').value=l;applyI18n();buildMarquee();buildOrigemSelect();buildDestinoSelect();buildWxDest();updateTicketRoute();updateAuthUI();if($$('.modal.open').length)closeOverlay();if(state.lastQuery)computeAndRender();renderFavPanel();if(!$('#page-explorar').hidden)renderExplore();if(!$('#page-lab').hidden)renderLab()}
+function setLang(l){LANG=l;localStorage.setItem('traja_lang',l);$('#langSel').value=l;applyI18n();buildMarquee();buildOrigemSelect();buildDestinoSelect();buildWxDest();updateTicketRoute();updateAuthUI();if($$('.modal.open').length)closeOverlay();if(state.lastQuery)computeAndRender();renderFavPanel();if(!$('#page-explorar').hidden)renderExplore();if(!$('#page-lab').hidden)renderLab()}
 $('#langSel').addEventListener('change',e=>setLang(e.target.value));
 function buildMarquee(){const track=DESTS.map(d=>cityName(d).toUpperCase()).join(' <b>✈</b> ')+' <b>✈</b> ';$('#mqInner').innerHTML=`<span class="mq-track">${track}</span><span class="mq-track">${track}</span>`}
 function route(){
@@ -1101,7 +1190,7 @@ function openComps(destId){
 }
 function chooseComp(destId,compId){
   state.chosenComp[destId]=compId;
-  localStorage.setItem('rumo_comp',JSON.stringify(state.chosenComp));
+  localStorage.setItem('traja_comp',JSON.stringify(state.chosenComp));
   closeOverlay();
   toast(t('toast_comp',{c:getComp(compId).nome}));
   if(state.lastQuery){computeAndRender();setTimeout(()=>{const el=document.querySelector(`.card[data-id="${destId}"]`);if(el){el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});el.classList.add('pulse');setTimeout(()=>el.classList.remove('pulse'),1600)}},80)}
@@ -1139,7 +1228,7 @@ function renderHotelRows(){
   $$('#hotelsList [data-choose]').forEach(b=>b.addEventListener('click',()=>chooseHotel(b.dataset.choose)));
 }
 function chooseHotel(name){
-  const d=hotelCtx.d;state.chosen[d.id]=name;localStorage.setItem('rumo_chosen',JSON.stringify(state.chosen));
+  const d=hotelCtx.d;state.chosen[d.id]=name;localStorage.setItem('traja_chosen',JSON.stringify(state.chosen));
   closeOverlay();toast(t('toast_hotel',{h:name,c:cityName(d)}));
   if(state.lastQuery){computeAndRender();setTimeout(()=>{const el=document.querySelector(`.card[data-id="${d.id}"]`);if(el){el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});el.classList.add('pulse');setTimeout(()=>el.classList.remove('pulse'),1600)}},80)}
 }
@@ -1164,7 +1253,7 @@ $('#signupForm').addEventListener('submit',async e=>{
   const btn=e.target.querySelector('[type=submit]');if(btn)btn.disabled=true;
   try{
     const j=await apiCall('/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,email,senha,cidade})});
-    USERS[email]=j.user;state.token=j.token;localStorage.setItem('rumo_token',j.token);
+    USERS[email]=j.user;state.token=j.token;localStorage.setItem('traja_token',j.token);
     err.textContent='';e.target.reset();loginLocal(email);
     toast(t('toast_created',{n:nome.split(' ')[0]}));
   }catch(ex){
@@ -1178,7 +1267,7 @@ $('#loginForm').addEventListener('submit',async e=>{
   const btn=e.target.querySelector('[type=submit]');if(btn)btn.disabled=true;
   try{
     const j=await apiCall('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,senha})});
-    USERS[email]=j.user;state.token=j.token;localStorage.setItem('rumo_token',j.token);
+    USERS[email]=j.user;state.token=j.token;localStorage.setItem('traja_token',j.token);
     err.textContent='';e.target.reset();loginLocal(email);
     toast(t('toast_welcome',{n:j.user.nome.split(' ')[0]}));
   }catch(ex){
@@ -1187,15 +1276,15 @@ $('#loginForm').addEventListener('submit',async e=>{
 });
 function shakeLogin(){const card=$('#mLogin .modal-card');card.classList.remove('shake');void card.offsetWidth;card.classList.add('shake')}
 function loginLocal(email){
-  state.session=email;localStorage.setItem('rumo_session',email);
-  if(state.token)localStorage.setItem('rumo_token',state.token);
+  state.session=email;localStorage.setItem('traja_session',email);
+  if(state.token)localStorage.setItem('traja_token',state.token);
   const u=findUser(email);
   if(u&&u.cidade){if(![...qOrigem.options].some(o=>o.value===u.cidade)){const o=document.createElement('option');o.value=u.cidade;o.textContent=u.cidade;qOrigem.appendChild(o)}qOrigem.value=u.cidade;state.origem=u.cidade}
   updateTicketRoute();updateAuthUI();closeOverlay();renderFavPanel();
 }
 $('#btnLogout').addEventListener('click',()=>{
   if(API_URL&&state.token)fetch(API_URL+'/logout',{method:'POST',headers:{Authorization:'Bearer '+state.token}}).catch(()=>{});
-  state.session=null;state.token=null;localStorage.removeItem('rumo_session');localStorage.removeItem('rumo_token');
+  state.session=null;state.token=null;localStorage.removeItem('traja_session');localStorage.removeItem('traja_token');
   $('#favPanel').hidden=true;updateAuthUI();if(state.lastQuery)computeAndRender();toast(t('toast_bye'));
 });
 const FREE_FAV_LIMIT=3;
@@ -1249,9 +1338,9 @@ function printFavs(){
   }).join('');
   const win=window.open('','_blank');
   if(!win){toast('🔒 Permita pop-ups pra imprimir');return}
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Rumo — Roteiro</title>
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Traja — Roteiro</title>
     <style>body{font-family:Arial,sans-serif;padding:2rem;color:#1F2A30}h1{margin-bottom:.2rem}table{width:100%;border-collapse:collapse;margin-top:1rem}th,td{border:1px solid #ccc;padding:.5rem .7rem;text-align:left;font-size:.9rem}th{background:#f0f0f0}</style>
-    </head><body><h1>✈ Rumo — meu roteiro</h1><p>Gerado em ${new Date().toLocaleString('pt-BR')}</p>
+    </head><body><h1>✈ Traja — meu roteiro</h1><p>Gerado em ${new Date().toLocaleString('pt-BR')}</p>
     <table><tr><th>Destino</th><th>Origem</th><th>Dias</th><th>Hotel</th><th>Total estimado</th></tr>${rows}</table>
     </body></html>`);
   win.document.close();win.focus();
@@ -1269,7 +1358,7 @@ function loadTrip(destId){
 /* Painel admin: protegido por chave (gerada pelo server.js no primeiro boot,
    em admin.key). O navegador nunca baixa a lista de usuários sem essa chave,
    e mesmo com a chave o hash da senha não é devolvido — só uma prévia. */
-function adminKey(){return sessionStorage.getItem('rumo_admin_key')||''}
+function adminKey(){return sessionStorage.getItem('traja_admin_key')||''}
 async function fetchAdminDB(key){
   if(!API_URL)throw new Error('offline');
   const r=await fetch(API_URL+'/admin/db',{headers:{'X-Admin-Key':key}});
@@ -1289,7 +1378,7 @@ function renderDB(){
       <div style="display:flex;gap:.5rem;margin-top:.6rem"><input type="password" id="dbKeyInput" placeholder="Cole a chave admin aqui" style="flex:1;padding:.5rem;border:2px solid var(--deep);border-radius:8px"><button class="btn sm" id="dbKeyGo">Entrar</button></div></div>`;
     $('#dbKeyGo').addEventListener('click',async()=>{
       const v=$('#dbKeyInput').value.trim();if(!v)return;
-      try{await fetchAdminDB(v);sessionStorage.setItem('rumo_admin_key',v);renderDB()}
+      try{await fetchAdminDB(v);sessionStorage.setItem('traja_admin_key',v);renderDB()}
       catch(e){toast('🔒 Chave inválida ou servidor offline');}
     });
     return;
@@ -1307,18 +1396,18 @@ function renderDB(){
     html+=`<div class="db-actions"><button class="btn sky sm" id="dbSync">${t('db_sync')}</button><button class="btn sm" id="dbLock">🔒 Sair do painel</button><button class="btn danger sm" id="dbClear">🗑 ${t('db_clear')}</button></div>`;
     $('#dbBody').innerHTML=html;
     $('#dbSync').addEventListener('click',()=>{renderDB();toast(t('toast_sync'))});
-    $('#dbLock').addEventListener('click',()=>{sessionStorage.removeItem('rumo_admin_key');renderDB()});
+    $('#dbLock').addEventListener('click',()=>{sessionStorage.removeItem('traja_admin_key');renderDB()});
     $('#dbClear').addEventListener('click',async()=>{
       if(!confirm(t('db_clear_confirm')))return;
       try{
         const r=await fetch(API_URL+'/admin/db',{method:'DELETE',headers:{'X-Admin-Key':key}});
         if(!r.ok)throw new Error('unauthorized');
-        state.session=null;state.token=null;localStorage.removeItem('rumo_session');localStorage.removeItem('rumo_token');
+        state.session=null;state.token=null;localStorage.removeItem('traja_session');localStorage.removeItem('traja_token');
         closeOverlay();updateAuthUI();renderFavBadge();toast(t('db_cleared'));renderDB();
       }catch(e){toast('🔒 Não foi possível apagar (chave inválida?)')}
     });
     bindAdminPremium();
-  }).catch(()=>{sessionStorage.removeItem('rumo_admin_key');renderDB();toast('🔒 Chave inválida — tenta de novo')});
+  }).catch(()=>{sessionStorage.removeItem('traja_admin_key');renderDB();toast('🔒 Chave inválida — tenta de novo')});
 }
 $('#btnDB').addEventListener('click',()=>{renderDB();openOverlay('mDB')});
 /* ===== Premium (usuário) ===== */
@@ -1363,6 +1452,10 @@ function renderPremiumBody(){
 }
 const btnPremiumEl=$('#btnPremium');
 if(btnPremiumEl)btnPremiumEl.addEventListener('click',()=>{if(!state.session){openOverlay('mLogin');toast(t('toast_needlogin'));return}renderPremiumBody();openOverlay('mPremium')});
+const planoPremiumBtnEl=$('#planoPremiumBtn');
+if(planoPremiumBtnEl)planoPremiumBtnEl.addEventListener('click',()=>{if(!state.session){openOverlay('mLogin');toast(t('toast_needlogin'));return}renderPremiumBody();openOverlay('mPremium')});
+const planoFreeBtnEl=$('#planoFreeBtn');
+if(planoFreeBtnEl)planoFreeBtnEl.addEventListener('click',()=>{if(state.session){document.getElementById('buscar').scrollIntoView({behavior:'smooth'})}else{openOverlay('mSignup')}});
 /* ===== Premium (painel admin) ===== */
 async function renderAdminPremium(){
   const key=adminKey();if(!key||!API_URL)return'';
@@ -1606,19 +1699,19 @@ function renderExplore(){
       <div class="comp-desc">${esc(c.desc[LANG]||c.desc.pt)}</div>
     </div>`).join('');
   convCalc();
-  let done=[];try{done=JSON.parse(localStorage.getItem('rumo_chk')||'[]')}catch(e){}
+  let done=[];try{done=JSON.parse(localStorage.getItem('traja_chk')||'[]')}catch(e){}
   $('#chkList').innerHTML=CHK.map(([id,ico,txt])=>`<label class="chk-item ${done.includes(id)?'done':''}"><input type="checkbox" data-chk="${id}" ${done.includes(id)?'checked':''}><span>${ico} ${esc(txt[LANG]||txt.pt)}</span></label>`).join('');
   chkCount();
   $$('#chkList [data-chk]').forEach(c=>c.addEventListener('change',()=>{
-    let d2=[];try{d2=JSON.parse(localStorage.getItem('rumo_chk')||'[]')}catch(e){}
+    let d2=[];try{d2=JSON.parse(localStorage.getItem('traja_chk')||'[]')}catch(e){}
     if(c.checked)d2.push(c.dataset.chk);else d2=d2.filter(x=>x!==c.dataset.chk);
-    localStorage.setItem('rumo_chk',JSON.stringify(d2));
+    localStorage.setItem('traja_chk',JSON.stringify(d2));
     c.closest('.chk-item').classList.toggle('done',c.checked);chkCount();
   }));
   $('#funGrid').innerHTML=FUN.map(([ico,txt])=>`<div class="fun-card"><span class="f-ico">${ico}</span><p>${esc(txt[LANG]||txt.pt)}</p></div>`).join('');
 }
-function chkCount(){let done=[];try{done=JSON.parse(localStorage.getItem('rumo_chk')||'[]')}catch(e){}$('#chkFill').style.width=Math.round(done.length/CHK.length*100)+'%';$('#chkCount').textContent=t('chk_count',{a:done.length,b:CHK.length})}
-$('#chkReset').addEventListener('click',()=>{localStorage.setItem('rumo_chk','[]');renderExplore()});
+function chkCount(){let done=[];try{done=JSON.parse(localStorage.getItem('traja_chk')||'[]')}catch(e){}$('#chkFill').style.width=Math.round(done.length/CHK.length*100)+'%';$('#chkCount').textContent=t('chk_count',{a:done.length,b:CHK.length})}
+$('#chkReset').addEventListener('click',()=>{localStorage.setItem('traja_chk','[]');renderExplore()});
 function convCalc(){
   const v=parseInt($('#convVal').value.replace(/\D/g,''))||0;
   const m=$('#convMoeda').value;const [sym,rate]=RATES[m];const out=v/rate;
@@ -1627,7 +1720,7 @@ function convCalc(){
 }
 $('#convVal').addEventListener('input',e=>{const v=e.target.value.replace(/\D/g,'').slice(0,9);e.target.value=v?Number(v).toLocaleString('pt-BR'):'';convCalc()});
 $('#convMoeda').addEventListener('change',convCalc);
-/* ===== RUMO LAB ===== */
+/* ===== TRAJA LAB ===== */
 function buildWxDest(){
   const prev=$('#wxDest').value;
   $('#wxDest').innerHTML=DESTS.map(d=>`<option value="${d.id}">${esc(cityName(d))} · ${esc(t('reg_'+d.country))}</option>`).join('');
@@ -1742,6 +1835,34 @@ try{
   $('#ano').textContent=new Date().getFullYear();
 }catch(e){console.warn('init parcial:',e)}
 (async()=>{try{await dbInit();updateAuthUI()}catch(e){console.warn('banco:',e)}})();
+
+// ---------- PWA: registrar service worker e botão "Instalar app" ----------
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{})});
+}
+(function(){
+  let deferredPrompt=null;
+  const btn=document.getElementById('btnInstall');
+  if(!btn)return;
+  const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+  const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream;
+  function refresh(){ btn.hidden = isStandalone() || !(deferredPrompt||isIOS()); }
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;refresh();});
+  window.addEventListener('appinstalled',()=>{deferredPrompt=null;btn.hidden=true;});
+  btn.addEventListener('click',async()=>{
+    if(deferredPrompt){
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt=null;
+      btn.hidden=true;
+    }else if(isIOS()){
+      alert(t('install_ios'));
+    }else{
+      alert(t('install_fallback'));
+    }
+  });
+  refresh();
+})();
 </script>
 </body>
 </html>

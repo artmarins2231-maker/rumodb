@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — Traja</title>
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#0B0812;--card:#15101F;--ice:#1E1730;--sky2:#2A2140;--sky:#564A72;
+  --blue:#B18CFF;--navy:#120B1C;--deep:#0A0611;--abyss:#040209;
+  --sun:#D6FF3F;--orange:#FF5FA2;--ok:#4ADE9C;--danger:#FF6B6B;
+  --text:#F7F4FF;--ink:#D6CDEE;--muted:#9385AE;--linha:rgba(255,255,255,.12);
+  --sombra:0 18px 40px -12px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.35);
+  --r:16px;--display:'Archivo Black',system-ui,sans-serif;--body:'Archivo',system-ui,sans-serif;--mono:'Space Mono',monospace;
+  color-scheme:dark;
+}
+html[data-theme="light"]{
+  --fundo:#F8F5FC;--card:#FFFFFF;--ice:#EFE7FA;--sky2:#E1D3F5;--sky:#8A76AE;
+  --blue:#7C3AED;--navy:#241938;--deep:#170F26;--abyss:#0D0817;
+  --sun:#8B5CF6;--orange:#E11D74;--ok:#0F9D66;--danger:#D2304A;
+  --text:#1B1226;--ink:#241933;--muted:#6B5C82;--linha:rgba(27,18,38,.14);
+  --sombra:0 18px 40px -12px rgba(27,18,38,.35),0 2px 6px rgba(27,18,38,.12);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--body);background:var(--fundo);color:var(--ink);line-height:1.6;transition:background-color .25s,color .25s}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,rgba(177,140,255,.18) 1px,transparent 1px);background-size:26px 26px;opacity:.5}
+html[data-theme="light"] body::before{opacity:.3}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;background:linear-gradient(180deg,var(--navy),var(--deep));border-bottom:1px solid var(--linha)}
+.logo{font-family:var(--display);font-size:1.4rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:.5rem}
+.logo-mark{width:24px;height:24px}
+.logo-mark svg{width:100%;height:100%}
+.logo-mark svg path{fill:var(--sun)}
+.back{font-family:var(--mono);font-size:.75rem;color:var(--ink);text-decoration:none;border:1.5px solid var(--linha);padding:.5rem 1rem;border-radius:99px;transition:border-color .2s}
+.back:hover{border-color:var(--sun)}
+.theme-toggle{width:36px;height:36px;border-radius:10px;border:1.5px solid var(--linha);background:var(--card);color:var(--text);cursor:pointer;font-size:1rem;margin-left:.6rem}
+.topbar-right{display:flex;align-items:center;gap:.6rem}
+main{max-width:760px;margin:0 auto;padding:3rem 1.4rem 5rem}
+h1{font-family:var(--display);text-transform:uppercase;font-size:clamp(1.8rem,4vw,2.5rem);color:var(--text);margin-bottom:.3rem}
+.updated{font-family:var(--mono);font-size:.75rem;color:var(--muted);margin-bottom:2.2rem}
+h2{font-family:var(--display);text-transform:uppercase;font-size:1.15rem;color:var(--text);margin:2.4rem 0 .8rem}
+p,li{color:var(--ink);font-size:.98rem}
+ul{padding-left:1.3rem}
+li{margin-bottom:.5rem}
+.card{background:var(--card);border:1.5px solid var(--linha);border-radius:var(--r);padding:1.6rem 1.8rem;box-shadow:var(--sombra);margin-bottom:1.5rem}
+.card p:last-child{margin-bottom:0}
+strong{color:var(--text)}
+a{color:var(--sun)}
+footer{text-align:center;padding:2rem;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="logo" href="/"><span class="logo-mark"><svg viewBox="0 0 64 64"><path d="M32 12 L40 30 L52 34 L40 38 L32 52 L24 38 L12 34 L24 30 Z"/></svg></span>Traja</a>
+  <div class="topbar-right">
+    <a class="back" href="/">← Voltar ao site</a>
+    <button class="theme-toggle" id="btnTheme" type="button" aria-label="Alternar tema">🌙</button>
+  </div>
+</header>
+<main>
+  <h1>Termos de Uso</h1>
+  <p class="updated">Última atualização: agosto de 2026</p>
+
+  <div class="card">
+    <p>Bem-vindo ao <strong>Traja</strong>. Ao usar este site, você concorda com os termos abaixo. Se não concordar, por favor não utilize o serviço.</p>
+  </div>
+
+  <h2>1. O que é o Traja</h2>
+  <div class="card">
+    <p>O Traja é uma ferramenta de planejamento de viagens que, a partir de um orçamento informado pelo usuário, sugere destinos, transporte e hospedagem estimados. <strong>Os valores exibidos (passagens, hotéis, custo diário) são estimativas ou dados de demonstração</strong> e não constituem oferta, cotação em tempo real ou compromisso de preço. Sempre confirme valores diretamente com a companhia aérea, plataforma de hospedagem ou agência antes de fechar qualquer compra.</p>
+  </div>
+
+  <h2>2. Cadastro e conta</h2>
+  <div class="card">
+    <ul>
+      <li>Para salvar viagens, você precisa criar uma conta com nome, e-mail e senha.</li>
+      <li>Sua senha nunca é armazenada em texto puro: usamos hash com salt (PBKDF2) antes de gravar qualquer coisa no banco.</li>
+      <li>Você é responsável por manter suas credenciais em sigilo e por qualquer atividade realizada na sua conta.</li>
+      <li>Você pode solicitar a exclusão da sua conta e dos dados associados a qualquer momento.</li>
+    </ul>
+  </div>
+
+  <h2>3. Plano gratuito e Premium</h2>
+  <div class="card">
+    <p>O Traja oferece um plano gratuito com funcionalidades limitadas (ex.: número de viagens salvas) e um plano Premium com benefícios adicionais. O acesso Premium pode ser concedido por código promocional. Funcionalidades e limites podem mudar sem aviso prévio enquanto o produto está em desenvolvimento.</p>
+  </div>
+
+  <h2>4. Uso aceitável</h2>
+  <div class="card">
+    <ul>
+      <li>Não é permitido tentar acessar áreas administrativas sem autorização, explorar falhas de segurança ou sobrecarregar o serviço propositalmente.</li>
+      <li>Não é permitido usar o Traja para fins ilegais ou para se passar por terceiros.</li>
+    </ul>
+  </div>
+
+  <h2>5. Limitação de responsabilidade</h2>
+  <div class="card">
+    <p>O Traja é fornecido "como está". Não garantimos disponibilidade contínua, ausência de erros, ou que os destinos/preços sugeridos estarão sempre atualizados. Não nos responsabilizamos por decisões de compra tomadas com base nas estimativas exibidas no site.</p>
+  </div>
+
+  <h2>6. Alterações nestes termos</h2>
+  <div class="card">
+    <p>Podemos atualizar estes termos periodicamente. Mudanças relevantes serão indicadas pela data de "última atualização" no topo desta página.</p>
+  </div>
+
+  <h2>7. Contato</h2>
+  <div class="card">
+    <p>Dúvidas sobre estes termos podem ser enviadas para o e-mail de contato indicado no rodapé do site.</p>
+  </div>
+</main>
+<footer>Traja — viaje com o orçamento que você tem</footer>
+<script>
+function applyTheme(th){
+  if(th==='light')document.documentElement.setAttribute('data-theme','light');
+  else document.documentElement.removeAttribute('data-theme');
+  const b=document.getElementById('btnTheme');if(b)b.textContent=th==='light'?'☀️':'🌙';
+  localStorage.setItem('traja_theme',th);
+}
+applyTheme(localStorage.getItem('traja_theme')||'dark');
+document.getElementById('btnTheme').addEventListener('click',()=>{
+  const cur=document.documentElement.getAttribute('data-theme')==='light'?'light':'dark';
+  applyTheme(cur==='light'?'dark':'light');
+});
+</script>
+</body>
+</html>

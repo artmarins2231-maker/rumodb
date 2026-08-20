@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Traja</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#0B0812;--card:#15101F;--ice:#1E1730;--sky2:#2A2140;--sky:#564A72;
+  --blue:#B18CFF;--navy:#120B1C;--deep:#0A0611;--abyss:#040209;
+  --sun:#D6FF3F;--orange:#FF5FA2;--ok:#4ADE9C;--danger:#FF6B6B;
+  --text:#F7F4FF;--ink:#D6CDEE;--muted:#9385AE;--linha:rgba(255,255,255,.12);
+  --sombra:0 18px 40px -12px rgba(0,0,0,.6),0 2px 6px rgba(0,0,0,.35);
+  --r:16px;--display:'Archivo Black',system-ui,sans-serif;--body:'Archivo',system-ui,sans-serif;--mono:'Space Mono',monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--body);background:var(--fundo);color:var(--ink);line-height:1.5}
+body::before{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,rgba(177,140,255,.18) 1px,transparent 1px);background-size:26px 26px;opacity:.5}
+a{color:inherit;text-decoration:none}
+
+/* ---------- gate de acesso (chave admin) ---------- */
+#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--fundo);z-index:50;padding:1rem}
+#gate .box{background:var(--card);border:1.5px solid var(--linha);border-radius:var(--r);padding:2rem;max-width:380px;width:100%;box-shadow:var(--sombra)}
+#gate h1{font-family:var(--display);text-transform:uppercase;font-size:1.3rem;color:var(--text);margin:0 0 .3rem}
+#gate p{font-size:.85rem;color:var(--muted);margin:0 0 1.2rem}
+#gate input{width:100%;background:var(--ice);border:1.5px solid var(--linha);border-radius:10px;padding:.8rem .9rem;color:var(--text);font-family:var(--mono);font-size:.9rem;margin-bottom:.8rem}
+#gate button{width:100%;background:var(--sun);color:#0B0812;border:none;border-radius:10px;padding:.8rem;font-family:var(--display);text-transform:uppercase;font-size:.85rem;cursor:pointer}
+#gate .erro{color:var(--danger);font-size:.8rem;font-family:var(--mono);margin-top:.6rem;min-height:1.1em}
+
+/* ---------- layout ---------- */
+#app{display:none}
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+.sidebar{background:linear-gradient(180deg,var(--navy),var(--deep));border-right:1px solid var(--linha);padding:1.3rem 1rem;display:flex;flex-direction:column}
+.logo{font-family:var(--display);font-size:1.25rem;color:#fff;display:flex;align-items:center;gap:.5rem;padding:.3rem .4rem 1.4rem}
+.logo svg{width:22px;height:22px}
+.logo svg path{fill:var(--sun)}
+.nav{display:flex;flex-direction:column;gap:.2rem;flex:1}
+.nav a, .nav .disabled{display:flex;align-items:center;gap:.6rem;padding:.65rem .8rem;border-radius:10px;font-size:.88rem;color:var(--ink)}
+.nav a.active{background:var(--sky2);color:var(--text);font-weight:600}
+.nav .disabled{color:var(--muted);cursor:not-allowed;justify-content:space-between}
+.nav .disabled span.tag{font-family:var(--mono);font-size:.62rem;border:1px solid var(--linha);border-radius:99px;padding:.1rem .5rem}
+.sidebar-foot{border-top:1px solid var(--linha);padding-top:1rem;margin-top:1rem;font-size:.8rem}
+.sidebar-foot .sair{display:block;margin-top:.6rem;color:var(--muted);font-family:var(--mono);font-size:.72rem}
+
+.main{padding:2rem 2.2rem 4rem}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.2rem}
+.topline h2{font-family:var(--display);text-transform:uppercase;font-size:1.5rem;color:var(--text);margin:0;display:flex;align-items:center;gap:.5rem}
+.subt{color:var(--muted);font-size:.9rem;margin:.2rem 0 1.6rem}
+
+.alerta{display:flex;align-items:center;justify-content:space-between;gap:.8rem;background:rgba(255,107,107,.1);border:1.5px solid rgba(255,107,107,.35);color:#ffb4b4;border-radius:12px;padding:.9rem 1.2rem;font-size:.88rem;margin-bottom:1.4rem}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-bottom:1.6rem}
+.card-metric{background:var(--card);border:1.5px solid var(--linha);border-radius:var(--r);padding:1.1rem 1.2rem;box-shadow:var(--sombra);display:flex;flex-direction:column;gap:.5rem}
+.card-metric .val{font-family:var(--display);font-size:1.5rem;color:var(--text)}
+.card-metric .lbl{font-size:.78rem;color:var(--muted)}
+.card-metric.saldo-pos .val{color:var(--ok)}
+.card-metric.saldo-neg .val{color:var(--danger)}
+
+.panel{background:var(--card);border:1.5px solid var(--linha);border-radius:var(--r);padding:1.4rem 1.5rem;box-shadow:var(--sombra);margin-bottom:1.6rem}
+.panel h3{font-family:var(--display);text-transform:uppercase;font-size:1rem;color:var(--text);margin:0 0 1rem}
+.grid2{display:grid;grid-template-columns:1.5fr 1fr;gap:1.2rem}
+@media(max-width:920px){.grid2{grid-template-columns:1fr}.shell{grid-template-columns:1fr}.sidebar{display:none}}
+
+.legend{display:flex;gap:1rem;font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:.6rem;justify-content:flex-end}
+.legend span{display:inline-flex;align-items:center;gap:.35rem}
+.dot{width:9px;height:9px;border-radius:2px}
+
+.vazio{color:var(--muted);font-size:.85rem;text-align:center;padding:2rem 0}
+.donut-legend{display:flex;flex-direction:column;gap:.5rem;justify-content:center}
+.donut-legend .li{display:flex;align-items:center;gap:.5rem;font-size:.85rem}
+.donut-legend .n{margin-left:auto;font-family:var(--mono);color:var(--text)}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <h1>Painel da agência</h1>
+    <p>Acesso restrito. Informe a chave de administrador (arquivo <code>admin.key</code> no servidor).</p>
+    <input id="chaveInput" type="password" placeholder="Chave admin" autocomplete="off">
+    <button id="btnEntrar" type="button">Entrar</button>
+    <div class="erro" id="erroGate"></div>
+  </div>
+</div>
+
+<div id="app">
+<div class="shell">
+  <aside class="sidebar">
+    <div class="logo"><svg viewBox="0 0 64 64"><path d="M32 12 L40 30 L52 34 L40 38 L32 52 L24 38 L12 34 L24 30 Z"/></svg>Traja</div>
+    <nav class="nav">
+      <a href="#" class="active">📊 Visão Geral</a>
+      <span class="disabled">👥 Clientes <span class="tag">em breve</span></span>
+      <span class="disabled">📅 Agendamentos <span class="tag">em breve</span></span>
+      <span class="disabled">🧾 Orçamentos <span class="tag">em breve</span></span>
+      <span class="disabled">💳 Financeiro <span class="tag">em breve</span></span>
+      <span class="disabled">📦 Produtos <span class="tag">em breve</span></span>
+      <span class="disabled">🧑‍🤝‍🧑 Equipe <span class="tag">em breve</span></span>
+    </nav>
+    <div class="sidebar-foot">
+      <a href="/" class="sair">← Voltar ao site</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topline">
+      <h2>📊 Visão Geral</h2>
+    </div>
+    <p class="subt">Resumo do negócio — dados de hoje e do mês atual.</p>
+
+    <div class="alerta" id="alertaAtraso" style="display:none"></div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="grid2">
+      <div class="panel">
+        <div class="legend"><span><i class="dot" style="background:var(--ok)"></i>Receitas</span><span><i class="dot" style="background:var(--danger)"></i>Despesas</span><span><i class="dot" style="background:var(--blue)"></i>Saldo</span></div>
+        <svg id="chartFluxo" viewBox="0 0 620 240" style="width:100%;height:auto;overflow:visible"></svg>
+      </div>
+      <div class="panel">
+        <h3>Orçamentos por status</h3>
+        <div id="donutWrap" style="display:flex;align-items:center;gap:1.2rem"></div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+
+<script>
+const API = '';
+let ADMIN_KEY = sessionStorage.getItem('traja_admin_key') || '';
+
+const fmtMoeda = v => (v||0).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+const mesLabel = ym => { const [y,m] = ym.split('-'); return ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][Number(m)-1] + '/' + y.slice(2); };
+
+async function apiAdmin(path){
+  const r = await fetch(API + path, { headers: { 'X-Admin-Key': ADMIN_KEY } });
+  if (r.status === 401) throw new Error('admin_key');
+  return r.json();
+}
+
+async function tentarEntrar(chaveForcada){
+  const erro = document.getElementById('erroGate');
+  erro.textContent = '';
+  const chave = chaveForcada || document.getElementById('chaveInput').value.trim();
+  if (!chave) { erro.textContent = 'Informe a chave.'; return; }
+  ADMIN_KEY = chave;
+  try {
+    const data = await apiAdmin('/api/admin/painel/overview');
+    if (!data.ok) throw new Error('erro');
+    sessionStorage.setItem('traja_admin_key', ADMIN_KEY);
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    render(data);
+  } catch (e) {
+    sessionStorage.removeItem('traja_admin_key');
+    erro.textContent = 'Chave inválida.';
+  }
+}
+
+document.getElementById('btnEntrar').addEventListener('click', tentarEntrar);
+document.getElementById('chaveInput').addEventListener('keydown', e => { if (e.key === 'Enter') tentarEntrar(); });
+document.querySelectorAll('.disabled').forEach(el => el.addEventListener('click', () => alert('Essa seção ainda não foi construída — só a Visão Geral está pronta por enquanto.')));
+
+function render(d){
+  // alerta de contas atrasadas
+  const al = document.getElementById('alertaAtraso');
+  if (d.contas_atrasadas > 0) {
+    al.style.display = 'flex';
+    al.innerHTML = `<span>⚠ ${d.contas_atrasadas} conta(s) em atraso · ${fmtMoeda(d.valor_atrasado)}</span>`;
+  }
+
+  // cards
+  const cards = [
+    { lbl: 'Agendamentos hoje', val: d.agendamentos_hoje },
+    { lbl: 'Receitas do mês (pagas)', val: fmtMoeda(d.receitas_mes) },
+    { lbl: 'Despesas do mês (pagas)', val: fmtMoeda(d.despesas_mes) },
+    { lbl: 'Saldo do mês', val: fmtMoeda(d.saldo_mes), cls: d.saldo_mes >= 0 ? 'saldo-pos' : 'saldo-neg' },
+    { lbl: 'Contas em aberto', val: d.contas_em_aberto },
+    { lbl: 'Clientes cadastrados', val: d.total_clientes }
+  ];
+  document.getElementById('cards').innerHTML = cards.map(c =>
+    `<div class="card-metric ${c.cls||''}"><div class="val">${c.val}</div><div class="lbl">${c.lbl}</div></div>`
+  ).join('');
+
+  desenharFluxo(d.fluxo_caixa);
+  desenharDonut(d.orcamentos_por_status);
+}
+
+function desenharFluxo(fluxo){
+  const svg = document.getElementById('chartFluxo');
+  const W = 620, H = 240, padL = 46, padB = 26, padT = 10;
+  const plotW = W - padL - 10, plotH = H - padB - padT;
+  const max = Math.max(1, ...fluxo.flatMap(f => [f.receitas, f.despesas, Math.abs(f.saldo)]));
+  const n = fluxo.length;
+  const bw = (plotW / n) * 0.28;
+  const step = plotW / n;
+
+  let bars = '', linePts = [], grid = '';
+  for (let i = 0; i <= 4; i++) {
+    const y = padT + plotH - (i/4)*plotH;
+    grid += `<line x1="${padL}" y1="${y}" x2="${W-10}" y2="${y}" stroke="var(--linha)" stroke-width="1"/>`;
+    grid += `<text x="${padL-8}" y="${y+4}" text-anchor="end" font-family="var(--mono)" font-size="9" fill="var(--muted)">${fmtMoeda(max*i/4).replace(',00','').replace('R$ ','R$')}</text>`;
+  }
+
+  fluxo.forEach((f,i) => {
+    const cx = padL + step*i + step/2;
+    const hR = (f.receitas/max)*plotH, hD = (f.despesas/max)*plotH;
+    bars += `<rect x="${cx-bw-2}" y="${padT+plotH-hR}" width="${bw}" height="${hR}" fill="var(--ok)" rx="2"/>`;
+    bars += `<rect x="${cx+2}" y="${padT+plotH-hD}" width="${bw}" height="${hD}" fill="var(--danger)" rx="2"/>`;
+    bars += `<text x="${cx}" y="${H-6}" text-anchor="middle" font-family="var(--mono)" font-size="9.5" fill="var(--muted)">${mesLabel(f.mes)}</text>`;
+    const sy = padT + plotH - ((f.saldo/max)*plotH*0.5 + plotH*0.5);
+    linePts.push(`${cx},${Math.max(padT, Math.min(padT+plotH, sy))}`);
+  });
+
+  const line = `<polyline points="${linePts.join(' ')}" fill="none" stroke="var(--blue)" stroke-width="2.5"/>` +
+    linePts.map(p => { const [x,y] = p.split(','); return `<circle cx="${x}" cy="${y}" r="3.5" fill="var(--blue)"/>`; }).join('');
+
+  svg.innerHTML = grid + bars + line;
+}
+
+function desenharDonut(st){
+  const total = st.pendente + st.concluido + st.recusado;
+  const wrap = document.getElementById('donutWrap');
+  if (total === 0) { wrap.innerHTML = '<div class="vazio" style="width:100%">Nenhum orçamento cadastrado ainda.</div>'; return; }
+  const cores = { concluido: 'var(--ok)', pendente: 'var(--orange)', recusado: 'var(--danger)' };
+  const nomes = { concluido: 'Concluído', pendente: 'Pendente', recusado: 'Recusado' };
+  const R = 60, C = 2*Math.PI*R;
+  let offset = 0, arcos = '';
+  Object.entries(st).forEach(([k,v]) => {
+    if (!v) return;
+    const frac = v/total, len = frac*C;
+    arcos += `<circle cx="80" cy="80" r="${R}" fill="none" stroke="${cores[k]}" stroke-width="20" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-offset}" transform="rotate(-90 80 80)"/>`;
+    offset += len;
+  });
+  const legendas = Object.entries(st).filter(([,v]) => v).map(([k,v]) =>
+    `<div class="li"><i class="dot" style="background:${cores[k]}"></i>${nomes[k]}<span class="n">${v}</span></div>`
+  ).join('');
+  wrap.innerHTML = `<svg width="160" height="160" viewBox="0 0 160 160">${arcos}</svg><div class="donut-legend">${legendas}</div>`;
+}
+
+// tenta entrar automaticamente se já tiver chave salva na sessão
+if (ADMIN_KEY) tentarEntrar(ADMIN_KEY);
+</script>
+</body>
+</html>

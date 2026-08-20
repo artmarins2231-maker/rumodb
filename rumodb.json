@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nome": "arthur martins",
+      "email": "artmarins2231@gmail.com",
+      "cidade": "Petrolina",
+      "hash": "03ba0a7cddec3181bf6e291dfa87d2a9a4b7cede75214b1f8831f5aaa8a401f1",
+      "salt": "30bc3289772cbd9a9ef0375972ad03c6",
+      "criado_em": "2026-08-20T01:58:45.316Z",
+      "ultima_entrada": "2026-08-20T01:58:45.316Z"
+    }
+  ],
+  "logins": [
+    {
+      "email": "artmarins2231@gmail.com",
+      "em": "2026-08-20T01:58:45.316Z"
+    }
+  ],
+  "codes": [],
+  "clientes": [],
+  "agendamentos": [],
+  "orcamentos_negocio": [],
+  "financeiro": [],
+  "seq": 2
+}

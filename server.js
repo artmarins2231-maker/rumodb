@@ -1,5 +1,5 @@
 /**
- * RumoDB — servidor local (Node puro, sem dependências externas)
+ * TrajaDB — servidor local (Node puro, sem dependências externas)
  * ------------------------------------------------------------------
  * - Senhas: hash PBKDF2 (100k iterações, SHA-256) com salt único por usuário.
  *   Nada de senha em texto puro é gravado em disco, nem o hash bruto é
@@ -53,8 +53,21 @@ const SITE_URL = process.env.SITE_URL || ''; // ex: https://www.seudominio.com.b
 // no modo local (nada quebra e nenhuma chamada externa é feita).
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
 const AI_MODEL = process.env.AI_MODEL || 'claude-sonnet-5';
-const DB_FILE = path.join(ROOT, 'rumodb.json');
-const ADMIN_KEY_FILE = path.join(ROOT, 'admin.key');
+// ---------- Pasta de dados persistente ----------
+// No Render Free, a pasta do projeto (ROOT) é recriada do zero a cada deploy
+// ou reinício, apagando o banco e a admin.key. Para evitar isso, use um
+// Persistent Disk montado em /var/data (Render → Disks → Mount Path: /var/data).
+// Se DATA_DIR existir (disco montado), os dados vão para lá; senão, cai de
+// volta para ROOT (comportamento antigo, útil rodando local).
+const DATA_DIR = process.env.DATA_DIR || '/var/data';
+const PERSIST_DIR = fs.existsSync(DATA_DIR) ? DATA_DIR : ROOT;
+if (PERSIST_DIR === ROOT) {
+  console.log('⚠️  Nenhum disco persistente encontrado em ' + DATA_DIR + ' — usando ' + ROOT + ' (dados serão perdidos a cada deploy/restart no Render Free).');
+} else {
+  console.log('💾 Usando pasta persistente para dados: ' + PERSIST_DIR);
+}
+const DB_FILE = path.join(PERSIST_DIR, 'rumodb.json');
+const ADMIN_KEY_FILE = path.join(PERSIST_DIR, 'admin.key');
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 dias
 const PBKDF2_ITER = 100000;
 const PBKDF2_KEYLEN = 32;
@@ -86,10 +99,15 @@ function loadDB() {
       users: Array.isArray(raw.users) ? raw.users : [],
       logins: Array.isArray(raw.logins) ? raw.logins : [],
       codes: Array.isArray(raw.codes) ? raw.codes : [],
+      // ---- painel de gestão da agência (Traja como agência) ----
+      clientes: Array.isArray(raw.clientes) ? raw.clientes : [],
+      agendamentos: Array.isArray(raw.agendamentos) ? raw.agendamentos : [],
+      orcamentos_negocio: Array.isArray(raw.orcamentos_negocio) ? raw.orcamentos_negocio : [],
+      financeiro: Array.isArray(raw.financeiro) ? raw.financeiro : [],
       seq: Number(raw.seq) || 1
     };
   } catch (e) {
-    return { users: [], logins: [], codes: [], seq: 1 };
+    return { users: [], logins: [], codes: [], clientes: [], agendamentos: [], orcamentos_negocio: [], financeiro: [], seq: 1 };
   }
 }
 function saveDB(db) { atomicWrite(DB_FILE, JSON.stringify(db, null, 2)); }
@@ -185,7 +203,7 @@ function genCode() {
     if (i > 0 && i % 4 === 0) s += '-';
     s += CODE_ALPHABET[crypto.randomInt(CODE_ALPHABET.length)];
   }
-  return 'RUMO-' + s;
+  return 'TRAJA-' + s;
 }
 
 // ---------- AURORA — chamada ao modelo real (Anthropic) ----------
@@ -211,11 +229,11 @@ const LANG_NAMES = { pt: 'português do Brasil', en: 'English', es: 'español' }
 function buildAuroraSystem(lang, context) {
   const langName = LANG_NAMES[lang] || LANG_NAMES.pt;
   return [
-    `Você é AURORA, a copiloto de viagens do site Rumo. Responda sempre em ${langName}, com tom simpático, direto e curto (no máximo 3–4 frases).`,
+    `Você é AURORA, a copiloto de viagens do site Traja. Responda sempre em ${langName}, com tom simpático, direto e curto (no máximo 3–4 frases).`,
     'Pode usar **negrito** e quebras de linha, mas não use listas markdown nem títulos.',
     'Baseie-se SOMENTE nos dados de contexto abaixo (já calculados pelo site: orçamento, dias, destinos e preços) — nunca invente preços, nomes de hotéis, companhias ou destinos que não estejam no contexto.',
     'Se o contexto não tiver orçamento nem destinos, peça de forma breve a informação que falta (ex.: quanto a pessoa tem pra gastar e quantos dias).',
-    'Fale só sobre viagens e sobre o próprio site Rumo; se perguntarem qualquer outra coisa, recuse com bom humor e traga o assunto de volta pra viagem.',
+    'Fale só sobre viagens e sobre o próprio site Traja; se perguntarem qualquer outra coisa, recuse com bom humor e traga o assunto de volta pra viagem.',
     'Contexto atual (JSON): ' + JSON.stringify(context || {})
   ].join(' ');
 }
@@ -483,6 +501,252 @@ async function handleApi(req, res, p) {
     return send(res, 200, { ok: true, user: publicUser(user) });
   }
 
+  // ================== PAINEL DE GESTÃO DA AGÊNCIA ==================
+  // Tudo abaixo exige X-Admin-Key (mesma chave do painel admin de usuários).
+  // Coleções simples em rumodb.json: clientes, agendamentos,
+  // orcamentos_negocio (propostas comerciais) e financeiro (lançamentos).
+
+  // ---- clientes ----
+  if (p === '/api/admin/clientes' && req.method === 'GET') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    const db = loadDB();
+    return send(res, 200, { ok: true, items: [...db.clientes].reverse() });
+  }
+  if (p === '/api/admin/clientes' && req.method === 'POST') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const nome = String(body.nome || '').trim().slice(0, 120);
+    if (!nome) return send(res, 400, { ok: false, error: 'nome' });
+    const db = loadDB();
+    const item = {
+      id: db.seq++, nome,
+      email: String(body.email || '').trim().slice(0, 200),
+      telefone: String(body.telefone || '').trim().slice(0, 40),
+      cidade: String(body.cidade || '').trim().slice(0, 80),
+      notas: String(body.notas || '').trim().slice(0, 500),
+      criado_em: new Date().toISOString()
+    };
+    db.clientes.push(item);
+    saveDB(db);
+    return send(res, 201, { ok: true, item });
+  }
+  if (p === '/api/admin/clientes' && req.method === 'PUT') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const item = db.clientes.find(c => c.id === Number(body.id));
+    if (!item) return send(res, 404, { ok: false, error: 'not_found' });
+    for (const k of ['nome', 'email', 'telefone', 'cidade', 'notas']) if (body[k] !== undefined) item[k] = String(body[k]).slice(0, 500);
+    saveDB(db);
+    return send(res, 200, { ok: true, item });
+  }
+  if (p === '/api/admin/clientes' && req.method === 'DELETE') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const idx = db.clientes.findIndex(c => c.id === Number(body.id));
+    if (idx === -1) return send(res, 404, { ok: false, error: 'not_found' });
+    db.clientes.splice(idx, 1);
+    saveDB(db);
+    return send(res, 200, { ok: true });
+  }
+
+  // ---- agendamentos ----
+  if (p === '/api/admin/agendamentos' && req.method === 'GET') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    const db = loadDB();
+    return send(res, 200, { ok: true, items: [...db.agendamentos].reverse() });
+  }
+  if (p === '/api/admin/agendamentos' && req.method === 'POST') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const titulo = String(body.titulo || '').trim().slice(0, 160);
+    const data_hora = String(body.data_hora || '').trim();
+    if (!titulo || !data_hora) return send(res, 400, { ok: false, error: 'campos_obrigatorios' });
+    const db = loadDB();
+    const item = {
+      id: db.seq++, titulo, data_hora,
+      cliente_id: body.cliente_id ? Number(body.cliente_id) : null,
+      status: ['agendado', 'concluido', 'cancelado'].includes(body.status) ? body.status : 'agendado',
+      notas: String(body.notas || '').trim().slice(0, 500),
+      criado_em: new Date().toISOString()
+    };
+    db.agendamentos.push(item);
+    saveDB(db);
+    return send(res, 201, { ok: true, item });
+  }
+  if (p === '/api/admin/agendamentos' && req.method === 'PUT') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const item = db.agendamentos.find(a => a.id === Number(body.id));
+    if (!item) return send(res, 404, { ok: false, error: 'not_found' });
+    for (const k of ['titulo', 'data_hora', 'status', 'notas']) if (body[k] !== undefined) item[k] = String(body[k]).slice(0, 500);
+    if (body.cliente_id !== undefined) item.cliente_id = body.cliente_id ? Number(body.cliente_id) : null;
+    saveDB(db);
+    return send(res, 200, { ok: true, item });
+  }
+  if (p === '/api/admin/agendamentos' && req.method === 'DELETE') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const idx = db.agendamentos.findIndex(a => a.id === Number(body.id));
+    if (idx === -1) return send(res, 404, { ok: false, error: 'not_found' });
+    db.agendamentos.splice(idx, 1);
+    saveDB(db);
+    return send(res, 200, { ok: true });
+  }
+
+  // ---- orçamentos (propostas comerciais da agência) ----
+  if (p === '/api/admin/orcamentos-negocio' && req.method === 'GET') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    const db = loadDB();
+    return send(res, 200, { ok: true, items: [...db.orcamentos_negocio].reverse() });
+  }
+  if (p === '/api/admin/orcamentos-negocio' && req.method === 'POST') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const titulo = String(body.titulo || '').trim().slice(0, 160);
+    const valor = Number(body.valor);
+    if (!titulo || !Number.isFinite(valor) || valor < 0) return send(res, 400, { ok: false, error: 'campos_obrigatorios' });
+    const db = loadDB();
+    const item = {
+      id: db.seq++, titulo, valor,
+      cliente_id: body.cliente_id ? Number(body.cliente_id) : null,
+      status: ['pendente', 'concluido', 'recusado'].includes(body.status) ? body.status : 'pendente',
+      criado_em: new Date().toISOString()
+    };
+    db.orcamentos_negocio.push(item);
+    saveDB(db);
+    return send(res, 201, { ok: true, item });
+  }
+  if (p === '/api/admin/orcamentos-negocio' && req.method === 'PUT') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const item = db.orcamentos_negocio.find(o => o.id === Number(body.id));
+    if (!item) return send(res, 404, { ok: false, error: 'not_found' });
+    if (body.titulo !== undefined) item.titulo = String(body.titulo).slice(0, 160);
+    if (body.status !== undefined) item.status = String(body.status).slice(0, 20);
+    if (body.valor !== undefined && Number.isFinite(Number(body.valor))) item.valor = Number(body.valor);
+    if (body.cliente_id !== undefined) item.cliente_id = body.cliente_id ? Number(body.cliente_id) : null;
+    saveDB(db);
+    return send(res, 200, { ok: true, item });
+  }
+  if (p === '/api/admin/orcamentos-negocio' && req.method === 'DELETE') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const idx = db.orcamentos_negocio.findIndex(o => o.id === Number(body.id));
+    if (idx === -1) return send(res, 404, { ok: false, error: 'not_found' });
+    db.orcamentos_negocio.splice(idx, 1);
+    saveDB(db);
+    return send(res, 200, { ok: true });
+  }
+
+  // ---- financeiro (lançamentos de receita/despesa) ----
+  if (p === '/api/admin/financeiro' && req.method === 'GET') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    const db = loadDB();
+    return send(res, 200, { ok: true, items: [...db.financeiro].reverse() });
+  }
+  if (p === '/api/admin/financeiro' && req.method === 'POST') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const descricao = String(body.descricao || '').trim().slice(0, 160);
+    const valor = Number(body.valor);
+    const tipo = body.tipo === 'despesa' ? 'despesa' : 'receita';
+    const vencimento = String(body.vencimento || '').trim(); // YYYY-MM-DD
+    if (!descricao || !Number.isFinite(valor) || valor <= 0 || !vencimento) return send(res, 400, { ok: false, error: 'campos_obrigatorios' });
+    const db = loadDB();
+    const item = {
+      id: db.seq++, descricao, valor, tipo, vencimento,
+      status: body.status === 'paga' ? 'paga' : 'pendente',
+      cliente_id: body.cliente_id ? Number(body.cliente_id) : null,
+      criado_em: new Date().toISOString()
+    };
+    db.financeiro.push(item);
+    saveDB(db);
+    return send(res, 201, { ok: true, item });
+  }
+  if (p === '/api/admin/financeiro' && req.method === 'PUT') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const item = db.financeiro.find(f => f.id === Number(body.id));
+    if (!item) return send(res, 404, { ok: false, error: 'not_found' });
+    if (body.descricao !== undefined) item.descricao = String(body.descricao).slice(0, 160);
+    if (body.status !== undefined) item.status = body.status === 'paga' ? 'paga' : 'pendente';
+    if (body.tipo !== undefined) item.tipo = body.tipo === 'despesa' ? 'despesa' : 'receita';
+    if (body.vencimento !== undefined) item.vencimento = String(body.vencimento).slice(0, 20);
+    if (body.valor !== undefined && Number.isFinite(Number(body.valor))) item.valor = Number(body.valor);
+    saveDB(db);
+    return send(res, 200, { ok: true, item });
+  }
+  if (p === '/api/admin/financeiro' && req.method === 'DELETE') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    let body; try { body = await readJSON(req); } catch (e) { return send(res, 400, { ok: false, error: 'bad_json' }); }
+    const db = loadDB();
+    const idx = db.financeiro.findIndex(f => f.id === Number(body.id));
+    if (idx === -1) return send(res, 404, { ok: false, error: 'not_found' });
+    db.financeiro.splice(idx, 1);
+    saveDB(db);
+    return send(res, 200, { ok: true });
+  }
+
+  // ---- visão geral (números já calculados pro dashboard) ----
+  if (p === '/api/admin/painel/overview' && req.method === 'GET') {
+    if (!requireAdmin(req)) return send(res, 401, { ok: false, error: 'admin_key' });
+    const db = loadDB();
+    const now = new Date();
+    const hojeStr = now.toISOString().slice(0, 10);
+    const mesAtual = now.toISOString().slice(0, 7); // YYYY-MM
+
+    const agendamentosHoje = db.agendamentos.filter(a => (a.data_hora || '').slice(0, 10) === hojeStr && a.status !== 'cancelado').length;
+
+    const financeiroDoMes = db.financeiro.filter(f => (f.vencimento || '').slice(0, 7) === mesAtual);
+    const receitasMes = financeiroDoMes.filter(f => f.tipo === 'receita' && f.status === 'paga').reduce((s, f) => s + f.valor, 0);
+    const despesasMes = financeiroDoMes.filter(f => f.tipo === 'despesa' && f.status === 'paga').reduce((s, f) => s + f.valor, 0);
+    const saldoMes = receitasMes - despesasMes;
+
+    const contasEmAberto = db.financeiro.filter(f => f.status === 'pendente');
+    const contasAtrasadas = contasEmAberto.filter(f => f.vencimento < hojeStr);
+    const valorAtrasado = contasAtrasadas.reduce((s, f) => s + f.valor, 0);
+
+    // fluxo de caixa dos últimos 6 meses (incluindo o atual)
+    const meses = [];
+    for (let i = 5; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      meses.push(d.toISOString().slice(0, 7));
+    }
+    const fluxo = meses.map(m => {
+      const doMes = db.financeiro.filter(f => (f.vencimento || '').slice(0, 7) === m && f.status === 'paga');
+      const receitas = doMes.filter(f => f.tipo === 'receita').reduce((s, f) => s + f.valor, 0);
+      const despesas = doMes.filter(f => f.tipo === 'despesa').reduce((s, f) => s + f.valor, 0);
+      return { mes: m, receitas, despesas, saldo: receitas - despesas };
+    });
+
+    const orcamentosPorStatus = {
+      pendente: db.orcamentos_negocio.filter(o => o.status === 'pendente').length,
+      concluido: db.orcamentos_negocio.filter(o => o.status === 'concluido').length,
+      recusado: db.orcamentos_negocio.filter(o => o.status === 'recusado').length
+    };
+
+    return send(res, 200, {
+      ok: true,
+      agendamentos_hoje: agendamentosHoje,
+      receitas_mes: receitasMes,
+      despesas_mes: despesasMes,
+      saldo_mes: saldoMes,
+      contas_em_aberto: contasEmAberto.length,
+      contas_atrasadas: contasAtrasadas.length,
+      valor_atrasado: valorAtrasado,
+      fluxo_caixa: fluxo,
+      orcamentos_por_status: orcamentosPorStatus,
+      total_clientes: db.clientes.length
+    });
+  }
+
   return send(res, 404, { ok: false, error: 'not_found' });
 }
 
@@ -532,5 +796,5 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log('✅ RumoDB no ar → http://localhost:' + PORT);
+  console.log('✅ TrajaDB no ar → http://localhost:' + PORT);
 });
